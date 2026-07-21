@@ -1,0 +1,26 @@
+  skip (too short): clean__random2__39835156-35d7-4992-a02a-b74352ae580d_Interviewee_7572127_Bhasuru_Siva_Satya_Sahithi_2.parquet (81 < 300 samples)
+
+=== Stage 2 summary ===
+videos: 170 (94 with audio turns)  windows: 26690  (cheating=6762, clean=19928)
+features/window: 63   sequence: (26690, 240, 6)
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/windows.parquet
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/sequences.npz
+videos/class: cheating=53, clean=117
+videos/source:
+    cheating bot            20
+    cheating interviews     15
+    cheating reading        12
+    cheating testing_team   6
+    clean    interviews     28
+    clean    interviews_new 51
+    clean    random1        13
+    clean    random2        25
+windows=26690  videos: cheating=53 clean=117
+CV: StratifiedGroupKFold(n_splits=5)   feature sets: ['mediapipe', 'mediapipe_gaze_head']   seq: gru
+
+[A/xgboost  mediapipe       ] video AUC=0.656 PR=0.418 | window AUC=0.658 | P=0.44 R=0.79
+[A/xgboost  mediapipe_gaze_head] video AUC=0.619 PR=0.389 | window AUC=0.622 | P=0.43 R=0.60
+[B] gru CV: 5 folds across 5 parallel CPU workers
+[B/gru       mediapipe       ] video AUC=0.787 PR=0.623 | window AUC=0.688 | P=0.94 R=0.28
+
+🏆 winner: gru on mediapipe (video ROC-AUC=0.787, threshold=0.983)

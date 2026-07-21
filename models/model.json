@@ -1,0 +1,31 @@
+{
+  "kind": "multirocket",
+  "feature_set": "mediapipe",
+  "threshold": 0.999728292346675,
+  "metrics": {
+    "window_roc_auc": 0.7165382073186037,
+    "window_pr_auc": 0.4472358129521673,
+    "video_roc_auc": 0.8493791323980003,
+    "video_pr_auc": 0.6962394934417236,
+    "threshold": 0.999728292346675,
+    "tn": 110,
+    "fp": 7,
+    "fn": 23,
+    "tp": 30,
+    "precision": 0.8108108108108109,
+    "recall": 0.5660377358490566
+  },
+  "window_seconds": 20.0,
+  "stride_seconds": 10.0,
+  "topk_fraction": 0.3,
+  "topk_min": 3,
+  "seq_channels": [
+    "gaze_x",
+    "gaze_y",
+    "yaw",
+    "pitch",
+    "ear",
+    "mouth"
+  ],
+  "seq_len": 240
+}

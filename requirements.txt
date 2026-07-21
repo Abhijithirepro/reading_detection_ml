@@ -1,0 +1,35 @@
+# Core pipeline — Apple Silicon (M-series) friendly.
+# Recommended Python: 3.11 or 3.12 (best wheel coverage for mediapipe + torch).
+#
+# Install:  python3.12 -m venv venv && source venv/bin/activate
+#           pip install -U pip && pip install -r requirements.txt
+
+numpy>=1.26,<3
+pandas>=2.1
+scipy>=1.11
+opencv-python>=4.9
+mediapipe>=0.10.14          # Apple Silicon wheels; FaceMesh + iris + blendshapes
+scikit-learn>=1.4
+xgboost>=2.0
+torch>=2.2                  # uses the MPS (Metal) backend on M-series
+matplotlib>=3.8
+pyarrow>=15.0               # parquet I/O
+tqdm>=4.66
+silero-vad>=5.0             # audio voice-activity detection (v2 turn engine);
+                            # activates automatically when recordings have audio.
+                            # Requires the ffmpeg CLI:  brew install ffmpeg
+
+# ---- Optional Model C: MiniROCKET sequence classifier (train.py --seq-kind minirocket) ----
+# Fixed convolutional-kernel transform + linear head; no weights to download,
+# trains in seconds, strong baseline on small time-series. numba/llvmlite provide
+# the JIT that makes the kernel transform fast (sktime keeps numba optional).
+#   pip install sktime numba
+#
+# ---- Optional appearance-based gaze backends (installed only if you use them) ----
+# L2CS-Net  (default appearance backend):
+#   pip install l2cs
+# OpenFace 3.0 (alternative backend, heavier):
+#   see https://github.com/CMU-MultiComp-Lab/OpenFace-3.0
+#
+# ONNX export / in-browser deployment path (optional, used by train.py --export-onnx):
+#   pip install onnx onnxruntime skl2onnx

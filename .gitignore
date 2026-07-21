@@ -1,0 +1,45 @@
+# venvs
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# raw videos + the folders they came from (don't commit candidate recordings)
+data/raw/cheating/*
+data/raw/clean/*
+!data/raw/cheating/.gitkeep
+!data/raw/clean/.gitkeep
+cheating_folder/
+not_cheating_folder/
+new_not_cheating/
+
+# never push raw recordings regardless of location (GitHub 100MB/file limit)
+*.mp4
+*.webm
+*.mkv
+*.mov
+*.avi
+*.m4v
+
+# code-review tooling cache (not project content)
+.code-review-graph/
+
+# generated artifacts
+data/features/*.parquet
+data/features/_extract_summary.csv
+data/windows/*.parquet
+data/windows/*.npz
+data/windows/_feature_columns.json
+reports/*.html
+reports/*.json
+reports/*.npz
+reports/_predict_cache/
+reports/_test_cache/
+
+# large model asset (auto-downloaded on first run)
+models/face_landmarker.task
+
+# keep trained model artifacts? by default yes — comment out to ignore
+# models/*.json
+# models/*.csv
+.DS_Store

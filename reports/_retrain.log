@@ -1,0 +1,756 @@
+=== [1/3] extract_features (idempotent; only new videos get processed) ===
+SKIP (done): combined_ir8232529_Sakamuri_Pavithra.mp4
+SKIP (done): combined_ir8241161_Kalaiselvan_Karthikeyan.mp4
+SKIP (done): combined_ir8241299_Kalluri_Praneeth (2).webm
+SKIP (done): combined_ir8244089_Marthala_Ashok_Reddy.mp4
+SKIP (done): combined_ir8248195_Shweta_Chandrakant_Gambhire.webm
+SKIP (done): combined_ir8251421_Chippgiri_Reddy.mp4
+SKIP (done): combined_ir8256777_Gaurav_Kumar.mp4
+SKIP (done): combined_ir8257151_Shyam_Sundar_Vallapatla.webm
+SKIP (done): combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1).mp4
+SKIP (done): combined_ir8275457_Abhilasha_M_E.mp4
+SKIP (done): combined_ir8277339_Dhiraj_Sanjay_Kharche.mp4
+SKIP (done): combined_ir8277721_Sakshi_Mishra.webm
+SKIP (done): combined_ir8289961_Thrinath_Reddy_Dadam.webm
+SKIP (done): combined_ir8299831_K_Chandana.mp4
+SKIP (done): combined_ir8307595_Jagruti_Patil.mp4
+SKIP (done): combined_ir8237215_Palle_Sindhuja.mp4
+SKIP (done): combined_ir8250885_Shruthi_D_A.mp4
+SKIP (done): combined_ir8252235_Prasanth_Suresh.mp4
+SKIP (done): combined_ir8252691_Panthangi_Priyanka.mp4
+SKIP (done): combined_ir8266715_Akhila_Reddy_Karnati.mp4
+SKIP (done): combined_ir8269065_Rajesh_Chandrasekar.mp4
+SKIP (done): combined_ir8269593_Kamatam_Venkata_Rohan.mp4
+SKIP (done): combined_ir8270165_Ajay_Kumar_Mahato.mp4
+SKIP (done): combined_ir8276317_Girish_Subhash_Patil.mp4
+SKIP (done): combined_ir8279051_Kethireddy_Nirmala_Devi.mp4
+SKIP (done): combined_ir8279075_Mohanambal_Nanjappan.mp4
+SKIP (done): combined_ir8279129_Rakshitha_Keerthi_B.mp4
+SKIP (done): combined_ir8280295_Ramashetty_N_Biradar.webm
+SKIP (done): combined_ir8280585_Sahil_Malik.mp4
+SKIP (done): combined_ir8283753_Sakshi_Suwas_Dudhe.webm
+SKIP (done): combined_ir8285271_Pemmadi_Adinarayana.mp4
+SKIP (done): combined_ir8286421_Gogineni_Priya.mp4
+SKIP (done): combined_ir8286765_Aravind_Yesugari.webm
+SKIP (done): combined_ir8286773_R_Chandra_Babu.mp4
+SKIP (done): combined_ir8286813_Kanimozhi_Manoharan.webm
+SKIP (done): combined_ir8287587_Vishakha_Sumant_Deshpande.mp4
+SKIP (done): combined_ir8287867_Komanduri_Suhas.mp4
+SKIP (done): combined_ir8288293_Naveen_Vigrahalla.mp4
+SKIP (done): combined_ir8288469_Pankaj_Bhandari.mp4
+SKIP (done): combined_ir8288683_Shubham_Akarte.mp4
+SKIP (done): combined_ir8289939_Dhanshree_Ghanshyam_Mul.mp4
+SKIP (done): combined_ir8294719_Ganesh_Guttula.mp4
+SKIP (done): combined_ir8294759_Bhuvnesvar_Vasistha.mp4
+Backend=mediapipe  target_fps=15.0  videos=94  to-extract=51  workers=6
+I0000 00:00:1784622856.372968 1577380 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1784622856.372969 1577379 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1784622856.372969 1577377 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1784622856.372967 1577378 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1784622856.373036 1577381 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1784622856.373041 1577382 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+W0000 00:00:1784622856.375027 1577377 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1784622856.375027 1577378 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1784622856.375037 1577380 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1784622856.375027 1577379 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1784622856.375028 1577382 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1784622856.375037 1577381 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784622856.497803 1577380 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1784622856.497805 1577379 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1784622856.497801 1577377 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1784622856.497802 1577378 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1784622856.497813 1577381 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1784622856.497806 1577382 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+INFO: INFO: INFO: INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+Created TensorFlow Lite XNNPACK delegate for CPU.
+Created TensorFlow Lite XNNPACK delegate for CPU.
+Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1784622856.501762 1577422 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.501821 1577391 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.501825 1577434 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.501824 1577397 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.502073 1577431 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.502206 1577392 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.519338 1577431 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.519396 1577392 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.519542 1577422 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.519637 1577434 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.523406 1577391 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622856.525172 1577397 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784622976.817948 1577388 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.807582+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784622976.817948 1577383 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.815208+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784622976.824783 1577386 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.817918+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784622976.838655 1577385 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.834433+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784622976.931364 1577384 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.929449+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784622976.933626 1577387 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.927777+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784622979.996535 1577388 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.807582+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1784622987.292674 1579803 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[1/51] ok  face=100%  frames=13362  (130.7s)  [interviews_new] combined_ir8289417_Debashish_Deka.webm  audio_turns=51
+I0000 00:00:1784622987.296815 1579803 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784622987.299073 1579806 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784622987.305445 1579807 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623013.595523 1577383 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.815208+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[2/51] ok  face=99%  frames=17341  (165.9s)  [interviews_new] combined_ir8251579_Aishwarya_Sanjay_Mokase.webm  audio_turns=104
+W0000 00:00:1784623022.444252 1580404 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623022.448367 1580404 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623022.450088 1580408 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623022.457363 1580409 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623036.830083 1577386 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.817918+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623036.839012 1577385 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.834433+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623036.936628 1577384 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.929449+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623036.937807 1577387 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.927777+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623038.872086 1577384 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.929449+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[ WARN:0@184.300] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+W0000 00:00:1784623044.955413 1580904 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[3/51] ok  face=98%  frames=6585  (57.6s)  [interviews_new] combined_ir8293625_Babu_Singh.webm  audio_turns=73
+I0000 00:00:1784623044.958296 1580904 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623044.959742 1580908 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623044.965772 1580908 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[4/51] ok  face=99%  frames=20192  (191.8s)  [interviews_new] combined_ir8287281_Arun_Yadav.webm  audio_turns=79
+W0000 00:00:1784623048.383577 1581011 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623048.387816 1581011 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623048.388840 1581021 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623048.394926 1581021 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623075.051474 1577386 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.817918+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[5/51] ok  face=100%  frames=25674  (235.7s)  [interviews_new] combined_ir8268871_Renuka_Joshi.webm  audio_turns=205
+W0000 00:00:1784623092.228491 1581529 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623092.233297 1581529 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623092.234693 1581540 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623092.240074 1581540 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623096.844107 1577385 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.834433+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623096.938293 1577387 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.927777+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623129.477555 1580405 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:23:02.840557+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[6/51] ok  face=100%  frames=12554  (116.8s)  [interviews_new] combined_ir8294849_Tammi_Goutham.webm  audio_turns=120
+W0000 00:00:1784623139.304888 1582339 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623139.309515 1582339 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623139.310728 1582341 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623139.316863 1582343 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623156.849492 1577385 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.834433+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623156.943818 1577387 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.927777+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623161.272922 1580905 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:23:25.257896+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[7/51] ok  face=98%  frames=12832  (122.7s)  [interviews_new] combined_ir8294907_Ramarjun_Ganguly.webm  audio_turns=52
+W0000 00:00:1784623167.663100 1582760 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623167.666888 1582760 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623167.668052 1582762 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623167.675924 1582764 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623168.807680 1581012 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:23:28.802091+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623170.364874 1581012 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:23:28.802091+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[8/51] ok  face=100%  frames=13501  (128.6s)  [interviews_new] combined_ir8295465_Anasuya_Chakraborty.webm  audio_turns=31
+W0000 00:00:1784623177.004268 1582932 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623177.008056 1582932 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623177.010191 1582935 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623177.015979 1582935 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[ WARN:0@345.868] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1784623201.625755 1577387 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.927777+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[ WARN:0@346.812] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1784623202.569729 1577385 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:20:16.834433+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623212.492520 1581530 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:24:12.487974+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[9/51] ok  face=100%  frames=38596  (366.3s)  [interviews_new] combined_ir8268331_Arnab_Kumar_Kumar_Das.webm  audio_turns=98
+W0000 00:00:1784623222.838322 1583595 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623222.843659 1583595 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623222.844704 1583597 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623222.851450 1583599 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[10/51] ok  face=99%  frames=38725  (374.3s)  [interviews_new] combined_ir8244067_Eswara_Moorthi_M.webm  audio_turns=195
+W0000 00:00:1784623230.822537 1583716 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623230.832596 1583716 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623230.833752 1583722 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623230.839571 1583722 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623259.699286 1582340 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:24:59.693677+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623269.481353 1582933 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:25:37.575822+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623272.497158 1581530 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:24:12.487974+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[11/51] ok  face=100%  frames=10120  (97.3s)  [interviews_new] combined_ir8298825_Navaneeth_Remesh.webm  audio_turns=80
+W0000 00:00:1784623274.319732 1584322 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623274.325208 1584322 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623274.327068 1584326 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623274.333230 1584326 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623288.088102 1582761 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:25:28.085053+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623315.281560 1581530 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:24:12.487974+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623319.703269 1582340 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:24:59.693677+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[12/51] ok  face=100%  frames=24325  (235.1s)  [interviews_new] combined_ir8295905_Nitish_Kaushik.webm  audio_turns=43
+W0000 00:00:1784623327.408119 1585058 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623327.411719 1585058 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623327.413307 1585061 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623327.419242 1585067 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623343.289177 1583596 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:23.28622+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623348.093300 1582761 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:25:28.085053+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623351.177274 1583717 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:31.171556+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623376.815669 1582340 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:24:59.693677+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[13/51] ok  face=98%  frames=26326  (252.0s)  [interviews_new] combined_ir8298153_Praveen_Babu_Kanipakam.webm  audio_turns=34
+W0000 00:00:1784623391.366535 1585947 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623391.370712 1585947 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623391.372126 1585950 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623391.380150 1585955 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623394.723211 1584323 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:27:14.722088+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623403.291566 1583596 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:23.28622+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623408.093835 1582761 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:25:28.085053+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623411.182552 1583717 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:31.171556+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623447.702914 1585059 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:28:07.700093+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623454.726958 1584323 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:27:14.722088+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623463.293168 1583596 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:23.28622+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623468.099097 1582761 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:25:28.085053+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623471.185269 1583717 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:31.171556+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623475.487083 1582761 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:25:28.085053+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[14/51] ok  face=100%  frames=33377  (327.4s)  [interviews_new] combined_ir8298679_Nichitha_Merugu.webm  audio_turns=213
+W0000 00:00:1784623495.053074 1587486 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623495.057037 1587486 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623495.058437 1587488 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623495.064539 1587488 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623507.707801 1585059 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:28:07.700093+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623511.651932 1585948 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:29:11.646307+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623514.729479 1584323 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:27:14.722088+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623523.299491 1583596 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:23.28622+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623531.190595 1583717 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:31.171556+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623535.246382 1584323 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:27:14.722088+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623540.997711 1585948 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:29:11.646307+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623544.767825 1583596 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:23.28622+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[15/51] ok  face=100%  frames=15573  (158.4s)  [interviews_new] combined_ir8301419_Pallavi_Ravindranath_Mayekar.webm  audio_turns=56
+W0000 00:00:1784623549.821056 1588515 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623549.824392 1588515 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623549.826139 1588520 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623549.833289 1588522 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[16/51] ok  face=100%  frames=27450  (276.8s)  [interviews_new] combined_ir8299153_Koribilli_Parameswara_Rao.webm  audio_turns=95
+W0000 00:00:1784623551.136451 1588562 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623551.142124 1588562 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623551.143895 1588565 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623551.149866 1588565 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[17/51] ok  face=100%  frames=34465  (344.2s)  [interviews_new] combined_ir8298919_Salman_Mohammed_Salar.webm  audio_turns=144
+W0000 00:00:1784623567.064812 1588962 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623567.068904 1588962 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623567.071319 1588966 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623567.080025 1588966 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623567.711180 1585059 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:28:07.700093+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623591.193892 1583717 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:31.171556+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623615.460942 1587487 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:30:55.455329+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623627.716481 1585059 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:28:07.700093+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623651.199134 1583717 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:31.171556+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623670.127970 1588516 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:50.12244+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623671.404148 1588563 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:51.398802+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623675.466276 1587487 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:30:55.455329+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623687.448463 1588963 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:32:07.458956+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623687.706144 1585059 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:28:07.700093+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[ WARN:0@835.903] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1784623691.641488 1583717 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:26:31.171556+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[18/51] ok  face=98%  frames=48847  (484.9s)  [interviews_new] combined_ir8299029_Kattamuri_Sai_Dora.webm  audio_turns=154
+W0000 00:00:1784623715.803692 1591294 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623715.807476 1591294 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623715.809438 1591300 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623715.816375 1591306 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623730.085716 1588516 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:50.12244+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623731.361838 1588563 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:51.398802+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623735.423373 1587487 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:30:55.455329+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623736.564404 1588563 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:51.398802+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[19/51] ok  face=100%  frames=19272  (196.2s)  [interviews_new] combined_ir8302911_Avinash_Kumar.webm  audio_turns=60
+W0000 00:00:1784623747.389242 1592148 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623747.394185 1592148 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623747.395743 1592152 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623747.403037 1592159 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623747.417205 1588963 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:32:07.458956+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623747.675991 1585059 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:28:07.700093+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623759.332866 1587487 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:30:55.455329+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[20/51] ok  face=98%  frames=27015  (277.4s)  [interviews_new] combined_ir8301567_Ananthan_Ms.webm  audio_turns=147
+W0000 00:00:1784623772.519552 1592536 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623772.523663 1592536 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623772.526184 1592539 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623772.536842 1592539 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[ WARN:0@926.159] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1784623781.870469 1588963 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:32:07.458956+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623790.088118 1588516 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:50.12244+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1784623805.506001 1593150 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[21/51] ok  face=100%  frames=23117  (238.4s)  [interviews_new] combined_ir8303145_Anilesh_K.webm  audio_turns=255
+I0000 00:00:1784623805.510098 1593150 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623805.511365 1593152 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623805.518894 1593152 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623807.678693 1585059 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:28:07.700093+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[ WARN:0@954.572] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1784623810.282951 1585059 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:28:07.700093+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623836.249133 1591297 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:34:36.244114+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[22/51] ok  face=100%  frames=49986  (514.7s)  [interviews_new] combined_ir8299817_Padmanabhuni_Jagadeshwari.webm  audio_turns=174
+W0000 00:00:1784623842.182609 1593887 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623842.186549 1593887 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623842.188721 1593890 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623842.195499 1593890 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623850.091969 1588516 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:50.12244+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623867.767677 1592149 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:35:07.763135+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623892.923764 1592537 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:35:32.918733+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623894.855666 1592537 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:35:32.918733+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623896.253421 1591297 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:34:36.244114+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1784623902.870915 1594896 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[23/51] ok  face=100%  frames=12048  (130.3s)  [interviews_new] combined_ir8305727_Priyanka_Shah.webm  audio_turns=70
+I0000 00:00:1784623902.874437 1594896 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623902.875638 1594898 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623902.882139 1594898 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623910.096986 1588516 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:50.12244+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623913.537687 1588516 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:31:50.12244+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623914.431159 1592149 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:35:07.763135+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1784623923.539160 1595414 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[24/51] ok  face=100%  frames=16683  (176.1s)  [interviews_new] combined_ir8305671_Bhagyesh_Patil.webm  audio_turns=62
+I0000 00:00:1784623923.543685 1595414 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623923.545540 1595416 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623923.553726 1595416 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623925.969067 1593151 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:36:05.964143+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784623930.023224 1593888 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:36:42.535072+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[25/51] ok  face=99%  frames=37180  (384.5s)  [interviews_new] combined_ir8302027_Shipra_Ganti.webm  audio_turns=236
+W0000 00:00:1784623934.345647 1595640 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623934.350832 1595640 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623934.352362 1595642 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623934.361174 1595642 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[26/51] ok  face=100%  frames=8747  (92.2s)  [interviews_new] combined_ir8306335_Ranjith_Murugan.webm  audio_turns=46
+W0000 00:00:1784623934.435105 1595676 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623934.441997 1595676 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623934.443143 1595679 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623934.449796 1595679 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623945.488293 1593151 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:36:05.964143+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[27/51] ok  face=100%  frames=14168  (148.3s)  [interviews_new] combined_ir8305837_Devalla_Sai_Kiran.webm  audio_turns=58
+W0000 00:00:1784623953.783607 1595978 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784623953.788196 1595978 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784623953.789943 1595982 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784623953.796607 1595982 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784623956.258634 1591297 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:34:36.244114+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624009.661907 1591297 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:34:36.244114+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624023.299569 1594897 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:37:43.29525+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1784624026.342740 1597108 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[28/51] ok  face=100%  frames=29566  (310.5s)  [interviews_new] combined_ir8305029_Patibandla_Deviprasad.webm  audio_turns=199
+I0000 00:00:1784624026.346227 1597108 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624026.347384 1597111 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624026.353391 1597111 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624043.827148 1595415 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:03.822465+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624054.719552 1595677 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:14.716199+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624054.764522 1595641 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:14.762311+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624056.415867 1595415 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:03.822465+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624063.059602 1595641 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:14.762311+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[29/51] ok  face=100%  frames=13827  (140.7s)  [interviews_new] combined_ir8306701_Divyanshu_Dhusia.webm  audio_turns=65
+W0000 00:00:1784624064.286121 1597750 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624064.289241 1597750 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624064.290821 1597752 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624064.297910 1597757 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[30/51] ok  face=100%  frames=13440  (135.6s)  [interviews_new] combined_ir8306733_Akash_Deep.webm  audio_turns=39
+W0000 00:00:1784624069.983424 1597878 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624069.986881 1597878 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624069.988310 1597882 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624069.994954 1597886 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624074.095105 1595979 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:34.093566+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624075.368397 1595979 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:34.093566+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624083.303455 1594897 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:37:43.29525+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[31/51] ok  face=100%  frames=13374  (131.5s)  [interviews_new] combined_ir8307103_Ranganathan_K.webm  audio_turns=115
+W0000 00:00:1784624085.314148 1598143 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624085.317899 1598143 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624085.319218 1598145 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624085.325598 1598145 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624114.722703 1595677 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:14.716199+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624143.308277 1594897 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:37:43.29525+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624146.639255 1597109 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:39:46.634251+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624156.715240 1594897 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:37:43.29525+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624164.724478 1597109 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:39:46.634251+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624169.853342 1598144 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:40:45.625305+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[32/51] ok  face=100%  frames=14692  (147.1s)  [interviews_new] combined_ir8307835_Aditya_Hemendra_Upadhyay.webm  audio_turns=115
+W0000 00:00:1784624173.475761 1599726 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624173.479755 1599726 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624173.483011 1599730 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624173.489683 1599730 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[33/51] ok  face=100%  frames=9051  (89.0s)  [interviews_new] combined_ir8310591_Megha_Mangal.webm  audio_turns=47
+W0000 00:00:1784624174.347918 1599768 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624174.355261 1599768 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624174.356955 1599772 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624174.363001 1599772 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624174.722735 1595677 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:14.716199+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[34/51] ok  face=100%  frames=27580  (278.7s)  [interviews_new] combined_ir8306667_Shashank_Verma.webm  audio_turns=190
+W0000 00:00:1784624181.580074 1599980 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624181.583884 1599980 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624181.585404 1599984 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624181.592025 1599982 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624184.584091 1597751 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:40:24.579169+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624190.278811 1597879 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:40:30.273845+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624224.041151 1597751 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:40:24.579169+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[35/51] ok  face=97%  frames=17302  (167.7s)  [interviews_new] combined_ir8307855_Sai_Kumar_Ganta.webm  audio_turns=70
+W0000 00:00:1784624232.021434 1600541 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624232.027431 1600541 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624232.029204 1600545 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624232.035411 1600545 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624234.727734 1595677 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:14.716199+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624250.280219 1597879 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:40:30.273845+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624265.609789 1595677 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:38:14.716199+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[36/51] ok  face=100%  frames=35035  (346.5s)  [interviews_new] combined_ir8306881_Kiran_Kishor_Vyawahare.webm  audio_turns=71
+W0000 00:00:1784624280.988157 1601223 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624280.991837 1601223 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624280.993807 1601227 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624280.999240 1601227 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624290.542759 1597879 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:40:30.273845+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624293.988772 1599727 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:42:13.983944+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624294.657549 1599769 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:42:14.656549+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[37/51] ok  face=100%  frames=23770  (230.7s)  [interviews_new] combined_ir8308231_Komal_Shashikant_Mule.webm  audio_turns=166
+W0000 00:00:1784624300.724648 1601447 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624300.728365 1601447 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624300.729814 1601449 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624300.735434 1601449 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624302.155508 1599981 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:42:22.176318+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[38/51] ok  face=100%  frames=13707  (129.8s)  [interviews_new] combined_ir8311233_Aadil_Ameen_Noormohamed.webm  audio_turns=31
+W0000 00:00:1784624311.392445 1601629 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624311.396203 1601629 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624311.397325 1601632 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624311.404063 1601632 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624329.227275 1599769 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:42:14.656549+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1784624337.747645 1602163 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[39/51] ok  face=100%  frames=16990  (163.4s)  [interviews_new] combined_ir8311131_Dheerajsing_Darbarsing_Girase.webm  audio_turns=73
+I0000 00:00:1784624337.752247 1602163 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624337.753449 1602165 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624337.760142 1602168 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624352.340101 1600542 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:43:12.334197+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624353.994264 1599727 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:42:13.983944+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624390.881454 1599727 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:42:13.983944+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624401.354194 1601224 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:01.351018+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[40/51] ok  face=100%  frames=23237  (230.8s)  [interviews_new] combined_ir8311015_Mayur_Tambralli.webm  audio_turns=66
+W0000 00:00:1784624404.284113 1603383 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624404.287821 1603383 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624404.290177 1603386 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624404.301563 1603386 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624412.345274 1600542 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:43:12.334197+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624421.052270 1601448 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:21.049002+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624431.707216 1601630 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:31.700342+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624441.368093 1601224 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:01.351018+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[41/51] ok  face=100%  frames=16772  (169.9s)  [interviews_new] combined_ir8314429_Abhishek_Chavan.webm  audio_turns=65
+W0000 00:00:1784624450.899011 1604023 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624450.904262 1604023 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624450.906402 1604034 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624450.913568 1604030 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624458.034469 1602164 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:58.029409+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624472.103564 1601630 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:31.700342+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624472.350505 1600542 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:43:12.334197+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624476.022950 1603384 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:46:04.549878+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1784624479.431629 1604559 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[42/51] ok  face=100%  frames=7378  (75.1s)  [interviews_new] combined_ir8319815_Chandra_Prakash_Bendil.webm  audio_turns=60
+I0000 00:00:1784624479.436192 1604559 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624479.437295 1604561 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624479.443092 1604561 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[43/51] ok  face=99%  frames=16505  (168.7s)  [interviews_new] combined_ir8316515_Nigar_Fathima.webm  audio_turns=87
+W0000 00:00:1784624480.155149 1604614 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624480.160369 1604614 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624480.162038 1604618 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624480.172851 1604621 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624481.055911 1601448 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:21.049002+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624507.955045 1601448 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:21.049002+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624518.038473 1602164 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:58.029409+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624520.888052 1600542 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:43:12.334197+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[44/51] ok  face=100%  frames=22432  (226.5s)  [interviews_new] combined_ir8314881_Pushwanth_Reddy_Munagala.webm  audio_turns=206
+W0000 00:00:1784624527.242319 1605632 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624527.248295 1605632 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624527.249851 1605635 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624527.256245 1605635 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[45/51] ok  face=97%  frames=30762  (308.2s)  [interviews_new] combined_ir8312461_Pathan_Arshiya_Anjum.webm  audio_turns=115
+W0000 00:00:1784624540.258333 1606067 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1784624540.265833 1606067 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1784624540.267553 1606072 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1784624540.277660 1606072 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1784624571.361271 1604024 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:46:51.356313+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624578.040096 1602164 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:58.029409+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624597.809125 1605633 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:48:07.542398+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[46/51] ok  face=99%  frames=5394  (57.7s)  [interviews_new] combined_ir8325779_Sheeba_M.webm  audio_turns=58
+E0000 00:00:1784624599.729127 1604560 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:47:19.724156+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624600.544333 1604615 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:47:20.53924+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[47/51] ok  face=100%  frames=6909  (73.7s)  [interviews_new] combined_ir8324779_Mayur_Vijay_Bodle.webm  audio_turns=51
+E0000 00:00:1784624601.906572 1604560 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:47:19.724156+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[48/51] ok  face=100%  frames=12252  (127.0s)  [interviews_new] combined_ir8320509_Sk_Gulap.webm  audio_turns=91
+E0000 00:00:1784624631.366215 1604024 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:46:51.356313+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624638.041133 1602164 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:58.029409+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624640.172680 1602164 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:44:58.029409+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[49/51] ok  face=100%  frames=32625  (313.5s)  [interviews_new] combined_ir8317951_Tandra_Bhowmick.webm  audio_turns=149
+E0000 00:00:1784624657.081651 1604024 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:46:51.356313+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1784624660.556194 1604615 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:47:20.53924+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[50/51] ok  face=83%  frames=26925  (214.1s)  [interviews_new] combined_ir8320039_Sreejith_V_R.webm  audio_turns=59
+E0000 00:00:1784624670.553114 1604615 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-21T14:47:20.53924+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[51/51] ok  face=100%  frames=23508  (196.8s)  [interviews_new] combined_ir8323113_Akash_Chakradhar_Yewale.webm  audio_turns=116
+
+=== Stage 1 summary ===
+extracted: 51  |  errors/empty: 0
+
+summary -> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/features/_extract_summary.csv
+=== [2/3] build_windows ===

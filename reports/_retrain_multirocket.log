@@ -1,0 +1,45 @@
+windows=26690  videos: cheating=53 clean=117
+CV: StratifiedGroupKFold(n_splits=5)   feature sets: ['mediapipe', 'mediapipe_gaze_head']   seq: multirocket
+
+[A/xgboost] skipped (--skip-xgb)
+[C] multirocket CV: 5 folds (isolated sktime process)
+[C/multirocket mediapipe       ] video AUC=0.849 PR=0.696 | window AUC=0.717 | P=0.81 R=0.57
+
+🏆 winner: multirocket on mediapipe (video ROC-AUC=0.849, threshold=1.000)
+
+cross-source (leave-one-source-pair-out, video AUC):
+  bot            vs interviews AUC=0.879  (35+28 videos)
+  bot            vs interviews_new AUC=0.734  (20+51 videos)
+  bot            vs random1    AUC=0.723  (20+13 videos)
+  bot            vs random2    AUC=0.602  (20+25 videos)
+  interviews     vs interviews AUC=0.764  (15+28 videos)
+  interviews     vs interviews_new AUC=0.814  (15+79 videos)
+  interviews     vs random1    AUC=0.668  (15+41 videos)
+  interviews     vs random2    AUC=0.586  (15+53 videos)
+  reading        vs interviews AUC=0.852  (27+28 videos)
+  reading        vs interviews_new AUC=0.863  (12+51 videos)
+  reading        vs random1    AUC=0.904  (12+13 videos)
+  reading        vs random2    AUC=0.700  (12+25 videos)
+  testing_team   vs interviews AUC=0.786  (21+28 videos)
+  testing_team   vs interviews_new AUC=0.944  (6+51 videos)
+  testing_team   vs random1    AUC=1.000  (6+13 videos)
+  testing_team   vs random2    AUC=0.820  (6+25 videos)
+  mean pair AUC = 0.790
+
+top features:
+  0.325  speak_source_audio
+  0.093  blink_rate
+  0.070  ear_std
+  0.065  prespeech_gaze_shift
+  0.060  burst_dur_mean
+  0.059  pause_rate
+  0.045  yaw_var
+  0.042  gap_dur_mean
+  0.042  bursts_per_min
+  0.041  gap_dur_cv
+  0.040  burst_dur_std
+  0.017  ear_mean
+
+artifacts -> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /models
+next: python src/report.py --eval   (and per-video: python src/predict.py <video>)
+RETRAIN_DONE

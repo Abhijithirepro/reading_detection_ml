@@ -1,124 +1,27 @@
 {
   "combos": [
     {
-      "window_roc_auc": 0.7165382073186037,
-      "window_pr_auc": 0.4472358129521673,
-      "video_roc_auc": 0.8493791323980003,
-      "video_pr_auc": 0.6962394934417236,
-      "threshold": 0.999728292346675,
-      "tn": 110,
-      "fp": 7,
-      "fn": 23,
-      "tp": 30,
-      "precision": 0.8108108108108109,
-      "recall": 0.5660377358490566,
-      "model": "multirocket",
+      "window_roc_auc": 0.77825969579521,
+      "window_pr_auc": 0.4927885202002506,
+      "video_roc_auc": 0.870604781997187,
+      "video_pr_auc": 0.8084021853805139,
+      "threshold": 0.9590356985076529,
+      "tn": 78,
+      "fp": 1,
+      "fn": 12,
+      "tp": 15,
+      "precision": 0.9375,
+      "recall": 0.5555555555555556,
+      "model": "cnn",
       "feature_set": "mediapipe",
-      "dropped_for_deployability": false,
       "is_winner": true
     }
   ],
   "source_pairs": [
     {
-      "cheat_source": "bot",
-      "clean_source": "interviews",
-      "video_auc": 0.8786,
-      "n_test_videos": 63,
-      "n_test_cheat": 35,
-      "n_test_clean": 28
-    },
-    {
-      "cheat_source": "bot",
-      "clean_source": "interviews_new",
-      "video_auc": 0.7343,
-      "n_test_videos": 71,
-      "n_test_cheat": 20,
-      "n_test_clean": 51
-    },
-    {
-      "cheat_source": "bot",
-      "clean_source": "random1",
-      "video_auc": 0.7231,
-      "n_test_videos": 33,
-      "n_test_cheat": 20,
-      "n_test_clean": 13
-    },
-    {
-      "cheat_source": "bot",
-      "clean_source": "random2",
-      "video_auc": 0.602,
-      "n_test_videos": 45,
-      "n_test_cheat": 20,
-      "n_test_clean": 25
-    },
-    {
       "cheat_source": "interviews",
       "clean_source": "interviews",
-      "video_auc": 0.7643,
-      "n_test_videos": 43,
-      "n_test_cheat": 15,
-      "n_test_clean": 28
-    },
-    {
-      "cheat_source": "interviews",
-      "clean_source": "interviews_new",
-      "video_auc": 0.8135,
-      "n_test_videos": 94,
-      "n_test_cheat": 15,
-      "n_test_clean": 79
-    },
-    {
-      "cheat_source": "interviews",
-      "clean_source": "random1",
-      "video_auc": 0.6683,
-      "n_test_videos": 56,
-      "n_test_cheat": 15,
-      "n_test_clean": 41
-    },
-    {
-      "cheat_source": "interviews",
-      "clean_source": "random2",
-      "video_auc": 0.5862,
-      "n_test_videos": 68,
-      "n_test_cheat": 15,
-      "n_test_clean": 53
-    },
-    {
-      "cheat_source": "reading",
-      "clean_source": "interviews",
-      "video_auc": 0.8519,
-      "n_test_videos": 55,
-      "n_test_cheat": 27,
-      "n_test_clean": 28
-    },
-    {
-      "cheat_source": "reading",
-      "clean_source": "interviews_new",
-      "video_auc": 0.8627,
-      "n_test_videos": 63,
-      "n_test_cheat": 12,
-      "n_test_clean": 51
-    },
-    {
-      "cheat_source": "reading",
-      "clean_source": "random1",
-      "video_auc": 0.9038,
-      "n_test_videos": 25,
-      "n_test_cheat": 12,
-      "n_test_clean": 13
-    },
-    {
-      "cheat_source": "reading",
-      "clean_source": "random2",
-      "video_auc": 0.7,
-      "n_test_videos": 37,
-      "n_test_cheat": 12,
-      "n_test_clean": 25
-    },
-    {
-      "cheat_source": "testing_team",
-      "clean_source": "interviews",
-      "video_auc": 0.7857,
+      "video_auc": 0.8333,
       "n_test_videos": 49,
       "n_test_cheat": 21,
       "n_test_clean": 28
@@ -126,92 +29,44 @@
     {
       "cheat_source": "testing_team",
       "clean_source": "interviews_new",
-      "video_auc": 0.9444,
+      "video_auc": 0.866,
       "n_test_videos": 57,
       "n_test_cheat": 6,
       "n_test_clean": 51
-    },
-    {
-      "cheat_source": "testing_team",
-      "clean_source": "random1",
-      "video_auc": 1.0,
-      "n_test_videos": 19,
-      "n_test_cheat": 6,
-      "n_test_clean": 13
-    },
-    {
-      "cheat_source": "testing_team",
-      "clean_source": "random2",
-      "video_auc": 0.82,
-      "n_test_videos": 31,
-      "n_test_cheat": 6,
-      "n_test_clean": 25
     }
   ],
   "per_source": [
     {
       "label_str": "cheating",
-      "source": "bot",
-      "n": 20,
-      "mean_score": 0.922,
-      "min_score": 0.018,
-      "max_score": 1.0
-    },
-    {
-      "label_str": "cheating",
       "source": "interviews",
-      "n": 15,
-      "mean_score": 0.784,
-      "min_score": 0.033,
-      "max_score": 1.0
-    },
-    {
-      "label_str": "cheating",
-      "source": "reading",
-      "n": 12,
-      "mean_score": 0.992,
-      "min_score": 0.908,
-      "max_score": 1.0
+      "n": 21,
+      "mean_score": 0.808,
+      "min_score": 0.014,
+      "max_score": 0.999
     },
     {
       "label_str": "cheating",
       "source": "testing_team",
       "n": 6,
-      "mean_score": 0.997,
-      "min_score": 0.986,
-      "max_score": 1.0
+      "mean_score": 0.945,
+      "min_score": 0.708,
+      "max_score": 0.999
     },
     {
       "label_str": "clean",
       "source": "interviews",
       "n": 28,
-      "mean_score": 0.311,
-      "min_score": 0.0,
-      "max_score": 0.992
+      "mean_score": 0.388,
+      "min_score": 0.01,
+      "max_score": 0.958
     },
     {
       "label_str": "clean",
       "source": "interviews_new",
       "n": 51,
-      "mean_score": 0.383,
-      "min_score": 0.002,
-      "max_score": 1.0
-    },
-    {
-      "label_str": "clean",
-      "source": "random1",
-      "n": 13,
-      "mean_score": 0.669,
-      "min_score": 0.051,
-      "max_score": 1.0
-    },
-    {
-      "label_str": "clean",
-      "source": "random2",
-      "n": 25,
-      "mean_score": 0.867,
-      "min_score": 0.025,
-      "max_score": 1.0
+      "mean_score": 0.485,
+      "min_score": 0.006,
+      "max_score": 0.98
     }
   ]
 }

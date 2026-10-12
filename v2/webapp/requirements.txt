@@ -1,0 +1,6 @@
+# Web server for webapp/ — on top of the project's requirements.txt (which already
+# brings MediaPipe, PyTorch, OpenCV, etc.).
+#   venv/bin/pip install -r requirements.txt -r webapp/requirements.txt
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9     # multipart parsing for the video upload

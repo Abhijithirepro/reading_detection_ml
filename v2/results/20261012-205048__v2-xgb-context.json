@@ -1,0 +1,603 @@
+{
+  "name": "v2-xgb-context",
+  "time": "2026-10-12 20:50",
+  "summary": "XGBoost reading detector, 78 features, 5-fold CV (reviewed videos held out one per fold; unreviewed cheating never trained on). Second threshold 0.005 (max F1, clean budget 2%); video rule: reading_seconds >= 97.00. Dropped groups: none. Adds the answer-context group (ctx_*: +-15 s speaking-only eye/head/blink stats, speaking-vs-listening contrasts, speech rhythm).",
+  "args": {
+    "exp": "v2-xgb-context",
+    "folds": 5,
+    "seed": 42,
+    "reviewed_neg_weight": 0.5,
+    "clean_budget": 0.02,
+    "video_stat": "reading_seconds",
+    "drop_group": [],
+    "pseudo_frac": 0.0,
+    "pseudo_weight": 0.5,
+    "no_ship": true,
+    "no_log": false,
+    "note": "Adds the answer-context group (ctx_*: +-15 s speaking-only eye/head/blink stats, speaking-vs-listening contrasts, speech rhythm)."
+  },
+  "per_second": [
+    {
+      "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+      "seconds": 1586,
+      "reading_s": 239,
+      "flagged_s": 124,
+      "auc": 0.9054135487818894,
+      "ap": 0.49730432895538246,
+      "precision": 0.4838709677419355,
+      "recall": 0.2510460251046025,
+      "iou": 0.19801980198019803,
+      "f1": 0.3305785123966942,
+      "spans_caught": "2/9",
+      "span_hit_rate": 0.2222222222222222
+    },
+    {
+      "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+      "seconds": 1810,
+      "reading_s": 371,
+      "flagged_s": 398,
+      "auc": 0.789861370486018,
+      "ap": 0.3994261831973009,
+      "precision": 0.41457286432160806,
+      "recall": 0.444743935309973,
+      "iou": 0.2731788079470199,
+      "f1": 0.42912873862158646,
+      "spans_caught": "14/29",
+      "span_hit_rate": 0.4827586206896552
+    },
+    {
+      "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+      "seconds": 1415,
+      "reading_s": 698,
+      "flagged_s": 38,
+      "auc": 0.9344440981005703,
+      "ap": 0.9290016882703237,
+      "precision": 1.0,
+      "recall": 0.054441260744985676,
+      "iou": 0.054441260744985676,
+      "f1": 0.10326086956521738,
+      "spans_caught": "0/26",
+      "span_hit_rate": 0.0
+    }
+  ],
+  "video": {
+    "n": 100,
+    "auc": 0.8161543098251959,
+    "tp": 12,
+    "fp": 8,
+    "fn": 9,
+    "tn": 71,
+    "precision": 0.6,
+    "recall": 0.5714285714285714,
+    "accuracy": 0.83,
+    "threshold": 97.0,
+    "matched_auc": 0.8477891156462585,
+    "matched_fp": 2,
+    "matched_n_clean": 28,
+    "unreviewed_caught": "10/18"
+  },
+  "stat_auc": {
+    "reading_seconds": 0.8161543098251959,
+    "reading_share": 0.8282097649186256,
+    "reading_share_of_speech": 0.8276069921639542,
+    "top10_mean": 0.8716094032549728,
+    "p95": 0.8637733574442434,
+    "speech_prob_mean": 0.8746232670283303,
+    "speech_prob_p90": 0.8673899939722725
+  },
+  "second_threshold": 0.005,
+  "sweep": [
+    {
+      "threshold": 0.005,
+      "precision": 0.46964285714285714,
+      "recall": 0.20107033639143732,
+      "f1": 0.2815845824411135,
+      "clean_flag_rate": 0.01924384652594239
+    },
+    {
+      "threshold": 0.0061,
+      "precision": 0.4637964774951076,
+      "recall": 0.1811926605504587,
+      "f1": 0.2605827377680044,
+      "clean_flag_rate": 0.01699347321635131
+    },
+    {
+      "threshold": 0.0075,
+      "precision": 0.443010752688172,
+      "recall": 0.15749235474006115,
+      "f1": 0.2323745064861816,
+      "clean_flag_rate": 0.015254867045701507
+    },
+    {
+      "threshold": 0.0091,
+      "precision": 0.4537037037037037,
+      "recall": 0.14984709480122324,
+      "f1": 0.22528735632183905,
+      "clean_flag_rate": 0.01385977580393009
+    },
+    {
+      "threshold": 0.0111,
+      "precision": 0.45145631067961167,
+      "recall": 0.14220183486238533,
+      "f1": 0.21627906976744188,
+      "clean_flag_rate": 0.012289421843343171
+    },
+    {
+      "threshold": 0.0136,
+      "precision": 0.44931506849315067,
+      "recall": 0.12538226299694188,
+      "f1": 0.19605499103407054,
+      "clean_flag_rate": 0.011139698407913462
+    },
+    {
+      "threshold": 0.0166,
+      "precision": 0.4556213017751479,
+      "recall": 0.11773700305810397,
+      "f1": 0.18712029161603888,
+      "clean_flag_rate": 0.01024235328757808
+    },
+    {
+      "threshold": 0.0202,
+      "precision": 0.4520123839009288,
+      "recall": 0.11162079510703364,
+      "f1": 0.17903126916002454,
+      "clean_flag_rate": 0.009141703413416712
+    },
+    {
+      "threshold": 0.0247,
+      "precision": 0.44551282051282054,
+      "recall": 0.10626911314984709,
+      "f1": 0.17160493827160495,
+      "clean_flag_rate": 0.008174253205555128
+    },
+    {
+      "threshold": 0.0302,
+      "precision": 0.44964028776978415,
+      "recall": 0.095565749235474,
+      "f1": 0.15762925598991173,
+      "clean_flag_rate": 0.00749423385655097
+    },
+    {
+      "threshold": 0.0368,
+      "precision": 0.43190661478599224,
+      "recall": 0.08486238532110092,
+      "f1": 0.14185303514376998,
+      "clean_flag_rate": 0.006898340612578255
+    },
+    {
+      "threshold": 0.045,
+      "precision": 0.43037974683544306,
+      "recall": 0.0779816513761468,
+      "f1": 0.13203883495145632,
+      "clean_flag_rate": 0.006281415842347679
+    },
+    {
+      "threshold": 0.0549,
+      "precision": 0.4222222222222222,
+      "recall": 0.07262996941896024,
+      "f1": 0.12393998695368559,
+      "clean_flag_rate": 0.005699543615880204
+    },
+    {
+      "threshold": 0.0671,
+      "precision": 0.38461538461538464,
+      "recall": 0.05733944954128441,
+      "f1": 0.0998003992015968,
+      "clean_flag_rate": 0.005166744950681071
+    },
+    {
+      "threshold": 0.0819,
+      "precision": 0.4166666666666667,
+      "recall": 0.053516819571865444,
+      "f1": 0.0948509485094851,
+      "clean_flag_rate": 0.004640956794234557
+    },
+    {
+      "threshold": 0.1,
+      "precision": 0.45394736842105265,
+      "recall": 0.052752293577981654,
+      "f1": 0.0945205479452055,
+      "clean_flag_rate": 0.004136200164045905
+    },
+    {
+      "threshold": 0.125,
+      "precision": 0.4647887323943662,
+      "recall": 0.05045871559633028,
+      "f1": 0.0910344827586207,
+      "clean_flag_rate": 0.0036454645513624923
+    },
+    {
+      "threshold": 0.15,
+      "precision": 0.4772727272727273,
+      "recall": 0.0481651376146789,
+      "f1": 0.08750000000000001,
+      "clean_flag_rate": 0.003077613342400258
+    },
+    {
+      "threshold": 0.175,
+      "precision": 0.46956521739130436,
+      "recall": 0.04128440366972477,
+      "f1": 0.07589599437807448,
+      "clean_flag_rate": 0.0026990458697587682
+    },
+    {
+      "threshold": 0.2,
+      "precision": 0.4479166666666667,
+      "recall": 0.03287461773700306,
+      "f1": 0.06125356125356125,
+      "clean_flag_rate": 0.002488730607180163
+    },
+    {
+      "threshold": 0.225,
+      "precision": 0.4666666666666667,
+      "recall": 0.03211009174311927,
+      "f1": 0.060085836909871244,
+      "clean_flag_rate": 0.002131194660796534
+    },
+    {
+      "threshold": 0.25,
+      "precision": 0.4659090909090909,
+      "recall": 0.03134556574923547,
+      "f1": 0.05873925501432664,
+      "clean_flag_rate": 0.00196995295948627
+    },
+    {
+      "threshold": 0.275,
+      "precision": 0.44871794871794873,
+      "recall": 0.026758409785932722,
+      "f1": 0.050505050505050504,
+      "clean_flag_rate": 0.001780669223165525
+    },
+    {
+      "threshold": 0.3,
+      "precision": 0.375,
+      "recall": 0.016055045871559634,
+      "f1": 0.030791788856304986,
+      "clean_flag_rate": 0.0016054065043500207
+    },
+    {
+      "threshold": 0.325,
+      "precision": 0.3541666666666667,
+      "recall": 0.012996941896024464,
+      "f1": 0.025073746312684365,
+      "clean_flag_rate": 0.001542311925576439
+    },
+    {
+      "threshold": 0.35,
+      "precision": 0.34782608695652173,
+      "recall": 0.012232415902140673,
+      "f1": 0.02363367799113737,
+      "clean_flag_rate": 0.0014651963292976172
+    },
+    {
+      "threshold": 0.375,
+      "precision": 0.39473684210526316,
+      "recall": 0.011467889908256881,
+      "f1": 0.022288261515601784,
+      "clean_flag_rate": 0.0013179756454925935
+    },
+    {
+      "threshold": 0.4,
+      "precision": 0.3888888888888889,
+      "recall": 0.010703363914373088,
+      "f1": 0.020833333333333332,
+      "clean_flag_rate": 0.0012058075054506706
+    },
+    {
+      "threshold": 0.425,
+      "precision": 0.4117647058823529,
+      "recall": 0.010703363914373088,
+      "f1": 0.020864381520119223,
+      "clean_flag_rate": 0.0011707549616875696
+    },
+    {
+      "threshold": 0.45,
+      "precision": 0.4482758620689655,
+      "recall": 0.009938837920489297,
+      "f1": 0.01944652206432311,
+      "clean_flag_rate": 0.0011286919091718485
+    },
+    {
+      "threshold": 0.475,
+      "precision": 0.2857142857142857,
+      "recall": 0.0030581039755351682,
+      "f1": 0.006051437216338881,
+      "clean_flag_rate": 0.0010375552953877864
+    },
+    {
+      "threshold": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0008973451203353827
+    },
+    {
+      "threshold": 0.525,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0008552820678196616
+    },
+    {
+      "threshold": 0.55,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0007220824015198783
+    },
+    {
+      "threshold": 0.575,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.000588882735220095
+    },
+    {
+      "threshold": 0.6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0004767145951781721
+    },
+    {
+      "threshold": 0.625,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.00039258849014672993
+    },
+    {
+      "threshold": 0.65,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.00021732577133122552
+    },
+    {
+      "threshold": 0.675,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.00019629424507336496
+    },
+    {
+      "threshold": 0.7,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.00016124170131026408
+    },
+    {
+      "threshold": 0.725,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 9.814712253668248e-05
+    },
+    {
+      "threshold": 0.75,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 9.113661378406232e-05
+    },
+    {
+      "threshold": 0.775,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 9.113661378406232e-05
+    },
+    {
+      "threshold": 0.8,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 7.010508752620177e-05
+    },
+    {
+      "threshold": 0.825,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 7.010508752620177e-05
+    },
+    {
+      "threshold": 0.85,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 6.30945787735816e-05
+    },
+    {
+      "threshold": 0.875,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 3.505254376310089e-05
+    },
+    {
+      "threshold": 0.9,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 3.505254376310089e-05
+    },
+    {
+      "threshold": 0.925,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 3.505254376310089e-05
+    },
+    {
+      "threshold": 0.95,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 2.804203501048071e-05
+    }
+  ],
+  "importances": [
+    [
+      "speak_frac",
+      0.16212773323059082
+    ],
+    [
+      "ctx_head_speed_speak",
+      0.15105155110359192
+    ],
+    [
+      "ctx_head_vs_listen",
+      0.11897097527980804
+    ],
+    [
+      "head_speed",
+      0.07189464569091797
+    ],
+    [
+      "mouth_act",
+      0.047916945070028305
+    ],
+    [
+      "ctx_blink_speak",
+      0.03714638948440552
+    ],
+    [
+      "blink_rate",
+      0.03209586814045906
+    ],
+    [
+      "mouth_act_vrel",
+      0.023906899616122246
+    ],
+    [
+      "yaw_std_vrel",
+      0.017095869407057762
+    ],
+    [
+      "ctx_speak_frac",
+      0.016979917883872986
+    ],
+    [
+      "speak_act",
+      0.016379591077566147
+    ],
+    [
+      "head_speed_vrel",
+      0.015654928982257843
+    ],
+    [
+      "jaw_mean",
+      0.014455772936344147
+    ],
+    [
+      "ctx_v_std_speak",
+      0.014000906608998775
+    ],
+    [
+      "jaw_act",
+      0.013204199261963367
+    ],
+    [
+      "ctx_aversion_vs_listen",
+      0.012853268533945084
+    ],
+    [
+      "ctx_v_mean_speak",
+      0.012540648691356182
+    ],
+    [
+      "smile_mean",
+      0.012280207127332687
+    ],
+    [
+      "speak_ctx30",
+      0.011683235876262188
+    ],
+    [
+      "ctx_h_std_speak",
+      0.01156340166926384
+    ],
+    [
+      "pitch_mean_listen_vrel",
+      0.008025885559618473
+    ],
+    [
+      "ctx_aversion_speak",
+      0.007756900507956743
+    ],
+    [
+      "gx_std",
+      0.007659543305635452
+    ],
+    [
+      "ear_mean",
+      0.007594683673232794
+    ],
+    [
+      "v_mean_listen",
+      0.007441854104399681
+    ],
+    [
+      "speak_prev10",
+      0.00699473125860095
+    ],
+    [
+      "h_ac_peak",
+      0.006726130843162537
+    ],
+    [
+      "jaw_act_vrel",
+      0.006679845973849297
+    ],
+    [
+      "big_jump_rate_vrel",
+      0.0057323044165968895
+    ],
+    [
+      "ear_mean_vrel",
+      0.0050424812361598015
+    ],
+    [
+      "ctx_h_std_vs_listen",
+      0.004766595549881458
+    ],
+    [
+      "big_jump_rate",
+      0.0044770799577236176
+    ],
+    [
+      "ctx_blink_vs_listen",
+      0.004401642829179764
+    ],
+    [
+      "ctx_artic_cv",
+      0.004392509814351797
+    ],
+    [
+      "v_mean_listen_vrel",
+      0.004301724024116993
+    ],
+    [
+      "h_skew_dom_vrel",
+      0.004220318980515003
+    ],
+    [
+      "brow_down_mean",
+      0.004209907725453377
+    ],
+    [
+      "h_skew_dom",
+      0.004100743215531111
+    ],
+    [
+      "ctx_v_std_vs_listen",
+      0.003977809101343155
+    ],
+    [
+      "ctx_jump_speak",
+      0.003973921295255423
+    ]
+  ]
+}

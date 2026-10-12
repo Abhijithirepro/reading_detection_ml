@@ -1,0 +1,31 @@
+{
+  "kind": "cnn",
+  "feature_set": "mediapipe",
+  "threshold": 0.9590356985076529,
+  "metrics": {
+    "window_roc_auc": 0.77825969579521,
+    "window_pr_auc": 0.4927885202002506,
+    "video_roc_auc": 0.870604781997187,
+    "video_pr_auc": 0.8084021853805139,
+    "threshold": 0.9590356985076529,
+    "tn": 78,
+    "fp": 1,
+    "fn": 12,
+    "tp": 15,
+    "precision": 0.9375,
+    "recall": 0.5555555555555556
+  },
+  "window_seconds": 20.0,
+  "stride_seconds": 10.0,
+  "topk_fraction": 0.3,
+  "topk_min": 3,
+  "seq_channels": [
+    "gaze_x",
+    "gaze_y",
+    "yaw",
+    "pitch",
+    "ear",
+    "mouth"
+  ],
+  "seq_len": 240
+}

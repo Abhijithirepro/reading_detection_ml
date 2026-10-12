@@ -1,0 +1,55 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Parity harness</title>
+<body>
+<p id="s">idle</p>
+<input type="file" id="f">
+<script type="module">
+import { MediaPipeBackend } from './js/mediapipe-backend.js';
+import { ModelRunner } from './js/model-runner.js';
+import { runFileSession } from './js/session.js';
+
+const s = document.getElementById('s');
+const boot = (async () => {
+  const [cfg, artifact] = await Promise.all([
+    fetch('assets/config.json', { cache: 'no-store' }).then(r => r.json()),
+    fetch('assets/model.json', { cache: 'no-store' }).then(r => r.json()),
+  ]);
+  const [backend, runner] = await Promise.all([
+    MediaPipeBackend.create(cfg), ModelRunner.create(),
+  ]);
+  s.textContent = 'ready';
+  return { cfg, artifact, backend, runner };
+})();
+
+window.parityReady = () => boot.then(() => true);
+
+// Driven by puppeteer: it sets the file input, then calls this.
+window.parityRun = async (maxSeconds) => {
+  const { cfg, artifact, backend, runner } = await boot;
+  const file = document.getElementById('f').files[0];
+  if (!file) throw new Error('no file');
+  s.textContent = 'running ' + file.name;
+  const t0 = performance.now();
+  const session = await runFileSession(file, cfg, artifact, backend, runner, {
+    maxSeconds: maxSeconds || null,
+    onSnapshot: (snap) => {
+      if (snap.progress) s.textContent = `${file.name} ${snap.progress.seconds.toFixed(0)}s/${snap.progress.endAt.toFixed(0)}s`;
+    },
+  });
+  const snap = session.snapshot();
+  s.textContent = 'done ' + file.name;
+  return {
+    file: file.name,
+    status: snap.status,
+    error: snap.error,
+    nFrames: snap.nFrames,
+    faceRatio: snap.faceRatio,
+    wallSeconds: (performance.now() - t0) / 1000,
+    times: Array.from(session.times),
+    probs: Array.from(snap.probs),
+    winStarts: snap.windows.map(w => w.win_start_s),
+    result: snap.result,
+  };
+};
+</script>

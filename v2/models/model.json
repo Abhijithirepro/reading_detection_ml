@@ -1,0 +1,309 @@
+{
+  "kind": "reading_xgb",
+  "version": 2,
+  "features": [
+    "speak_frac",
+    "mouth_act",
+    "speak_act",
+    "jaw_act",
+    "jaw_mean",
+    "smile_mean",
+    "speak_ctx30",
+    "speak_prev10",
+    "h_std",
+    "h_range",
+    "gx_std",
+    "h_skew_dom",
+    "h_skew_abs",
+    "h_prog_frac",
+    "h_sweeps_dom",
+    "h_sweeps_max",
+    "gx_sweeps_dom",
+    "h_ac_peak",
+    "v_mean_listen",
+    "gy_mean_listen",
+    "pitch_mean_listen",
+    "v_std",
+    "disp",
+    "aversion_frac",
+    "parked_frac",
+    "big_jump_rate",
+    "yaw_std",
+    "pitch_std",
+    "roll_std",
+    "head_speed",
+    "corr_h_yaw",
+    "blink_rate",
+    "ear_mean",
+    "squint_mean",
+    "brow_down_mean",
+    "face_scale_rel",
+    "ctx_speak_frac",
+    "ctx_h_std_speak",
+    "ctx_v_std_speak",
+    "ctx_v_mean_speak",
+    "ctx_aversion_speak",
+    "ctx_blink_speak",
+    "ctx_head_speed_speak",
+    "ctx_jump_speak",
+    "ctx_h_std_vs_listen",
+    "ctx_v_std_vs_listen",
+    "ctx_aversion_vs_listen",
+    "ctx_blink_vs_listen",
+    "ctx_head_vs_listen",
+    "ctx_sweeps_speak",
+    "ctx_pause_rate",
+    "ctx_artic_cv",
+    "h_std_vrel",
+    "h_range_vrel",
+    "h_sweeps_dom_vrel",
+    "h_sweeps_max_vrel",
+    "h_ac_peak_vrel",
+    "h_skew_dom_vrel",
+    "gx_std_vrel",
+    "v_mean_listen_vrel",
+    "gy_mean_listen_vrel",
+    "v_std_vrel",
+    "disp_vrel",
+    "aversion_frac_vrel",
+    "parked_frac_vrel",
+    "yaw_std_vrel",
+    "pitch_std_vrel",
+    "head_speed_vrel",
+    "blink_rate_vrel",
+    "jaw_act_vrel",
+    "mouth_act_vrel",
+    "squint_mean_vrel",
+    "brow_down_mean_vrel",
+    "face_scale_rel_vrel",
+    "pitch_mean_listen_vrel",
+    "ear_mean_vrel",
+    "big_jump_rate_vrel",
+    "h_prog_frac_vrel"
+  ],
+  "read_window_seconds": 8.0,
+  "read_stride_seconds": 1.0,
+  "second_threshold": 0.175,
+  "smooth_s": 3,
+  "min_segment_seconds": 4.0,
+  "merge_gap_seconds": 3.0,
+  "video_stat": "speech_prob_mean",
+  "video_threshold": 0.20525629950732474,
+  "threshold": 0.20525629950732474,
+  "experiment": "v2-xgb-selftrain-hardneg-SHIPPED",
+  "cv": {
+    "per_second": [
+      {
+        "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+        "seconds": 1586,
+        "reading_s": 239,
+        "flagged_s": 382,
+        "auc": 0.9323197683990148,
+        "ap": 0.5859481044413667,
+        "precision": 0.5680628272251309,
+        "recall": 0.9079497907949791,
+        "iou": 0.5371287128712872,
+        "f1": 0.6988727858293076,
+        "spans_caught": "9/9",
+        "span_hit_rate": 1.0
+      },
+      {
+        "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+        "seconds": 1810,
+        "reading_s": 371,
+        "flagged_s": 821,
+        "auc": 0.8821452453691823,
+        "ap": 0.5525586913659243,
+        "precision": 0.440925700365408,
+        "recall": 0.9757412398921833,
+        "iou": 0.43614457831325304,
+        "f1": 0.6073825503355704,
+        "spans_caught": "28/29",
+        "span_hit_rate": 0.9655172413793104
+      },
+      {
+        "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+        "seconds": 1415,
+        "reading_s": 698,
+        "flagged_s": 457,
+        "auc": 0.963545975151159,
+        "ap": 0.9623864627258257,
+        "precision": 0.975929978118162,
+        "recall": 0.6389684813753582,
+        "iou": 0.6290550070521862,
+        "f1": 0.7722943722943723,
+        "spans_caught": "18/26",
+        "span_hit_rate": 0.6923076923076923
+      }
+    ],
+    "video": {
+      "n": 100,
+      "auc": 0.8474984930681132,
+      "tp": 9,
+      "fp": 1,
+      "fn": 12,
+      "tn": 78,
+      "precision": 0.9,
+      "recall": 0.42857142857142855,
+      "accuracy": 0.87,
+      "threshold": 0.20525629950732474,
+      "matched_auc": 0.8316326530612244,
+      "matched_fp": 1,
+      "matched_n_clean": 28,
+      "unreviewed_caught": "6/18"
+    },
+    "stat_auc": {
+      "reading_seconds": 0.8179626280892105,
+      "reading_share": 0.8209764918625678,
+      "reading_share_of_speech": 0.8251959011452683,
+      "top10_mean": 0.8438818565400843,
+      "p95": 0.8354430379746834,
+      "speech_prob_mean": 0.8474984930681132,
+      "speech_prob_p90": 0.8366485834840265
+    }
+  },
+  "trained_on": {
+    "reviewed": [
+      "cheating__interviews__combined_ir8244089_Marthala_Ashok_Reddy",
+      "cheating__interviews__combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+      "cheating__interviews__combined_ir8308053_Muthakani_Venkateswarlu"
+    ],
+    "n_clean": 79
+  },
+  "top_features": [
+    [
+      "speak_frac",
+      0.2517548203468323
+    ],
+    [
+      "ctx_head_vs_listen",
+      0.09923002123832703
+    ],
+    [
+      "mouth_act_vrel",
+      0.0639021024107933
+    ],
+    [
+      "blink_rate",
+      0.05614178627729416
+    ],
+    [
+      "ctx_blink_speak",
+      0.04993617534637451
+    ],
+    [
+      "ctx_head_speed_speak",
+      0.04869465529918671
+    ],
+    [
+      "mouth_act",
+      0.02625080943107605
+    ],
+    [
+      "ctx_speak_frac",
+      0.0182946864515543
+    ],
+    [
+      "ctx_v_std_speak",
+      0.018262594938278198
+    ],
+    [
+      "disp",
+      0.016636885702610016
+    ],
+    [
+      "speak_act",
+      0.01608666218817234
+    ],
+    [
+      "jaw_mean",
+      0.015825096517801285
+    ],
+    [
+      "ctx_h_std_speak",
+      0.013461914844810963
+    ],
+    [
+      "jaw_act",
+      0.01305659580975771
+    ],
+    [
+      "squint_mean",
+      0.012783685699105263
+    ]
+  ],
+  "reason_reference": [
+    {
+      "feature": "blink_rate",
+      "direction": -1,
+      "label": "reduced blinking",
+      "clean_median": 37.5,
+      "scale": 30.0,
+      "ref": 22.5,
+      "effect": 0.75
+    },
+    {
+      "feature": "head_speed",
+      "direction": -1,
+      "label": "head still",
+      "clean_median": 9.052342891693115,
+      "scale": 6.842281937599182,
+      "ref": 6.263696789741516,
+      "effect": 0.724
+    },
+    {
+      "feature": "brow_down_mean",
+      "direction": 1,
+      "label": "brow lowered (concentrating)",
+      "clean_median": 0.013332501985132694,
+      "scale": 0.05070764175616205,
+      "ref": 0.05292894039303064,
+      "effect": 0.543
+    },
+    {
+      "feature": "v_mean_listen",
+      "direction": 1,
+      "label": "eyes raised vs. when listening",
+      "clean_median": -0.033893121406435966,
+      "scale": 0.13988590054214,
+      "ref": 0.03543638065457344,
+      "effect": 0.501
+    },
+    {
+      "feature": "h_sweeps_dom",
+      "direction": -1,
+      "label": "fewer side-to-side glances",
+      "clean_median": 22.5,
+      "scale": 15.0,
+      "ref": 15.0,
+      "effect": 0.5
+    },
+    {
+      "feature": "h_prog_frac",
+      "direction": 1,
+      "label": "line-by-line eye drift",
+      "clean_median": 0.41499999165534973,
+      "scale": 0.08000001311302185,
+      "ref": 0.45500001311302185,
+      "effect": 0.437
+    },
+    {
+      "feature": "h_std",
+      "direction": -1,
+      "label": "eyes steady",
+      "clean_median": 0.1105068176984787,
+      "scale": 0.10193025879561901,
+      "ref": 0.07281491719186306,
+      "effect": 0.436
+    },
+    {
+      "feature": "big_jump_rate",
+      "direction": -1,
+      "label": "few big eye jumps",
+      "clean_median": 15.0,
+      "scale": 22.5,
+      "ref": 0.0,
+      "effect": 0.333
+    }
+  ]
+}

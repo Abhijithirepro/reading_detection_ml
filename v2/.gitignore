@@ -1,0 +1,7 @@
+# v2 generated data (large; rebuild with the commands in README.md)
+data/features/
+data/windows/
+reports/_predict_cache/
+reports/*__timeline.npz
+webapp/runs/
+__pycache__/

@@ -68,11 +68,15 @@ def output_path(video: Path, label: str, source: str = "default",
 
 def extract_one(video: Path, label: str, cfg: Config, backend: str,
                 args_max_seconds: float = None, out_dir: Path = None,
-                source: str = "default") -> dict:
-    """Extract one video to parquet. Returns a summary dict."""
+                source: str = "default", progress=None, workers: int = 1) -> dict:
+    """Extract one video to parquet. Returns a summary dict.
+
+    `progress(stage, seconds)`, if given, gets ("frames", t) every 15 kept frames;
+    it may raise to abort the extraction (the web app uses this to cancel a job).
+    `workers` > 1 runs MediaPipe on that many threads — identical output, faster."""
     import cv2
 
-    mp_backend, app_backend = make_backends(backend, cfg)
+    mp_backend, app_backend = make_backends(backend, cfg, workers)
     cap = cv2.VideoCapture(str(video))
     if not cap.isOpened():
         mp_backend.close()
@@ -123,6 +127,8 @@ def extract_one(video: Path, label: str, cfg: Config, backend: str,
             rows.append(rec)
             kept += 1
             next_t = t + target_dt
+            if progress is not None and kept % 15 == 0:
+                progress("frames", t)
         frame_idx += 1
 
     cap.release()
@@ -142,35 +148,12 @@ def extract_one(video: Path, label: str, cfg: Config, backend: str,
     df.attrs = {}
     df.to_parquet(out, index=False)
 
-    # v2: when the recording has an audio track, run the audio speaking/turn
-    # pipeline now and persist a sidecar next to the parquet. (The visual
-    # fallback needs no sidecar — build_windows recomputes it from `mouth`.)
-    audio_turns = 0
-    try:
-        from speaking import audio_speaking
-        from common import resample_uniform
-        import json as _json
-
-        t_arr = df["t"].to_numpy(dtype=float)
-        _, mouth_u, dtu = resample_uniform(t_arr, df["mouth"].to_numpy(dtype=float),
-                                           cfg.target_fps)
-        _, valid_u, _ = resample_uniform(t_arr, df["face_found"].to_numpy(dtype=float),
-                                         cfg.target_fps)
-        res = audio_speaking(video, mouth_u, valid_u > 0.5, dtu, cfg)
-        if res is not None:
-            sidecar = out.parent / (out.stem + ".turns.json")
-            sidecar.write_text(_json.dumps(res.to_sidecar(dtu), indent=1))
-            audio_turns = len(res.turns)
-    except Exception as e:
-        print(f"        (audio sidecar skipped: {type(e).__name__}: {e})")
-
     elapsed = time.time() - t0
     span = max(float(df["t"].iloc[-1]), 1e-6)
     return dict(
         video=str(video), label=label, source=source, status="ok", out=str(out),
         n_frames=len(df), face_ratio=face_ratio,
         src_fps=round(float(src_fps or 0), 2), timestamps=used_timestamps,
-        audio_turns=audio_turns,
         video_seconds=round(span, 1), sampled_fps=round(len(df) / span, 2),
         seconds=round(elapsed, 1),
     )
@@ -247,10 +230,9 @@ def main(argv=None):
         summaries.append(s)
         status = s.get("status")
         fr = s.get("face_ratio", 0.0)
-        aud = f"  audio_turns={s['audio_turns']}" if s.get("audio_turns") else ""
         print(f"[{i}/{len(todo)}] {status}  face={fr:.0%}  frames={s.get('n_frames')}"
               f"  ({s.get('seconds','?')}s)  [{s.get('source','?')}] "
-              f"{Path(s['video']).name}{aud}", flush=True)
+              f"{Path(s['video']).name}", flush=True)
         if status == "ok" and fr < cfg.min_face_ratio:
             flagged.append((Path(s["video"]).name, fr))
 

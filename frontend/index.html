@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaze Integrity Analyser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="masthead__mark">
+    <span class="masthead__glyph" aria-hidden="true"></span>
+    <div>
+      <h1 class="masthead__title">Gaze Integrity <em>Analyser</em></h1>
+      <p class="masthead__sub">On-device inference &middot; no upload &middot; nothing leaves this machine</p>
+    </div>
+  </div>
+  <dl class="specbar" id="specbar" aria-label="Loaded model specification">
+    <div class="specbar__cell"><dt>Model</dt><dd id="spec-kind">—</dd></div>
+    <div class="specbar__cell"><dt>Threshold</dt><dd id="spec-threshold">—</dd></div>
+    <div class="specbar__cell"><dt>Window</dt><dd id="spec-window">—</dd></div>
+    <div class="specbar__cell"><dt>Channels</dt><dd id="spec-channels">—</dd></div>
+    <div class="specbar__cell"><dt>Runtime</dt><dd id="spec-runtime">booting…</dd></div>
+  </dl>
+</header>
+
+<main class="stage">
+
+  <!-- ── intake ─────────────────────────────────────────────────────── -->
+  <section class="panel panel--intake" id="panel-intake" aria-labelledby="intake-h">
+    <h2 class="panel__label" id="intake-h">01 &mdash; Specimen</h2>
+
+    <div class="mode-toggle" role="tablist" aria-label="Input source">
+      <button type="button" class="mode-toggle__btn is-active" id="mode-upload-btn" role="tab" aria-selected="true" aria-controls="intake-upload">Upload a recording</button>
+      <button type="button" class="mode-toggle__btn" id="mode-webcam-btn" role="tab" aria-selected="false" aria-controls="intake-webcam">Use webcam</button>
+    </div>
+
+    <div id="intake-upload" role="tabpanel">
+      <div class="drop" id="drop" tabindex="0" role="button"
+           aria-describedby="drop-hint">
+        <svg class="drop__icon" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 34V14m0 0l-8 8m8-8l8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8 30v6a4 4 0 004 4h24a4 4 0 004-4v-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <p class="drop__lede">Drop an interview recording</p>
+        <p class="drop__hint" id="drop-hint">or click to browse &middot; mp4, webm, mkv, mov</p>
+        <input type="file" id="file" accept="video/*" class="visually-hidden">
+      </div>
+
+      <div class="controls">
+        <label class="field" for="maxmin">
+          <span class="field__label">Analyse first</span>
+          <span class="field__row">
+            <input type="number" id="maxmin" min="1" max="120" step="1" placeholder="whole file" class="field__input">
+            <span class="field__unit">minutes</span>
+          </span>
+          <span class="field__note">Blank analyses the full recording. Set a cap to shorten a long video. Results start appearing after the first ~20s processed &mdash; no need to wait for the whole file.</span>
+        </label>
+        <button type="button" class="btn btn--go" id="run" disabled>Analyse</button>
+      </div>
+
+      <p class="filename" id="filename" aria-live="polite"></p>
+    </div>
+
+    <div id="intake-webcam" role="tabpanel" hidden>
+      <div class="cam-intro">
+        <svg class="drop__icon" viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="6" y="14" width="26" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M32 20l10-6v20l-10-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+        <p class="drop__lede">Start opens the camera and begins analysis immediately</p>
+        <p class="drop__hint">Nothing is recorded &mdash; frames are analysed in memory and discarded &mdash; hit End to finish</p>
+      </div>
+
+      <p class="cam-error" id="cam-error" hidden role="alert"></p>
+
+      <div class="controls">
+        <button type="button" class="btn btn--go" id="cam-start">Start</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── live analysis (acquisition + result, merged) ──────────────────── -->
+  <section class="panel panel--live" id="panel-live" hidden aria-labelledby="live-h">
+    <h2 class="panel__label" id="live-h">02 &mdash; Live analysis</h2>
+
+    <div class="cam-live" id="cam-live" hidden>
+      <video id="cam-preview" class="cam-preview" muted playsinline autoplay></video>
+    </div>
+
+    <div class="live-status" id="live-status" aria-live="polite">
+      <span class="live-status__badge" id="live-badge">Warming up</span>
+      <span class="live-status__text" id="live-text">first reading in ~20s of usable signal</span>
+    </div>
+
+    <dl class="readout" id="live-readout">
+      <div><dt>Elapsed</dt><dd id="live-elapsed">0:00</dd></div>
+      <div><dt>Frames</dt><dd id="live-frames">0</dd></div>
+      <div><dt>Face lock</dt><dd id="live-face">—</dd></div>
+      <div id="live-eta-cell"><dt>Remaining</dt><dd id="live-eta">—</dd></div>
+    </dl>
+
+    <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="meter">
+      <div class="meter__fill" id="meter-fill"></div>
+      <div class="meter__ticks" aria-hidden="true"></div>
+    </div>
+
+    <p class="live-warn" id="live-warn" hidden role="status"></p>
+    <p class="live-error" id="live-error" hidden role="alert"></p>
+
+    <div class="afterword afterword--top">
+      <button type="button" class="btn btn--ghost" id="live-stop">Stop</button>
+      <button type="button" class="btn btn--ghost" id="live-again" hidden>Analyse another</button>
+      <button type="button" class="btn btn--ghost" id="download" hidden>Download JSON</button>
+    </div>
+
+    <!-- ── warming placeholder ─────────────────────────────────────────── -->
+    <div class="warming" id="warming">
+      <p class="warming__lede">Building the first 20-second window…</p>
+      <p class="warming__hint">The model can't score anything shorter than one window &mdash; a first reading appears here as soon as it can, then updates roughly every 10 seconds after that.</p>
+    </div>
+
+    <!-- ── result (hidden until the first window scores) ──────────────── -->
+    <div id="result-block" hidden>
+      <div class="verdict" id="verdict">
+        <p class="verdict__word" id="verdict-word">—</p>
+        <div class="verdict__meta">
+          <p class="verdict__prob"><span id="verdict-prob">0.000</span><em>score</em></p>
+          <p class="verdict__thr">threshold <span id="verdict-thr">0.000</span></p>
+        </div>
+      </div>
+
+      <div class="scale" aria-hidden="true">
+        <div class="scale__track"><div class="scale__mark" id="scale-mark"></div><div class="scale__thr" id="scale-thr"></div></div>
+        <div class="scale__ends"><span>0.0</span><span>1.0</span></div>
+      </div>
+
+      <dl class="readout readout--wide">
+        <div><dt>Windows scored</dt><dd id="rs-windows">0</dd></div>
+        <div><dt>Windows flagged</dt><dd id="rs-flagged">0</dd></div>
+        <div><dt>Analysed span</dt><dd id="rs-span">—</dd></div>
+        <div><dt>Face lock</dt><dd id="rs-face">—</dd></div>
+        <div><dt>Processing time</dt><dd id="rs-time">—</dd></div>
+        <div><dt>Avg per 1 min of video</dt><dd id="rs-rate">—</dd></div>
+      </dl>
+
+      <figure class="chart" id="chart-fig">
+        <figcaption class="chart__cap">
+          <span class="chart__title">Per-window suspicion over time</span>
+          <span class="chart__legend">
+            <span class="key"><i class="key__sw key__sw--base"></i>below threshold</span>
+            <span class="key"><i class="key__sw key__sw--flag"></i>flagged</span>
+            <span class="key"><i class="key__sw key__sw--thr"></i>threshold</span>
+          </span>
+        </figcaption>
+        <div class="chart__plot" id="chart"></div>
+        <div class="chart__tip" id="chart-tip" hidden></div>
+      </figure>
+
+      <div class="segments">
+        <h3 class="segments__h">Flagged segments</h3>
+        <ol class="segments__list" id="segments"></ol>
+        <p class="segments__empty" id="segments-empty" hidden>No window crossed the flag threshold.</p>
+      </div>
+
+      <details class="table-view">
+        <summary>Window table</summary>
+        <div class="table-view__scroll">
+          <table id="wtable">
+            <thead><tr><th scope="col">#</th><th scope="col">Range</th><th scope="col">Score</th><th scope="col">Signals</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </details>
+
+      <p class="caveat">
+        A score is evidence to review, never a conclusion. Open the flagged ranges in the
+        source recording before acting on them. While a session is still running, every
+        number above reflects the footage seen <em>so far</em> &mdash; it keeps updating.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── error ──────────────────────────────────────────────────────── -->
+  <section class="panel panel--fault" id="panel-error" hidden role="alert">
+    <h2 class="panel__label">Fault</h2>
+    <p class="fault__msg" id="error-msg"></p>
+    <button type="button" class="btn btn--ghost" id="retry">Start over</button>
+  </section>
+
+</main>
+
+<footer class="colophon">
+  <span>Model, weights and inference run entirely in this browser tab.</span>
+</footer>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

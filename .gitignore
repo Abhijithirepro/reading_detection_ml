@@ -43,3 +43,6 @@ models/face_landmarker.task
 # models/*.json
 # models/*.csv
 .DS_Store
+
+# web app job outputs (results, timelines, reports, transient uploads)
+webapp/runs/

@@ -1,0 +1,15 @@
+  skip (too short): clean__random2__39835156-35d7-4992-a02a-b74352ae580d_Interviewee_7572127_Bhasuru_Siva_Satya_Sahithi_2.parquet (81 < 300 samples)
+
+=== Stage 2 summary ===
+videos: 144 (100 with audio turns)  windows: 23056  (cheating=3128, clean=19928)
+features/window: 63   sequence: (23056, 240, 6)
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/windows.parquet
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/sequences.npz
+videos/class: cheating=27, clean=117
+videos/source:
+    cheating interviews     21
+    cheating testing_team   6
+    clean    interviews     28
+    clean    interviews_new 51
+    clean    random1        13
+    clean    random2        25

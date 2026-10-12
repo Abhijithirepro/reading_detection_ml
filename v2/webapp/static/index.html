@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading Detector v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="masthead__mark">
+    <span class="masthead__glyph" aria-hidden="true"></span>
+    <div>
+      <h1 class="masthead__title">Gaze Integrity <em>Analyser</em><span class="masthead__tag">v2 · reading</span></h1>
+      <p class="masthead__sub">Detects reading from the screen while answering &middot; eyes + mouth, per second &middot; upload deleted after scoring</p>
+    </div>
+  </div>
+  <dl class="specbar" aria-label="Server model and hardware">
+    <div class="specbar__cell"><dt>Model</dt><dd id="spec-kind">—</dd></div>
+    <div class="specbar__cell"><dt>Per-second thr</dt><dd id="spec-threshold">—</dd></div>
+    <div class="specbar__cell"><dt>Verdict rule</dt><dd id="spec-rule">—</dd></div>
+    <div class="specbar__cell"><dt>Window</dt><dd id="spec-window">—</dd></div>
+    <div class="specbar__cell"><dt>Face tracking</dt><dd id="spec-mediapipe">—</dd></div>
+    <div class="specbar__cell"><dt>Reading model</dt><dd id="spec-cnn">connecting…</dd></div>
+  </dl>
+</header>
+
+<main class="stage">
+
+  <!-- ── intake ─────────────────────────────────────────────────────── -->
+  <section class="panel panel--intake" id="panel-intake" aria-labelledby="intake-h">
+    <h2 class="panel__label" id="intake-h">01 &mdash; Specimen</h2>
+
+    <div class="drop" id="drop" tabindex="0" role="button" aria-describedby="drop-hint">
+      <svg class="drop__icon" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 34V14m0 0l-8 8m8-8l8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 30v6a4 4 0 004 4h24a4 4 0 004-4v-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <p class="drop__lede">Drop an interview recording</p>
+      <p class="drop__hint" id="drop-hint">or click to browse &middot; <span id="accepted">mp4, webm, mkv, mov</span></p>
+      <input type="file" id="file" accept="video/*,.mkv,.webm" class="visually-hidden">
+    </div>
+
+    <div class="controls">
+      <label class="field" for="maxmin">
+        <span class="field__label">Analyse first</span>
+        <span class="field__row">
+          <input type="number" id="maxmin" min="1" max="600" step="1" placeholder="whole" class="field__input">
+          <span class="field__unit">minutes</span>
+        </span>
+        <span class="field__note">Blank analyses the full recording. The server tracks the face at several times real-time speed, and the result appears once the whole span is scored.</span>
+      </label>
+      <button type="button" class="btn btn--go" id="run" disabled>Analyse</button>
+    </div>
+
+    <p class="filename" id="filename" aria-live="polite"></p>
+    <p class="intake-error" id="intake-error" hidden role="alert"></p>
+  </section>
+
+  <!-- ── analysis (progress + result) ───────────────────────────────── -->
+  <section class="panel panel--live" id="panel-live" hidden aria-labelledby="live-h">
+    <h2 class="panel__label" id="live-h">02 &mdash; Analysis</h2>
+
+    <ol class="ladder" id="ladder" aria-label="Pipeline progress">
+      <li class="ladder__step" data-step="upload"><span>Upload</span></li>
+      <li class="ladder__step" data-step="queued"><span>Queue</span></li>
+      <li class="ladder__step" data-step="frames"><span>Face tracking</span></li>
+      <li class="ladder__step" data-step="windows"><span>Windows + model</span></li>
+      <li class="ladder__step" data-step="report"><span>Report</span></li>
+    </ol>
+
+    <div class="live-status" aria-live="polite">
+      <span class="live-status__badge" id="live-badge">Uploading</span>
+      <span class="live-status__text" id="live-text">sending the recording to the server</span>
+    </div>
+
+    <dl class="readout" id="live-readout">
+      <div><dt>Elapsed</dt><dd id="live-elapsed">0:00</dd></div>
+      <div><dt>Video processed</dt><dd id="live-done">—</dd></div>
+      <div><dt>Speed</dt><dd id="live-speed">—</dd></div>
+      <div><dt>Remaining</dt><dd id="live-eta">—</dd></div>
+    </dl>
+
+    <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="meter">
+      <div class="meter__fill" id="meter-fill"></div>
+      <div class="meter__ticks" aria-hidden="true"></div>
+    </div>
+
+    <p class="live-error" id="live-error" hidden role="alert"></p>
+
+    <div class="afterword afterword--top">
+      <button type="button" class="btn btn--ghost" id="live-stop">Cancel</button>
+      <button type="button" class="btn btn--ghost" id="live-again" hidden>Analyse another</button>
+      <a class="btn btn--ghost" id="download" hidden download>Download JSON</a>
+      <a class="btn btn--ghost" id="segments-csv" hidden download>Segments CSV</a>
+      <a class="btn btn--ghost" id="report-link" hidden target="_blank" rel="noopener">Detailed report &#8599;</a>
+    </div>
+
+    <!-- ── result (hidden until the job finishes) ─────────────────────── -->
+    <div id="result-block" hidden>
+      <div class="verdict" id="verdict">
+        <p class="verdict__word" id="verdict-word">—</p>
+        <div class="verdict__meta">
+          <p class="verdict__prob"><span id="verdict-prob">0:00</span><em>reading</em></p>
+          <p class="verdict__thr"><span id="verdict-thr">—</span></p>
+        </div>
+        <p class="verdict__source" id="verdict-source"></p>
+      </div>
+
+      <div class="scale" aria-hidden="true">
+        <div class="scale__track"><div class="scale__mark" id="scale-mark"></div><div class="scale__thr" id="scale-thr"></div></div>
+        <div class="scale__ends"><span>no reading</span><span id="scale-end">—</span></div>
+      </div>
+
+      <!-- ── video review: the recording, with the suspicious parts marked ── -->
+      <section class="review" id="review" aria-label="Video review">
+        <div class="review__main">
+          <div class="review__screen" id="review-screen">
+            <video id="review-video" class="review__video" controls preload="metadata" playsinline></video>
+            <p class="review__flag" id="review-flag" hidden></p>
+            <div class="review__empty" id="review-empty" hidden>
+              <p class="review__empty-lede" id="review-empty-msg">Load the recording to review it here.</p>
+              <p class="review__empty-hint">It plays from your disk &mdash; nothing is uploaded again.</p>
+              <button type="button" class="btn btn--ghost" id="review-pick">Choose the recording</button>
+              <input type="file" id="review-file" accept="video/*,.mkv,.webm" class="visually-hidden">
+            </div>
+          </div>
+
+          <div class="strip" id="strip" tabindex="0" role="slider" aria-label="Suspicion timeline: click or use arrow keys to seek"
+               aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="00:00">
+            <div class="strip__cells" id="strip-cells"></div>
+            <div class="strip__head" id="strip-head"></div>
+            <div class="strip__tip" id="strip-tip" hidden></div>
+          </div>
+          <div class="strip__axis"><span>00:00</span><span class="strip__legend"><i class="lane-key lane-key--read"></i>reading (brighter = more likely, red = detected) <i class="lane-key lane-key--speak"></i>speaking <i class="lane-key lane-key--review"></i>reviewer</span><span id="strip-end">—</span></div>
+          <p class="review__note" id="review-note" hidden></p>
+        </div>
+
+        <aside class="review__side">
+          <dl class="now" aria-live="off">
+            <div><dt>Now</dt><dd id="now-time">00:00</dd></div>
+            <div><dt>Reading prob.</dt><dd id="now-score">—</dd></div>
+            <div class="now__wide"><dt>Speaking</dt><dd id="now-speak">—</dd></div>
+            <div class="now__wide"><dt>Signals</dt><dd id="now-reasons">—</dd></div>
+          </dl>
+          <h3 class="segments__h">Reading segments &middot; click to jump</h3>
+          <ol class="segments__list segments__list--jump" id="segments"></ol>
+          <p class="segments__empty" id="segments-empty" hidden>No second crossed the reading threshold &mdash; scrub the timeline to review anyway.</p>
+
+          <section class="compare" id="compare" aria-labelledby="compare-h">
+            <h3 class="segments__h" id="compare-h">Manual review &middot; agreement</h3>
+            <p class="compare__src" id="compare-src">No manual review for this recording yet.</p>
+            <dl class="compare__metrics" id="compare-metrics" hidden>
+              <div><dt>Spans caught</dt><dd id="cmp-spans">—</dd></div>
+              <div><dt>Per-sec AUC</dt><dd id="cmp-auc">—</dd></div>
+              <div><dt>Precision</dt><dd id="cmp-p">—</dd></div>
+              <div><dt>Recall</dt><dd id="cmp-r">—</dd></div>
+            </dl>
+            <ol class="compare__spans" id="compare-spans"></ol>
+            <p class="compare__src" id="compare-extra-h" hidden></p>
+            <ol class="compare__spans" id="compare-extra"></ol>
+            <button type="button" class="btn btn--ghost btn--small" id="compare-pick">Load review CSV</button>
+            <input type="file" id="compare-file" accept=".csv,text/csv" class="visually-hidden">
+            <p class="compare__hint">Same sheet format as <code>manual_review_for_candidate/</code>: start (min:sec), end (min:sec), reading, reason.</p>
+            <p class="intake-error" id="compare-error" hidden role="alert"></p>
+          </section>
+        </aside>
+      </section>
+
+      <p class="live-warn" id="face-warn" hidden role="status"></p>
+
+      <dl class="readout readout--wide">
+        <div><dt>Reading time</dt><dd id="rs-windows">0</dd></div>
+        <div><dt>Speaking time</dt><dd id="rs-flagged">0</dd></div>
+        <div><dt>Reading / speaking</dt><dd id="rs-share">—</dd></div>
+        <div><dt>Reading segments</dt><dd id="rs-segs">—</dd></div>
+        <div><dt>Analysed span</dt><dd id="rs-span">—</dd></div>
+        <div><dt>Face lock</dt><dd id="rs-face">—</dd></div>
+        <div><dt>Processing time</dt><dd id="rs-time">—</dd></div>
+        <div><dt>Speed</dt><dd id="rs-speed">—</dd></div>
+        <div><dt>Frames analysed</dt><dd id="rs-frames">—</dd></div>
+        <div><dt>Hardware</dt><dd id="rs-hw">—</dd></div>
+      </dl>
+
+      <figure class="chart" id="chart-fig">
+        <figcaption class="chart__cap">
+          <span class="chart__title">Reading probability over time (5 s bins, max)</span>
+          <span class="chart__legend">
+            <span class="key"><i class="key__sw key__sw--base"></i>below threshold</span>
+            <span class="key"><i class="key__sw key__sw--flag"></i>reading detected</span>
+            <span class="key"><i class="key__sw key__sw--thr"></i>threshold</span>
+          </span>
+        </figcaption>
+        <div class="chart__plot chart__plot--seekable" id="chart"></div>
+        <div class="chart__tip" id="chart-tip" hidden></div>
+        <p class="chart__hint">Click a bar to play that moment in the video.</p>
+      </figure>
+
+      <details class="table-view">
+        <summary>5-second table &middot; click a row to play it</summary>
+        <div class="table-view__scroll">
+          <table id="wtable">
+            <thead><tr><th scope="col">#</th><th scope="col">Range</th><th scope="col">Reading prob.</th><th scope="col">Signals</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </details>
+
+      <p class="caveat">
+        A reading segment is evidence to review, never a conclusion. Open the segments in the
+        recording &mdash; or the detailed report's eye and mouth traces &mdash; before acting on them.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── fault ──────────────────────────────────────────────────────── -->
+  <section class="panel panel--fault" id="panel-error" hidden role="alert">
+    <h2 class="panel__label">Fault</h2>
+    <p class="fault__msg" id="error-msg"></p>
+    <button type="button" class="btn btn--ghost" id="retry">Start over</button>
+  </section>
+
+</main>
+
+<footer class="colophon">
+  <span>Scored by the same Python pipeline as v2/src/predict.py &middot; results stay on this server</span>
+</footer>
+
+<script src="src/utils/format.js"></script>
+<script src="src/utils/http.js"></script>
+<script src="src/components/intake.js"></script>
+<script src="src/components/progress.js"></script>
+<script src="src/components/chart.js"></script>
+<script src="src/components/review.js"></script>
+<script src="src/components/compare.js"></script>
+<script src="src/components/result.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>

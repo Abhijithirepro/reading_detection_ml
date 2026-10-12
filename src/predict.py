@@ -35,86 +35,58 @@ import build_windows as bw
 # --------------------------------------------------------------------------- #
 # Model loading
 # --------------------------------------------------------------------------- #
-def load_winner():
+def load_winner(device="cpu"):
     mpath = MODELS_DIR / "model.json"
     if not mpath.exists():
         print(f"No trained model at {mpath}. Run train.py first.")
         sys.exit(1)
     artifact = json.loads(mpath.read_text())
-    kind = artifact["kind"]
+    if artifact["kind"] != "cnn":
+        print(f"{mpath} holds a '{artifact['kind']}' model; only the CNN is supported. "
+              "Re-run train.py.")
+        sys.exit(1)
 
-    if kind == "xgboost":
-        import xgboost as xgb
-        booster = xgb.Booster()
-        booster.load_model(str(MODELS_DIR / "model_xgb.json"))
+    import torch
+    ckpt = torch.load(MODELS_DIR / "model_cnn.pt", map_location="cpu", weights_only=False)
+    net = bw_build_seq_net(len(artifact["seq_channels"]))
+    net.load_state_dict(ckpt["state_dict"])
+    net.to(device).eval()
+    mean, std = ckpt["mean"], ckpt["std"]
 
-        def scorer(win_df, X_seq):
-            import xgboost as xgb
-            X = win_df[artifact["feature_cols"]].to_numpy(dtype=float)
-            return booster.predict(xgb.DMatrix(X, feature_names=artifact["feature_cols"]))
-    elif kind in ("minirocket", "multirocket"):
-        import joblib
-        pipe = joblib.load(MODELS_DIR / "model_minirocket.pkl")
-
-        def scorer(win_df, X_seq):
-            # (N, seq_len, C) -> (N, C, seq_len) float32, NaN/inf-safe (matches training)
-            Xr = np.ascontiguousarray(
-                np.nan_to_num(np.transpose(np.asarray(X_seq, dtype=np.float32), (0, 2, 1))))
-            if kind == "multirocket":       # MultiROCKET's numba kernel requires float64
-                Xr = Xr.astype(np.float64)
-            proba = pipe.predict_proba(Xr)
-            return proba[:, 1] if proba.shape[1] > 1 else np.zeros(len(X_seq))
-    else:
-        import torch
-        ckpt = torch.load(MODELS_DIR / "model_gru.pt", map_location="cpu", weights_only=False)
-        kind_net = "cnn" if "CNN" in ckpt.get("kind", "GRU") else "gru"
-        net = bw_build_seq_net(len(artifact["seq_channels"]), kind_net)
-        net.load_state_dict(ckpt["state_dict"])
-        net.eval()
-        mean, std = ckpt["mean"], ckpt["std"]
-
-        def scorer(win_df, X_seq):
-            import torch
-            Xn = (X_seq - mean) / std
-            with torch.no_grad():
-                logits = net(torch.tensor(Xn, dtype=torch.float32))
-                return torch.sigmoid(logits).numpy()
+    def scorer(win_df, X_seq):
+        Xn = (X_seq - mean) / std
+        with torch.no_grad():
+            logits = net(torch.tensor(Xn, dtype=torch.float32, device=device))
+            return torch.sigmoid(logits).cpu().numpy()
 
     return artifact, scorer
 
 
-def bw_build_seq_net(n_channels, kind):
+def bw_build_seq_net(n_channels):
     from train import _build_seq_net
-    return _build_seq_net(n_channels, kind)
+    return _build_seq_net(n_channels)
 
 
 # --------------------------------------------------------------------------- #
 # Feature + sequence extraction for one video (in-memory)
 # --------------------------------------------------------------------------- #
-def video_to_windows(video: Path, cfg: Config, backend: str):
+def video_to_windows(video: Path, cfg: Config, backend: str, max_seconds=None, progress=None, workers=1):
     """Extract -> clean -> window a single video. Returns (win_df, X_seq, clean)."""
     from extract_features import extract_one
 
     # Reuse the batch extractor but write to a prediction cache dir OUTSIDE
     # data/features/, so scored videos never leak into the training set.
     cache_dir = REPORTS_DIR / "_predict_cache"
-    out = extract_one(video, "scored", cfg, backend, out_dir=cache_dir)
+    out = extract_one(video, "scored", cfg, backend, args_max_seconds=max_seconds,
+                      out_dir=cache_dir, progress=progress, workers=workers)
     if out.get("status") != "ok":
         raise RuntimeError(f"extraction failed: {out.get('status')}")
+    if progress is not None:
+        progress("windows", None)
     df = pd.read_parquet(out["out"])
 
-    # audio turns sidecar (written by extract_one when the recording has audio)
-    pq = Path(out["out"])
-    sidecar = None
-    sc_path = pq.parent / (pq.stem + ".turns.json")
-    if sc_path.exists():
-        try:
-            sidecar = json.loads(sc_path.read_text())
-        except Exception:
-            sidecar = None
-
     has_l2cs = all(c in df.columns for c in L2CS_CHANNELS)
-    clean = bw.clean_video(df, cfg, has_l2cs, sidecar=sidecar)
+    clean = bw.clean_video(df, cfg, has_l2cs)
     n = len(clean["gaze_x"])
     win_len = int(round(cfg.window_seconds * cfg.target_fps))
     stride = max(1, int(round(cfg.stride_seconds * cfg.target_fps)))
@@ -203,11 +175,12 @@ def merge_segments(win_df, probs, flag_threshold, cfg: Config):
 # --------------------------------------------------------------------------- #
 # Main scoring
 # --------------------------------------------------------------------------- #
-def score_video(video: Path, cfg: Config, artifact, scorer, flag_threshold=None):
+def score_video(video: Path, cfg: Config, artifact, scorer, flag_threshold=None,
+                max_seconds=None, progress=None, workers=1):
     # Extract with the backend the winner was trained on (so L2CS channels exist
     # when the winning feature set needs them).
     backend = "mediapipe+l2cs" if "l2cs" in artifact["feature_set"] else "mediapipe"
-    win_df, X_seq, clean, feat_path = video_to_windows(video, cfg, backend)
+    win_df, X_seq, clean, feat_path = video_to_windows(video, cfg, backend, max_seconds, progress, workers)
     probs = np.asarray(scorer(win_df, X_seq), dtype=float)
     win_df = win_df.copy()
     win_df["prob"] = probs

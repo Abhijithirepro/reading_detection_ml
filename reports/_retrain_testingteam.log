@@ -1,0 +1,38 @@
+
+=== Stage 2 summary ===
+videos: 85 (79 with audio turns)  windows: 14442  (cheating=388, clean=14054)
+features/window: 63   sequence: (14442, 240, 6)
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/windows.parquet
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/sequences.npz
+videos/class: cheating=6, clean=79
+videos/source:
+    cheating testing_team   6
+    clean    interviews     28
+    clean    interviews_new 51
+BUILD_DONE
+windows=14442  videos: cheating=6 clean=79
+CV: LeaveOneGroupOut   feature sets: ['mediapipe', 'mediapipe_gaze_head']   seq: multirocket
+
+[A/xgboost] skipped (--skip-xgb)
+[C] multirocket CV: 85 folds (isolated sktime process)
+[C/multirocket mediapipe       ] video AUC=0.992 PR=0.897 | window AUC=0.854 | P=0.83 R=0.83
+
+🏆 winner: multirocket on mediapipe (video ROC-AUC=0.992, threshold=0.614)
+
+top features:
+  0.382  speak_source_audio
+  0.233  prespeech_gaze_shift
+  0.141  gap_dur_cv
+  0.089  gap_dur_mean
+  0.045  bursts_per_min
+  0.028  pause_rate
+  0.022  fixation_dispersion
+  0.019  burst_dur_mean
+  0.014  gaze_x_range
+  0.008  gaze_x_var
+  0.005  burst_dur_std
+  0.003  blink_rate
+
+artifacts -> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /models
+next: python src/report.py --eval   (and per-video: python src/predict.py <video>)
+TRAIN_DONE

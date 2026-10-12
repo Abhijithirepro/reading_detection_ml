@@ -4,11 +4,11 @@ report.py — Stage 4 reporting: per-video HTML review + overall evaluation repo
 Per-video (needs a prediction from predict.py; auto-runs it if missing):
     gaze_x / gaze_y traces with suspicious segments shaded, head-pose strip,
     blink/EAR markers, a window-probability timeline, a verdict banner, and the
-    top contributing features.
+    flagged segments.
 
 Evaluation report (from train.py artifacts):
-    CV metrics table for every model x feature-set combo (winner highlighted),
-    per-video out-of-fold score table (predicted vs actual), feature-importance chart.
+    CNN cross-validation metrics, cross-source generalization, and the per-video
+    out-of-fold score table (predicted vs actual).
 
 Usage:
     python src/report.py path/to/video.mp4      # per-video report
@@ -133,17 +133,6 @@ def build_video_report(video: Path):
 
     img = _fig_to_b64(fig)
 
-    # ---- top features (global importances) ----
-    imp_rows = ""
-    imp_path = MODELS_DIR / "feature_importances.csv"
-    if imp_path.exists():
-        imp = pd.read_csv(imp_path).head(10)
-        for _, r in imp.iterrows():
-            bar = int(round(r["importance"] / (imp["importance"].max() + 1e-9) * 100))
-            imp_rows += (f"<tr><td>{r['feature']}</td>"
-                         f"<td><div class='bar' style='width:{bar}%'></div></td>"
-                         f"<td>{r['importance']:.3f}</td></tr>")
-
     seg_rows = "".join(
         f"<tr><td>{s['range']}</td><td>{s['reason']}</td><td>{s['peak_prob']:.2f}</td></tr>"
         for s in segments) or "<tr><td colspan=3>None above flag threshold</td></tr>"
@@ -166,15 +155,9 @@ def build_video_report(video: Path):
     <span><b>windows</b> {result['n_windows']} ({result['n_flagged_windows']} flagged)</span>
   </div>
   <img class="plot" src="data:image/png;base64,{img}"/>
-  <div class="cols">
-    <div class="card">
-      <h3>Flagged segments</h3>
-      <table><tr><th>range</th><th>reason</th><th>peak p</th></tr>{seg_rows}</table>
-    </div>
-    <div class="card">
-      <h3>Top contributing features (global)</h3>
-      <table><tr><th>feature</th><th></th><th>gain</th></tr>{imp_rows}</table>
-    </div>
+  <div class="card">
+    <h3>Flagged segments</h3>
+    <table><tr><th>range</th><th>reason</th><th>peak p</th></tr>{seg_rows}</table>
   </div>
   <p class="foot">Weak-label caveat: window probabilities reflect learned reading/overlay
   gaze signatures; review flagged segments against the raw video before acting.</p>
@@ -247,17 +230,6 @@ def build_eval_report():
                         f"<td>{'cheating' if pred else 'clean'} {ok}</td>"
                         f"<td>{int(r['n_windows'])}</td></tr>")
 
-    # feature importance chart
-    img_tag = ""
-    imp_path = MODELS_DIR / "feature_importances.csv"
-    if imp_path.exists():
-        imp = pd.read_csv(imp_path).head(18).iloc[::-1]
-        fig, ax = plt.subplots(figsize=(8, 6), facecolor=PLOT_BG)
-        _style(ax)
-        ax.barh(imp["feature"], imp["importance"], color=ACCENT)
-        ax.set_title("Feature importance (winning feature set)", loc="left", fontsize=10)
-        img_tag = f"<img class='plot' src='data:image/png;base64,{_fig_to_b64(fig)}'/>"
-
     # v2: cross-source generalization tables
     pair_rows = ""
     for p in blob.get("source_pairs", []):
@@ -303,7 +275,6 @@ def build_eval_report():
   <div class="card"><h3>Per-video out-of-fold scores</h3>
     <table><tr><th>video</th><th>actual</th><th>OOF score</th><th>predicted</th><th>windows</th></tr>{vs_rows}</table>
   </div>
-  <div class="card"><h3>Feature importance</h3>{img_tag}</div>
 </div>
 </body></html>"""
     out = REPORTS_DIR / "evaluation_report.html"

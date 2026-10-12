@@ -1,0 +1,640 @@
+Backend=mediapipe  target_fps=3.0  videos=100  to-extract=100  workers=6
+I0000 00:00:1785816342.174004 2087093 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1785816342.173953 2087090 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1785816342.173956 2087091 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1785816342.173957 2087092 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1785816342.173953 2087095 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+I0000 00:00:1785816342.174017 2087094 init-domain.cc:128] Fiber init: default domain = pthread, concurrency = 11, prefix = pthread-default
+W0000 00:00:1785816342.176103 2087092 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1785816342.176103 2087090 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1785816342.176130 2087091 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1785816342.176118 2087094 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1785816342.176119 2087095 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1785816342.176104 2087093 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816342.387761 2087091 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1785816342.387781 2087093 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1785816342.387760 2087095 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1785816342.387763 2087092 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1785816342.387765 2087094 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+I0000 00:00:1785816342.387762 2087090 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+INFO: INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+Created TensorFlow Lite XNNPACK delegate for CPU.Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: 
+Created TensorFlow Lite XNNPACK delegate for CPU.INFO: 
+Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1785816342.390467 2087110 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.390512 2087139 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.390535 2087112 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.390548 2087102 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.390581 2087138 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.390618 2087103 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.410258 2087103 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.410265 2087138 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.410601 2087118 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.410701 2087128 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.411096 2087121 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816342.411421 2087102 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816372.532994 2088028 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[1/100] ok  face=94%  frames=1989  (30.1s)  [interviews] combined_ir8232529_Sakamuri_Pavithra.mp4  audio_turns=51
+I0000 00:00:1785816372.538767 2088028 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816372.539889 2088030 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816372.547418 2088034 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[2/100] ok  face=100%  frames=2100  (31.3s)  [interviews] combined_ir8241161_Kalaiselvan_Karthikeyan.mp4  audio_turns=88
+W0000 00:00:1785816373.754334 2088095 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816373.756866 2088095 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816373.757719 2088098 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816373.764563 2088101 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[3/100] ok  face=97%  frames=2596  (35.1s)  [interviews] combined_ir7611187_Ram_Shekhawat.webm  audio_turns=63
+W0000 00:00:1785816377.560420 2088234 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816377.564202 2088234 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816377.566293 2088237 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816377.572194 2088237 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[ WARN:0@40.469] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+[4/100] ok  face=100%  frames=2884  (38.7s)  [interviews] combined_ir7233051_Ishika_Vijaywargiya.webm  audio_turns=66
+W0000 00:00:1785816381.080668 2088330 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816381.087214 2088330 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816381.088284 2088332 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816381.093851 2088332 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[5/100] ok  face=99%  frames=3270  (48.3s)  [interviews] combined_ir8156365_Anirudh_N_R.webm  audio_turns=102
+W0000 00:00:1785816390.673728 2088579 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816390.680287 2088579 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816390.681464 2088584 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816390.688676 2088589 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[6/100] ok  face=96%  frames=2154  (25.0s)  [interviews] combined_ir8241299_Kalluri_Praneeth (2).webm  audio_turns=54
+W0000 00:00:1785816397.594339 2088760 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816397.598572 2088760 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816397.599723 2088763 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816397.606484 2088763 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[7/100] ok  face=100%  frames=2459  (26.2s)  [interviews] combined_ir8251421_Chippgiri_Reddy.mp4  audio_turns=76
+W0000 00:00:1785816407.266110 2089026 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816407.271586 2089026 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816407.272650 2089031 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816407.279518 2089031 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[8/100] ok  face=99%  frames=2624  (27.2s)  [interviews] combined_ir8256777_Gaurav_Kumar.mp4  audio_turns=43
+W0000 00:00:1785816417.967748 2089449 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816417.978862 2089449 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816417.983055 2089451 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816417.991739 2089451 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[9/100] ok  face=100%  frames=4408  (46.6s)  [interviews] combined_ir8244089_Marthala_Ashok_Reddy.mp4  audio_turns=84
+W0000 00:00:1785816420.369275 2089530 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816420.374177 2089530 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816420.375825 2089532 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816420.383224 2089534 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816420.448242 2087100 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:51:42.355893+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[10/100] ok  face=100%  frames=4627  (49.1s)  [interviews] combined_ir8248195_Shweta_Chandrakant_Gambhire.webm  audio_turns=82
+W0000 00:00:1785816426.671341 2089757 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816426.679480 2089757 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816426.680776 2089759 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816426.688070 2089761 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[11/100] ok  face=98%  frames=2645  (32.0s)  [interviews] combined_ir8257151_Shyam_Sundar_Vallapatla.webm  audio_turns=85
+W0000 00:00:1785816429.566147 2089876 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816429.569871 2089876 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816429.571980 2089878 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816429.578130 2089878 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[12/100] ok  face=100%  frames=8559  (96.1s)  [interviews] combined_ir7236381_Sampath_Pujari.webm  audio_turns=99
+W0000 00:00:1785816438.483036 2090097 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816438.486649 2090097 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816438.487757 2090101 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816438.494123 2090105 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[13/100] ok  face=94%  frames=596  (7.0s)  [interviews] combined_ir8289961_Thrinath_Reddy_Dadam.webm  audio_turns=13
+W0000 00:00:1785816445.537356 2090331 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816445.540212 2090331 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816445.541731 2090335 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816445.547754 2090335 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[14/100] ok  face=100%  frames=2983  (32.9s)  [interviews] combined_ir8273455_Bhaskar_R.webm  audio_turns=75
+W0000 00:00:1785816450.883839 2090550 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816450.887035 2090550 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816450.888093 2090552 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816450.894424 2090552 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[15/100] ok  face=99%  frames=3198  (31.1s)  [interviews] combined_ir8277339_Dhiraj_Sanjay_Kharche.mp4  audio_turns=97
+W0000 00:00:1785816457.859528 2090794 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816457.862558 2090794 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816457.863760 2090799 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816457.869283 2090798 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[16/100] ok  face=97%  frames=5031  (50.6s)  [interviews] combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1).mp4  audio_turns=86
+W0000 00:00:1785816457.890376 2090830 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816457.894112 2090830 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816457.895200 2090832 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816457.901102 2090832 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[17/100] ok  face=100%  frames=1871  (18.6s)  [interviews] combined_ir8299831_K_Chandana.mp4  audio_turns=51
+W0000 00:00:1785816464.179729 2091058 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816464.185840 2091058 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816464.187358 2091062 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816464.193287 2091062 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[18/100] ok  face=100%  frames=2747  (27.7s)  [interviews] combined_ir8307595_Jagruti_Patil.mp4  audio_turns=66
+W0000 00:00:1785816478.596538 2091768 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816478.602058 2091768 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816478.603710 2091770 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816478.609605 2091772 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[19/100] ok  face=84%  frames=6729  (61.9s)  [interviews] combined_ir8275457_Abhilasha_M_E.mp4  audio_turns=82
+W0000 00:00:1785816482.373099 2091892 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816482.378977 2091892 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816482.380156 2091894 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816482.387024 2091894 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[20/100] ok  face=100%  frames=2171  (23.3s)  [interviews] combined_ir8250885_Shruthi_D_A.mp4  audio_turns=28
+W0000 00:00:1785816487.484737 2092129 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816487.487743 2092129 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816487.489044 2092133 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816487.499079 2092140 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[21/100] ok  face=100%  frames=3931  (39.9s)  [interviews] combined_ir8308053_Muthakani_Venkateswarlu.webm  audio_turns=69
+W0000 00:00:1785816497.726878 2092416 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816497.729990 2092416 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816497.731501 2092420 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816497.738555 2092427 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[22/100] ok  face=100%  frames=5153  (53.8s)  [interviews] combined_ir8237215_Palle_Sindhuja.mp4  audio_turns=73
+W0000 00:00:1785816511.729709 2092827 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816511.734588 2092827 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816511.735668 2092830 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816511.742586 2092830 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[23/100] ok  face=100%  frames=3664  (37.1s)  [interviews] combined_ir8252235_Prasanth_Suresh.mp4  audio_turns=77
+W0000 00:00:1785816515.740377 2092984 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816515.744943 2092984 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816515.746100 2092989 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816515.752192 2092986 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[24/100] ok  face=100%  frames=2844  (29.6s)  [interviews] combined_ir8266715_Akhila_Reddy_Karnati.mp4  audio_turns=33
+W0000 00:00:1785816517.112958 2093150 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816517.118911 2093150 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816517.120388 2093154 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816517.126985 2093152 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816527.820079 2089877 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:53:09.717524+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1785816538.869544 2093602 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[25/100] ok  face=100%  frames=2195  (21.7s)  [interviews] combined_ir8276317_Girish_Subhash_Patil.mp4  audio_turns=37
+I0000 00:00:1785816538.872729 2093602 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816538.874583 2093604 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816538.881118 2093606 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[26/100] ok  face=100%  frames=9964  (118.7s)  [interviews] combined_ir8277721_Sakshi_Mishra.webm  audio_turns=181
+W0000 00:00:1785816548.259598 2093843 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816548.262937 2093843 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816548.264559 2093845 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816548.271665 2093852 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[27/100] ok  face=100%  frames=7291  (71.6s)  [interviews] combined_ir8252691_Panthangi_Priyanka.mp4  audio_turns=106
+W0000 00:00:1785816554.081975 2094004 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816554.084932 2094004 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816554.086592 2094007 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816554.094707 2094007 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[28/100] ok  face=98%  frames=4307  (40.9s)  [interviews] combined_ir8270165_Ajay_Kumar_Mahato.mp4  audio_turns=99
+W0000 00:00:1785816556.705954 2094091 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816556.708970 2094091 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816556.710301 2094094 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816556.716834 2094099 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816560.542605 2092417 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:54:17.933881+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[29/100] ok  face=100%  frames=7951  (75.3s)  [interviews] combined_ir8269065_Rajesh_Chandrasekar.mp4  audio_turns=69
+W0000 00:00:1785816573.085774 2094395 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816573.091122 2094395 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816573.092110 2094397 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816573.097414 2094397 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816576.884402 2092828 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:54:31.928109+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[30/100] ok  face=100%  frames=4169  (39.3s)  [interviews] combined_ir8279075_Mohanambal_Nanjappan.mp4  audio_turns=64
+W0000 00:00:1785816587.574364 2094714 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816587.578070 2094714 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816587.579831 2094721 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816587.586258 2094717 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[31/100] ok  face=99%  frames=8227  (78.6s)  [interviews] combined_ir8269593_Kamatam_Venkata_Rohan.mp4  audio_turns=165
+W0000 00:00:1785816590.345592 2094787 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816590.349963 2094787 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816590.350986 2094790 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816590.356962 2094795 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[32/100] ok  face=100%  frames=4856  (46.0s)  [interviews] combined_ir8279129_Rakshitha_Keerthi_B.mp4  audio_turns=57
+W0000 00:00:1785816600.086542 2094953 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816600.091581 2094953 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816600.093231 2094957 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816600.099798 2094957 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816611.494080 2093603 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:54:59.157489+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[33/100] ok  face=100%  frames=5611  (58.8s)  [interviews] combined_ir8280295_Ramashetty_N_Biradar.webm  audio_turns=71
+W0000 00:00:1785816615.553829 2095264 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816615.558322 2095264 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816615.559858 2095266 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816615.567306 2095273 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[34/100] ok  face=99%  frames=9215  (89.0s)  [interviews] combined_ir8279051_Kethireddy_Nirmala_Devi.mp4  audio_turns=192
+W0000 00:00:1785816627.946283 2095629 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816627.949532 2095629 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816627.950781 2095634 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816627.956784 2095634 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[h264 @ 0x7448cea00] Invalid NAL unit size (24036352 > 34618).
+[h264 @ 0x7448cea00] missing picture in access unit with size 34622
+[h264 @ 0x7448cea00] Invalid NAL unit size (515322361 > 6).
+[h264 @ 0x7448cea00] missing picture in access unit with size 10
+[h264 @ 0x7448ce680] Invalid NAL unit size (24036352 > 34618).
+[h264 @ 0x7448ce680] Error splitting the input into NAL units.
+[h264 @ 0x7448cea00] Invalid NAL unit size (410010 > 3687).
+[h264 @ 0x7448cea00] missing picture in access unit with size 3691
+[h264 @ 0x7448ced80] Invalid NAL unit size (515322361 > 6).
+[h264 @ 0x7448ced80] Error splitting the input into NAL units.
+[h264 @ 0x7448cf100] Invalid NAL unit size (410010 > 3687).
+[h264 @ 0x7448cf100] Error splitting the input into NAL units.
+[h264 @ 0x7448cea00] Invalid NAL unit size (-1546141379 > 5226).
+[h264 @ 0x7448cea00] missing picture in access unit with size 5230
+[h264 @ 0x7448cf480] Invalid NAL unit size (-1546141379 > 5226).
+[h264 @ 0x7448cf480] Error splitting the input into NAL units.
+[h264 @ 0x7448cea00] Invalid NAL unit size (1364018495 > 2966).
+[h264 @ 0x7448cea00] missing picture in access unit with size 2970
+[h264 @ 0x7448cea00] Invalid NAL unit size (-1229889667 > 6629).
+[h264 @ 0x7448cea00] missing picture in access unit with size 6633
+[h264 @ 0x7448cf800] Invalid NAL unit size (1364018495 > 2966).
+[h264 @ 0x7448cf800] Error splitting the input into NAL units.
+[h264 @ 0x7448cea00] Invalid NAL unit size (-982635639 > 5616).
+[h264 @ 0x7448cea00] missing picture in access unit with size 5620
+[h264 @ 0x7448cfb80] Invalid NAL unit size (-1229889667 > 6629).
+[h264 @ 0x7448cfb80] Error splitting the input into NAL units.
+[h264 @ 0x7448cea00] Invalid NAL unit size (-1875132387 > 3082).
+[h264 @ 0x7448cea00] missing picture in access unit with size 3086
+[h264 @ 0x7455ba680] Invalid NAL unit size (-982635639 > 5616).
+[h264 @ 0x7455ba680] Error splitting the input into NAL units.
+[h264 @ 0x7455b9880] Invalid NAL unit size (-1875132387 > 3082).
+[h264 @ 0x7455b9880] Error splitting the input into NAL units.
+[h264 @ 0x7448cea00] Invalid NAL unit size (166706142 > 6052).
+[h264 @ 0x7448cea00] missing picture in access unit with size 6056
+[h264 @ 0x7448cea00] Invalid NAL unit size (-10962807 > 7478).
+[h264 @ 0x7448cea00] missing picture in access unit with size 7482
+[h264 @ 0x7455bb800] Invalid NAL unit size (166706142 > 6052).
+[h264 @ 0x7455bb800] Error splitting the input into NAL units.
+[h264 @ 0x74531c000] Invalid NAL unit size (-10962807 > 7478).
+[h264 @ 0x74531c000] Error splitting the input into NAL units.
+[35/100] ok  face=100%  frames=306  (2.8s)  [interviews] combined_ir8286773_R_Chandra_Babu.mp4
+W0000 00:00:1785816630.812950 2095863 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816630.816463 2095863 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816630.817565 2095865 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816630.823781 2095868 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[36/100] ok  face=100%  frames=4225  (45.7s)  [interviews] combined_ir8283753_Sakshi_Suwas_Dudhe.webm  audio_turns=76
+W0000 00:00:1785816633.271911 2095929 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816633.275013 2095929 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816633.276883 2095931 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816633.283722 2095931 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[37/100] ok  face=100%  frames=6932  (65.6s)  [interviews] combined_ir8280585_Sahil_Malik.mp4  audio_turns=130
+W0000 00:00:1785816638.752338 2096033 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816638.757419 2096033 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816638.758368 2096035 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816638.764211 2096038 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[38/100] ok  face=99%  frames=2770  (30.4s)  [interviews] combined_ir8286765_Aravind_Yesugari.webm  audio_turns=46
+W0000 00:00:1785816645.990298 2096224 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816645.994694 2096224 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816645.995635 2096228 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816646.001394 2096228 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[39/100] ok  face=96%  frames=6211  (58.9s)  [interviews] combined_ir8285271_Pemmadi_Adinarayana.mp4  audio_turns=96
+W0000 00:00:1785816649.344117 2096289 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816649.347421 2096289 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816649.348694 2096293 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816649.355092 2096300 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[40/100] ok  face=100%  frames=3002  (28.3s)  [interviews] combined_ir8287867_Komanduri_Suhas.mp4  audio_turns=39
+W0000 00:00:1785816667.088565 2096717 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816667.091267 2096717 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816667.092350 2096721 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816667.098102 2096721 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[41/100] ok  face=100%  frames=2313  (22.0s)  [interviews] combined_ir8288293_Naveen_Vigrahalla.mp4  audio_turns=61
+W0000 00:00:1785816668.023451 2096755 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816668.027124 2096755 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816668.028518 2096759 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816668.034197 2096759 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[42/100] ok  face=100%  frames=7246  (68.1s)  [interviews] combined_ir8286421_Gogineni_Priya.mp4  audio_turns=90
+W0000 00:00:1785816668.273472 2096788 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816668.277326 2096788 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816668.278682 2096793 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816668.285377 2096795 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[43/100] ok  face=91%  frames=2312  (20.8s)  [interviews] combined_ir8288469_Pankaj_Bhandari.mp4  audio_turns=73
+W0000 00:00:1785816670.169545 2096838 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816670.172323 2096838 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816670.173473 2096840 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816670.179248 2096849 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[44/100] ok  face=100%  frames=6744  (63.0s)  [interviews] combined_ir8287587_Vishakha_Sumant_Deshpande.mp4  audio_turns=69
+W0000 00:00:1785816696.332565 2097352 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816696.336075 2097352 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816696.337243 2097355 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816696.343226 2097356 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[45/100] ok  face=100%  frames=6370  (68.5s)  [interviews] combined_ir8286813_Kanimozhi_Manoharan.webm  audio_turns=97
+W0000 00:00:1785816699.351067 2097403 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816699.355531 2097403 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816699.356686 2097405 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816699.363296 2097410 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[46/100] ok  face=100%  frames=4979  (49.2s)  [interviews] combined_ir8288683_Shubham_Akarte.mp4  audio_turns=128
+W0000 00:00:1785816716.296145 2097804 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816716.299814 2097804 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816716.301445 2097807 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816716.308688 2097812 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[47/100] ok  face=100%  frames=5103  (50.3s)  [interviews] combined_ir8289939_Dhanshree_Ghanshyam_Mul.mp4  audio_turns=140
+W0000 00:00:1785816718.365849 2097866 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816718.369929 2097866 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816718.371631 2097869 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816718.379378 2097869 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816731.085187 2096789 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:57:08.55634+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[48/100] ok  face=98%  frames=6037  (62.6s)  [interviews] combined_ir8294759_Bhuvnesvar_Vasistha.mp4  audio_turns=130
+W0000 00:00:1785816732.774565 2098160 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816732.777512 2098160 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816732.779212 2098163 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816732.788350 2098163 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[49/100] ok  face=99%  frames=3854  (44.8s)  [interviews_new] combined_ir8251579_Aishwarya_Sanjay_Mokase.webm  audio_turns=98
+W0000 00:00:1785816744.190776 2098420 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816744.194880 2098420 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816744.196618 2098422 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816744.202881 2098422 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[50/100] ok  face=100%  frames=7777  (78.9s)  [interviews] combined_ir8294719_Ganesh_Guttula.mp4  audio_turns=128
+W0000 00:00:1785816747.279104 2098482 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816747.284243 2098482 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816747.285298 2098485 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816747.292609 2098485 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[ WARN:0@425.180] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+[51/100] ok  face=98%  frames=1783  (28.2s)  [interviews_new] combined_ir8293625_Babu_Singh.webm  audio_turns=66
+W0000 00:00:1785816775.467435 2098984 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816775.470233 2098984 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816775.471061 2098988 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816775.478976 2098987 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[ WARN:0@439.209] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1785816779.652430 2097353 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:57:36.489001+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[52/100] ok  face=100%  frames=2970  (41.2s)  [interviews_new] combined_ir8289417_Debashish_Deka.webm  audio_turns=48
+W0000 00:00:1785816785.408113 2099253 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816785.411138 2099253 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816785.412584 2099259 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816785.419466 2099256 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[53/100] ok  face=99%  frames=4488  (56.3s)  [interviews_new] combined_ir8287281_Arun_Yadav.webm  audio_turns=71
+W0000 00:00:1785816789.059478 2099327 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816789.063583 2099327 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816789.064371 2099329 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816789.073405 2099332 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816794.326314 2097867 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:57:58.529108+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[ WARN:0@458.811] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1785816799.255621 2097805 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:57:56.44797+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[54/100] ok  face=100%  frames=7613  (94.5s)  [interviews_new] combined_ir8268871_Renuka_Joshi.webm  audio_turns=161
+W0000 00:00:1785816812.914642 2099922 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816812.917969 2099922 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816812.922461 2099926 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816812.930420 2099926 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[55/100] ok  face=99%  frames=8606  (117.7s)  [interviews_new] combined_ir8244067_Eswara_Moorthi_M.webm  audio_turns=160
+W0000 00:00:1785816814.102322 2099973 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816814.106263 2099973 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816814.107706 2099977 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816814.113581 2099977 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[56/100] ok  face=98%  frames=2852  (31.6s)  [interviews_new] combined_ir8294907_Ramarjun_Ganguly.webm  audio_turns=46
+W0000 00:00:1785816817.003736 2100147 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816817.006957 2100147 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816817.008845 2100151 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816817.016026 2100151 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[57/100] ok  face=100%  frames=8577  (102.7s)  [interviews_new] combined_ir8268331_Arnab_Kumar_Kumar_Das.webm  audio_turns=82
+W0000 00:00:1785816819.065378 2100229 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816819.068908 2100229 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816819.069913 2100231 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816819.075631 2100233 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[58/100] ok  face=100%  frames=3001  (37.0s)  [interviews_new] combined_ir8295465_Anasuya_Chakraborty.webm  audio_turns=31
+W0000 00:00:1785816826.050525 2100400 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816826.056076 2100400 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816826.057760 2100402 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816826.063301 2100402 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[59/100] ok  face=100%  frames=4142  (53.8s)  [interviews_new] combined_ir8294849_Tammi_Goutham.webm  audio_turns=110
+W0000 00:00:1785816829.298611 2100495 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816829.302154 2100495 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816829.303200 2100499 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816829.309206 2100505 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[60/100] ok  face=100%  frames=2249  (36.6s)  [interviews_new] combined_ir8298825_Navaneeth_Remesh.webm  audio_turns=74
+W0000 00:00:1785816855.713839 2101138 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816855.718520 2101138 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816855.719830 2101141 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816855.726604 2101141 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816874.889733 2099923 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:59:33.147828+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1785816880.859555 2099974 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:59:34.285182+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+W0000 00:00:1785816895.321029 2102032 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+[61/100] ok  face=100%  frames=5406  (82.4s)  [interviews_new] combined_ir8295905_Nitish_Kaushik.webm  audio_turns=43
+I0000 00:00:1785816895.326057 2102032 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816895.328095 2102034 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816895.334191 2102034 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[62/100] ok  face=98%  frames=5851  (85.5s)  [interviews_new] combined_ir8298153_Praveen_Babu_Kanipakam.webm  audio_turns=30
+W0000 00:00:1785816899.599025 2102133 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816899.603455 2102133 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816899.604902 2102137 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816899.614771 2102139 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816899.949170 2100148 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:59:37.155495+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1785816911.730542 2100401 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:59:46.204684+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1785816922.204401 2101139 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:00:15.882649+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[63/100] ok  face=100%  frames=7417  (115.5s)  [interviews_new] combined_ir8298679_Nichitha_Merugu.webm  audio_turns=197
+W0000 00:00:1785816932.499936 2102838 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816932.503999 2102838 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816932.506166 2102841 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816932.514224 2102849 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[64/100] ok  face=100%  frames=7659  (110.2s)  [interviews_new] combined_ir8298919_Salman_Mohammed_Salar.webm  audio_turns=138
+W0000 00:00:1785816936.234755 2102941 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816936.237966 2102941 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816936.239188 2102946 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816936.246908 2102946 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[65/100] ok  face=100%  frames=6100  (85.3s)  [interviews_new] combined_ir8299153_Koribilli_Parameswara_Rao.webm  audio_turns=89
+W0000 00:00:1785816941.031519 2103024 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816941.034658 2103024 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816941.035612 2103026 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816941.041079 2103035 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[ WARN:0@604.939] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1785816945.380495 2100496 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T09:59:49.444936+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[66/100] ok  face=100%  frames=3461  (48.9s)  [interviews_new] combined_ir8301419_Pallavi_Ravindranath_Mayekar.webm  audio_turns=56
+W0000 00:00:1785816948.479227 2103199 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816948.482312 2103199 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816948.483336 2103202 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816948.492348 2103202 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785816995.844538 2102839 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:01:32.673932+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[67/100] ok  face=98%  frames=10855  (168.1s)  [interviews_new] combined_ir8299029_Kattamuri_Sai_Dora.webm  audio_turns=156
+W0000 00:00:1785816997.402700 2104273 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785816997.408000 2104273 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785816997.409301 2104276 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785816997.416798 2104278 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[68/100] ok  face=100%  frames=4283  (65.9s)  [interviews_new] combined_ir8302911_Avinash_Kumar.webm  audio_turns=58
+W0000 00:00:1785817006.981289 2104635 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817006.986718 2104635 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817006.989780 2104639 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817006.999572 2104639 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[ WARN:0@670.837] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1785817011.279778 2102033 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:00:55.718852+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[69/100] ok  face=98%  frames=6004  (84.3s)  [interviews_new] combined_ir8301567_Ananthan_Ms.webm  audio_turns=137
+W0000 00:00:1785817016.861609 2104923 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817016.865105 2104923 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817016.866277 2104930 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817016.873299 2104925 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785817024.500687 2102942 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:01:36.390633+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[ WARN:0@685.573] global cap_ffmpeg_impl.hpp:1703 grabFrame packet read max attempts exceeded, if your video have multiple streams (video, audio) try to increase attempt limit by setting environment variable OPENCV_FFMPEG_READ_ATTEMPTS (current value is 4096)
+E0000 00:00:1785817026.018560 2103200 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:01:48.659249+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[70/100] ok  face=99%  frames=8263  (111.2s)  [interviews_new] combined_ir8302027_Shipra_Ganti.webm  audio_turns=226
+W0000 00:00:1785817047.410067 2105978 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817047.415561 2105978 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817047.417504 2105981 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817047.423500 2105985 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[71/100] ok  face=100%  frames=2678  (31.9s)  [interviews_new] combined_ir8305727_Priyanka_Shah.webm  audio_turns=64
+W0000 00:00:1785817048.745761 2106029 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817048.749092 2106029 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817048.750624 2106032 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817048.760179 2106034 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[72/100] ok  face=100%  frames=7337  (100.4s)  [interviews_new] combined_ir8303145_Anilesh_K.webm  audio_turns=203
+W0000 00:00:1785817048.871621 2106067 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817048.876904 2106067 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817048.878744 2106071 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817048.885334 2106071 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[73/100] ok  face=100%  frames=3708  (44.2s)  [interviews_new] combined_ir8305671_Bhagyesh_Patil.webm  audio_turns=52
+W0000 00:00:1785817051.185574 2106155 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817051.191411 2106155 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817051.192463 2106157 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817051.199601 2106157 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[74/100] ok  face=100%  frames=11108  (156.8s)  [interviews_new] combined_ir8299817_Padmanabhuni_Jagadeshwari.webm  audio_turns=171
+W0000 00:00:1785817052.177598 2106194 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817052.182894 2106194 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817052.184771 2106203 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817052.192412 2106198 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785817065.487274 2104274 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:02:37.624422+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[75/100] ok  face=100%  frames=1944  (31.5s)  [interviews_new] combined_ir8306335_Ranjith_Murugan.webm  audio_turns=33
+W0000 00:00:1785817080.266662 2107035 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817080.270583 2107035 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817080.271472 2107038 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817080.277102 2107038 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[76/100] ok  face=100%  frames=3149  (44.2s)  [interviews_new] combined_ir8305837_Devalla_Sai_Kiran.webm  audio_turns=38
+W0000 00:00:1785817091.657467 2107674 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817091.660510 2107674 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817091.661757 2107676 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817091.668441 2107681 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[77/100] ok  face=100%  frames=6571  (94.7s)  [interviews_new] combined_ir8305029_Patibandla_Deviprasad.webm  audio_turns=184
+W0000 00:00:1785817092.155891 2107709 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817092.162960 2107709 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817092.164738 2107712 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817092.172082 2107712 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[78/100] ok  face=100%  frames=2987  (40.3s)  [interviews_new] combined_ir8306733_Akash_Deep.webm  audio_turns=39
+W0000 00:00:1785817092.483789 2107756 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817092.487816 2107756 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817092.489489 2107759 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817092.499456 2107761 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[79/100] ok  face=100%  frames=3073  (41.9s)  [interviews_new] combined_ir8306701_Divyanshu_Dhusia.webm  audio_turns=57
+W0000 00:00:1785817093.160304 2107796 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817093.166117 2107796 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817093.168133 2107800 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817093.174168 2107799 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785817137.375677 2106068 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:03:29.04493+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[80/100] ok  face=100%  frames=3265  (47.8s)  [interviews_new] combined_ir8307835_Aditya_Hemendra_Upadhyay.webm  audio_turns=105
+W0000 00:00:1785817139.949297 2109251 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817139.951887 2109251 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817139.952697 2109257 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817139.957832 2109253 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[81/100] ok  face=97%  frames=3845  (54.2s)  [interviews_new] combined_ir8307855_Sai_Kumar_Ganta.webm  audio_turns=66
+W0000 00:00:1785817146.710411 2109357 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817146.716037 2109357 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817146.717719 2109360 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817146.723968 2109360 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[82/100] ok  face=100%  frames=4468  (59.8s)  [interviews_new] combined_ir8307103_Ranganathan_K.webm  audio_turns=99
+W0000 00:00:1785817151.434683 2109488 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817151.440889 2109488 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817151.442520 2109491 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817151.450303 2109491 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785817158.251230 2107036 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:04:00.41619+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[83/100] ok  face=100%  frames=2012  (22.7s)  [interviews_new] combined_ir8310591_Megha_Mangal.webm  audio_turns=46
+W0000 00:00:1785817162.672564 2109682 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817162.676740 2109682 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817162.677928 2109685 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817162.685124 2109691 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[84/100] ok  face=100%  frames=5283  (70.8s)  [interviews_new] combined_ir8308231_Komal_Shashikant_Mule.webm  audio_turns=156
+W0000 00:00:1785817163.965102 2109739 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817163.969842 2109739 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817163.971623 2109742 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817163.981300 2109742 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[85/100] ok  face=100%  frames=8372  (115.3s)  [interviews_new] combined_ir8306667_Shashank_Verma.webm  audio_turns=194
+W0000 00:00:1785817164.203401 2109781 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817164.208839 2109781 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817164.210238 2109785 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817164.217153 2109786 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[86/100] ok  face=99%  frames=7786  (97.3s)  [interviews_new] combined_ir8306881_Kiran_Kishor_Vyawahare.webm  audio_turns=65
+W0000 00:00:1785817177.608379 2110003 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817177.611488 2110003 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817177.613381 2110011 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817177.620120 2110009 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[87/100] ok  face=100%  frames=3776  (50.8s)  [interviews_new] combined_ir8311131_Dheerajsing_Darbarsing_Girase.webm  audio_turns=63
+W0000 00:00:1785817202.287442 2110393 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817202.290920 2110393 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817202.291929 2110397 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817202.300226 2110397 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[88/100] ok  face=100%  frames=5164  (63.0s)  [interviews_new] combined_ir8311015_Mayur_Tambralli.webm  audio_turns=66
+W0000 00:00:1785817209.703868 2110510 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817209.707337 2110510 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817209.708886 2110514 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817209.718050 2110514 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[89/100] ok  face=100%  frames=3728  (45.8s)  [interviews_new] combined_ir8314429_Abhishek_Chavan.webm  audio_turns=63
+W0000 00:00:1785817209.993948 2110548 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817209.999031 2110548 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817210.000668 2110552 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817210.007250 2110557 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[90/100] ok  face=100%  frames=4353  (55.8s)  [interviews_new] combined_ir8311233_Aadil_Ameen_Noormohamed.webm  audio_turns=32
+W0000 00:00:1785817218.477709 2110647 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817218.482309 2110647 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817218.483415 2110649 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817218.488791 2110649 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785817230.762363 2109740 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:05:24.133727+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[91/100] ok  face=100%  frames=1640  (22.7s)  [interviews_new] combined_ir8319815_Chandra_Prakash_Bendil.webm  audio_turns=58
+W0000 00:00:1785817232.752408 2110975 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817232.757742 2110975 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817232.758937 2110979 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817232.765405 2110980 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+E0000 00:00:1785817243.852211 2110004 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:05:37.807621+05:30
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[92/100] ok  face=99%  frames=3668  (46.2s)  [interviews_new] combined_ir8316515_Nigar_Fathima.webm  audio_turns=77
+W0000 00:00:1785817248.470451 2111224 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817248.477293 2111224 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817248.478991 2111226 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817248.486406 2111226 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[93/100] ok  face=97%  frames=6836  (88.9s)  [interviews_new] combined_ir8312461_Pathan_Arshiya_Anjum.webm  audio_turns=90
+W0000 00:00:1785817252.852283 2111300 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817252.857239 2111300 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817252.858093 2111304 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817252.863474 2111306 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[94/100] ok  face=100%  frames=6698  (90.0s)  [interviews_new] combined_ir8314881_Pushwanth_Reddy_Munagala.webm  audio_turns=182
+W0000 00:00:1785817267.668019 2112067 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+I0000 00:00:1785817267.674175 2112067 gl_context.cc:407] GL version: 2.1 (2.1 Metal - 90.5), renderer: Apple M5
+W0000 00:00:1785817267.675469 2112070 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1785817267.681043 2112070 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[95/100] ok  face=100%  frames=2723  (36.8s)  [interviews_new] combined_ir8320509_Sk_Gulap.webm  audio_turns=76
+[96/100] ok  face=100%  frames=1536  (21.6s)  [interviews_new] combined_ir8324779_Mayur_Vijay_Bodle.webm  audio_turns=50
+E0000 00:00:1785817280.887416 2110511 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-08-04T10:06:09.905278+05:30
+=== Source Location Trace: === 
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+[97/100] ok  face=83%  frames=5984  (66.7s)  [interviews_new] combined_ir8320039_Sreejith_V_R.webm  audio_turns=49
+[98/100] ok  face=99%  frames=1720  (18.8s)  [interviews_new] combined_ir8325779_Sheeba_M.webm  audio_turns=52
+[99/100] ok  face=100%  frames=7250  (81.7s)  [interviews_new] combined_ir8317951_Tandra_Bhowmick.webm  audio_turns=141
+[100/100] ok  face=100%  frames=5224  (50.1s)  [interviews_new] combined_ir8323113_Akash_Chakradhar_Yewale.webm  audio_turns=105
+
+=== Stage 1 summary ===
+extracted: 100  |  errors/empty: 0
+
+summary -> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/features/_extract_summary.csv

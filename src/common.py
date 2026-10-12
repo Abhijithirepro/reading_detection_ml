@@ -50,7 +50,7 @@ REPORTS_DIR = PROJECT_ROOT / "reports"
 BASE_CHANNELS = ["gaze_x", "gaze_y", "yaw", "pitch", "roll", "ear", "mouth"]
 L2CS_CHANNELS = ["gaze_yaw_l2cs", "gaze_pitch_l2cs"]
 
-# Sequence-model channels (Model B). Kept small + deployable.
+# CNN input channels. Kept small + deployable.
 SEQ_CHANNELS = ["gaze_x", "gaze_y", "yaw", "pitch", "ear", "mouth"]
 
 
@@ -129,15 +129,7 @@ class Config:
     vad_merge_gap_s: float = 0.5        # merge silent gaps shorter than this
     prespeech_window_s: float = 1.0     # look-back window for pre-speech gaze shift
 
-    # --- audio VAD / turns (v2: activates when the recording has an audio track) ---
-    audio_sr: int = 16000               # decode rate for VAD
-    audio_vad_threshold: float = 0.5    # silero speech probability threshold
-    audio_min_speech_s: float = 0.4
-    audio_min_silence_s: float = 0.3
-    lipsync_z_threshold: float = 0.5    # audio-speech segment is CANDIDATE speech when the
-                                        # median mouth-activity z-score inside it exceeds this
-
-    # --- sequence model (Model B) ---
+    # --- sequence model (CNN) ---
     seq_window_seconds: float = 30.0
     seq_resample_fps: float = 12.0      # -> seq_len = seq_window_seconds * seq_resample_fps
 
@@ -685,10 +677,131 @@ class OpenFace3Backend(GazeBackend):
         )
 
 
-def make_backends(backend: str, cfg: Config = DEFAULT_CONFIG):
-    """Return (mediapipe_backend, appearance_backend_or_None) for a backend string."""
-    mp_backend = MediaPipeBackend(cfg)
+# Imported here rather than at the top so the line numbers frontend/js cites into
+# this file (MediaPipeBackend and earlier) stay put.
+import threading  # noqa: E402
+
+
+class _MediaPipePool:
+    """Worker threads, each owning one FaceLandmarker (created lazily on first use)."""
+
+    def __init__(self, cfg: Config, workers: int):
+        from concurrent.futures import ThreadPoolExecutor
+        self.cfg = cfg
+        self.workers = workers
+        self._local = threading.local()
+        self._lock = threading.Lock()
+        self._backends = []
+        self.executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="mediapipe")
+
+    def _backend(self) -> "MediaPipeBackend":
+        backend = getattr(self._local, "backend", None)
+        if backend is None:
+            backend = self._local.backend = MediaPipeBackend(self.cfg)
+            with self._lock:
+                self._backends.append(backend)
+        return backend
+
+    def run(self, frame_bgr) -> dict:
+        return self._backend().process(frame_bgr)
+
+    def warm(self):
+        """Create every thread's FaceLandmarker now. The barrier holds each task until
+        all have started, which forces them onto distinct threads."""
+        barrier = threading.Barrier(self.workers)
+
+        def init(_):
+            self._backend()
+            barrier.wait(timeout=120)
+
+        list(self.executor.map(init, range(self.workers)))
+
+    def close(self):
+        # Close explicitly: a FaceLandmarker left for interpreter shutdown to collect
+        # raises from its __del__, because MediaPipe's own dispatcher is gone by then.
+        self.executor.shutdown(wait=True, cancel_futures=True)
+        for backend in self._backends:
+            backend.close()
+        self._backends = []
+
+
+# Long-lived pools created by warm_mediapipe(), keyed by (workers, config). A server
+# warms one at start-up so the ~0.7 s per-FaceLandmarker creation cost is paid once
+# instead of per video; one-off runs (the CLI) use a private pool closed at the end.
+_WARM_POOLS = {}
+_WARM_POOLS_LOCK = threading.Lock()
+
+
+def warm_mediapipe(cfg: Config = DEFAULT_CONFIG, workers: int = 2):
+    """Create (or reuse) a long-lived MediaPipe thread pool and warm every thread."""
+    key = (workers, repr(cfg))
+    with _WARM_POOLS_LOCK:
+        pool = _WARM_POOLS.get(key) or _WARM_POOLS.setdefault(key, _MediaPipePool(cfg, workers))
+    pool.warm()
+
+
+def close_mediapipe():
+    """Close every pool warm_mediapipe() created (call on server shutdown)."""
+    with _WARM_POOLS_LOCK:
+        pools = list(_WARM_POOLS.values())
+        _WARM_POOLS.clear()
+    for pool in pools:
+        pool.close()
+
+
+class ParallelMediaPipeBackend:
+    """MediaPipeBackend fanned out over a thread pool, one FaceLandmarker per thread.
+
+    IMAGE running mode is stateless per frame, so every frame's output is identical
+    to the sequential backend's — only throughput changes (MediaPipe releases the GIL
+    while it runs; ~4x on a 10-core M5 at 9 threads). process() hands back the frame's
+    record dict straight away and fills it in later, so extract_one's loop is
+    unchanged; close() waits for every frame still in flight. At most 4 frames per
+    thread are queued, so decoding can never run ahead of inference and fill memory.
+    Uses the warm pool from warm_mediapipe() when one exists, else a private pool."""
+
+    channels = BASE_CHANNELS
+
+    def __init__(self, cfg: Config = DEFAULT_CONFIG, workers: int = 2):
+        self.cfg = cfg
+        with _WARM_POOLS_LOCK:
+            self._pool = _WARM_POOLS.get((workers, repr(cfg)))
+        self._owns_pool = self._pool is None
+        if self._owns_pool:
+            self._pool = _MediaPipePool(cfg, workers)
+        self._slots = threading.BoundedSemaphore(4 * workers)
+        self._pending = []  # (record, future), in submission (= frame) order
+
+    def _run(self, frame_bgr) -> dict:
+        try:
+            return self._pool.run(frame_bgr)
+        finally:
+            self._slots.release()
+
+    def process(self, frame_bgr) -> dict:
+        self._slots.acquire()
+        rec = {}
+        self._pending.append((rec, self._pool.executor.submit(self._run, frame_bgr)))
+        return rec
+
+    def close(self):
+        """Wait for this video's frames; shut a private pool down (a warm one stays up)."""
+        pending, self._pending = self._pending, []
+        try:
+            for rec, fut in pending:
+                rec.update(fut.result())
+        finally:
+            if self._owns_pool:
+                self._pool.close()
+
+
+def make_backends(backend: str, cfg: Config = DEFAULT_CONFIG, workers: int = 1):
+    """Return (mediapipe_backend, appearance_backend_or_None) for a backend string.
+    workers > 1 runs MediaPipe on that many threads (MediaPipe-only backend)."""
     backend = backend.lower()
+    if backend == "mediapipe" and workers > 1:
+        return ParallelMediaPipeBackend(cfg, workers), None
+    mp_backend = MediaPipeBackend(cfg)
     if backend == "mediapipe":
         return mp_backend, None
     if backend == "mediapipe+l2cs":

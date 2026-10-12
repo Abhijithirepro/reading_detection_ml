@@ -1,0 +1,85 @@
+{
+  "name": "v2-cnn-strong-labels",
+  "time": "2026-10-12 20:56",
+  "summary": "1D-CNN on raw per-frame channels (eye_h, eye_v, gaze_x, gaze_y, jaw, mouth, blink, yaw, pitch, speaking), 8 s @ 12.5 Hz, same folds and metrics as the XGBoost runs. Second threshold 0.0302. Same strong labels and folds as the XGBoost runs, no self-training.",
+  "args": {
+    "exp": "v2-cnn-strong-labels",
+    "epochs": 10,
+    "folds": 5,
+    "seed": 42,
+    "reviewed_neg_weight": 0.5,
+    "clean_budget": 0.02,
+    "video_stat": "speech_prob_mean",
+    "workers": 8,
+    "note": "Same strong labels and folds as the XGBoost runs, no self-training."
+  },
+  "per_second": [
+    {
+      "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+      "seconds": 1586,
+      "reading_s": 239,
+      "flagged_s": 0,
+      "auc": 0.586940450342152,
+      "ap": 0.2013568246051636,
+      "precision": 0.0,
+      "recall": 0.0,
+      "iou": 0.0,
+      "f1": 0.0,
+      "spans_caught": "0/9",
+      "span_hit_rate": 0.0
+    },
+    {
+      "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+      "seconds": 1810,
+      "reading_s": 371,
+      "flagged_s": 36,
+      "auc": 0.6996856906844189,
+      "ap": 0.4272693645505026,
+      "precision": 0.8333333333333334,
+      "recall": 0.08086253369272237,
+      "iou": 0.07957559681697612,
+      "f1": 0.14742014742014742,
+      "spans_caught": "4/29",
+      "span_hit_rate": 0.13793103448275862
+    },
+    {
+      "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+      "seconds": 1415,
+      "reading_s": 698,
+      "flagged_s": 21,
+      "auc": 0.7576238945302978,
+      "ap": 0.7179069934320983,
+      "precision": 0.7619047619047619,
+      "recall": 0.022922636103151862,
+      "iou": 0.02275960170697013,
+      "f1": 0.04450625869262865,
+      "spans_caught": "1/26",
+      "span_hit_rate": 0.038461538461538464
+    }
+  ],
+  "video": {
+    "n": 100,
+    "auc": 0.7221217600964437,
+    "tp": 7,
+    "fp": 6,
+    "fn": 14,
+    "tn": 73,
+    "precision": 0.5384615384615384,
+    "recall": 0.3333333333333333,
+    "accuracy": 0.8,
+    "threshold": 0.024048218029056573,
+    "matched_auc": 0.7721088435374149,
+    "matched_fp": 1,
+    "matched_n_clean": 28,
+    "unreviewed_caught": "7/18"
+  },
+  "stat_auc": {
+    "reading_seconds": 0.6702833031946956,
+    "reading_share": 0.7191078963230861,
+    "reading_share_of_speech": 0.7179023508137432,
+    "top10_mean": 0.7227245328511152,
+    "p95": 0.7799879445449065,
+    "speech_prob_mean": 0.7221217600964437,
+    "speech_prob_p90": 0.7649186256781193
+  }
+}

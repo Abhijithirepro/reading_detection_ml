@@ -1,0 +1,11 @@
+loading per-video arrays (100 videos)...
+  fold 0: trained on 122204, scored 24230
+  fold 1: trained on 109207, scored 37393
+  fold 2: trained on 119080, scored 27490
+  fold 3: trained on 114512, scored 31850
+  fold 4: trained on 120445, scored 25917
+                                             video  reading_s  flagged_s      auc  precision   recall      iou spans_caught
+           combined_ir8244089_Marthala_Ashok_Reddy        239          0 0.586940   0.000000 0.000000 0.000000          0/9
+combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)        371         36 0.699686   0.833333 0.080863 0.079576         4/29
+        combined_ir8308053_Muthakani_Venkateswarlu        698         21 0.757624   0.761905 0.022923 0.022760         1/26
+video: {'n': 100, 'auc': 0.722, 'tp': 7, 'fp': 6, 'fn': 14, 'tn': 73, 'precision': 0.538, 'recall': 0.333, 'accuracy': 0.8, 'threshold': 0.024, 'matched_auc': 0.772, 'matched_fp': 1, 'matched_n_clean': 28, 'unreviewed_caught': '7/18'}

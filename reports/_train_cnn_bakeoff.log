@@ -1,0 +1,32 @@
+windows=17182  videos: cheating=27 clean=79
+CV: StratifiedGroupKFold(n_splits=5)   feature sets: ['mediapipe', 'mediapipe_gaze_head']   seq: cnn
+
+[A/xgboost  mediapipe       ] video AUC=0.756 PR=0.564 | window AUC=0.732 | P=0.62 R=0.48
+[A/xgboost  mediapipe_gaze_head] video AUC=0.721 PR=0.500 | window AUC=0.686 | P=0.55 R=0.44
+[B] cnn CV: 5 folds across 5 parallel CPU workers
+[B/cnn       mediapipe       ] video AUC=0.871 PR=0.808 | window AUC=0.778 | P=0.94 R=0.56
+
+🏆 winner: cnn on mediapipe (video ROC-AUC=0.871, threshold=0.959)
+
+cross-source (leave-one-source-pair-out, video AUC):
+  interviews     vs interviews AUC=0.833  (21+28 videos)
+  testing_team   vs interviews_new AUC=0.866  (6+51 videos)
+  mean pair AUC = 0.850
+  (ONNX export skipped: No module named 'onnxscript')
+
+top features:
+  0.200  blink_rate
+  0.102  speak_source_audio
+  0.097  prespeech_gaze_shift
+  0.077  gap_dur_mean
+  0.063  ear_std
+  0.059  bursts_per_min
+  0.056  gap_dur_cv
+  0.055  burst_dur_mean
+  0.042  velocity_thresh
+  0.041  burst_dur_std
+  0.037  pause_rate
+  0.024  blink_rate_speak_ratio
+
+artifacts -> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /models
+next: python src/report.py --eval   (and per-video: python src/predict.py <video>)

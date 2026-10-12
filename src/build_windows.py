@@ -5,11 +5,11 @@ For every parquet in data/features/, this:
   1. Cleans the gaze signal (drop blink/no-face frames, interpolate short gaps,
      median filter) and resamples onto a uniform grid at cfg.target_fps.
   2. Slides a window (cfg.window_seconds, cfg.stride_seconds) over the video.
-  3. Computes ~50 behavioral features per window (the heart of the detector) plus
-     a fixed-length raw-channel sequence for Model B.
+  3. Computes ~50 behavioral features per window (used for the reason tags) plus
+     a fixed-length raw-channel sequence for the CNN.
   4. Writes:
        data/windows/windows.parquet        feature matrix + label + group(video)
-       data/windows/sequences.npz          X_seq (n, L, C) for the GRU/1D-CNN
+       data/windows/sequences.npz          X_seq (n, L, C) for the 1D-CNN
        data/windows/_feature_columns.json   feature names + sequence metadata
 
 Windows inherit their video's label (weak labels — video-level top-k aggregation
@@ -42,13 +42,12 @@ from common import (
 # --------------------------------------------------------------------------- #
 # Per-video cleaning -> uniform channel arrays
 # --------------------------------------------------------------------------- #
-def clean_video(df: pd.DataFrame, cfg: Config, has_l2cs: bool, sidecar: dict = None):
+def clean_video(df: pd.DataFrame, cfg: Config, has_l2cs: bool):
     """Return dict of uniform-grid arrays + dt, resampled at cfg.target_fps.
 
-    v2: also attaches the speaking analysis — `speaking` (per-sample 0/1 mask)
-    and `_turns` (video-level list of answer turns). Turns come from the audio
-    sidecar when one was extracted (real question→answer gaps); otherwise from
-    visual VAD on the mouth channel.
+    Also attaches the speaking analysis from lip motion (visual VAD on `mouth`):
+    `speaking` (per-sample 0/1 mask) and `_turns` (video-level answer turns).
+    Only engineered window features use them; the CNN's sequence channels don't.
     """
     df = df.sort_values("frame_idx").reset_index(drop=True)
     t = df["t"].to_numpy(dtype=float)
@@ -90,21 +89,13 @@ def clean_video(df: pd.DataFrame, cfg: Config, has_l2cs: bool, sidecar: dict = N
             if np.isfinite(med):
                 out[ch] = out[ch] - med
 
-    # v2: speaking analysis (audio sidecar wins; visual VAD on `mouth` otherwise).
-    from speaking import (visual_speaking, speaking_mask_from_sidecar)
+    # Speaking analysis from lip motion (visual VAD on the `mouth` channel).
+    from speaking import visual_speaking
     n = len(out["gaze_x"])
-    if sidecar and sidecar.get("source") == "audio":
-        mask = speaking_mask_from_sidecar(sidecar, n, dt)
-        turns = sidecar.get("turns", [])
-        speak_source = "audio"
-    else:
-        res = visual_speaking(out["mouth"], out["valid"] > 0.5, dt, cfg)
-        mask = res.speaking_mask
-        turns = res.turns
-        speak_source = res.source
-    out["speaking"] = mask.astype(float)
-    out["_turns"] = turns
-    out["_speak_source"] = speak_source
+    res = visual_speaking(out["mouth"], out["valid"] > 0.5, dt, cfg)
+    out["speaking"] = res.speaking_mask.astype(float)
+    out["_turns"] = res.turns
+    out["_speak_source"] = res.source
 
     out["dt"] = dt
     out["duration"] = float(n * dt)
@@ -355,9 +346,8 @@ def _safe_corr(a, b):
 def video_turn_features(clean: dict, cfg: Config) -> dict:
     """Video-level answer-turn structure (joined onto every window of the video).
 
-    With audio turns, gap_s is the true question-end → answer-start latency and
-    gap_cv measures the Cluely lag-loop flatness. Video-only, gaps include the
-    unheard question, so these are supporting features there.
+    Turns come from lip motion, so gap_s is the silence before each answer burst
+    (it includes the unheard question); gap_cv measures how flat that rhythm is.
     """
     turns = clean.get("_turns") or []
     dt = clean["dt"]
@@ -367,7 +357,6 @@ def video_turn_features(clean: dict, cfg: Config) -> dict:
         burst_dur_mean=0.0, burst_dur_std=0.0,
         gap_dur_mean=0.0, gap_dur_cv=0.0,
         pause_rate=0.0, prespeech_gaze_shift=0.0,
-        speak_source_audio=1.0 if clean.get("_speak_source") == "audio" else 0.0,
     )
     if not turns:
         return out
@@ -429,7 +418,6 @@ def build(cfg: Config):
 
     rows, seqs = [], []
     n_videos = 0
-    n_audio = 0
     for pq in parquets:
         if pq.name.startswith("_"):
             continue
@@ -444,18 +432,7 @@ def build(cfg: Config):
         df = pd.read_parquet(pq)
         has_l2cs = all(c in df.columns for c in L2CS_CHANNELS)
 
-        # audio turns sidecar written by extract_features (audio recordings only)
-        sidecar = None
-        sc_path = pq.parent / (pq.stem + ".turns.json")
-        if sc_path.exists():
-            try:
-                sidecar = json.loads(sc_path.read_text())
-            except Exception:
-                sidecar = None
-
-        win = clean_video(df, cfg, has_l2cs, sidecar=sidecar)
-        if win.get("_speak_source") == "audio":
-            n_audio += 1
+        win = clean_video(df, cfg, has_l2cs)
         n = len(win["gaze_x"])
         if n < win_len:
             print(f"  skip (too short): {pq.name} ({n} < {win_len} samples)")
@@ -512,7 +489,7 @@ def build(cfg: Config):
 
     n_pos = int(windows["label"].sum())
     print(f"\n=== Stage 2 summary ===")
-    print(f"videos: {n_videos} ({n_audio} with audio turns)  windows: {len(windows)}  "
+    print(f"videos: {n_videos}  windows: {len(windows)}  "
           f"(cheating={n_pos}, clean={len(windows)-n_pos})")
     print(f"features/window: {len(feature_cols)}   sequence: {X_seq.shape}")
     print(f"-> {WINDOWS_DIR / 'windows.parquet'}")

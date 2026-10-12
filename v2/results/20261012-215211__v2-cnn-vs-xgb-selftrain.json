@@ -1,0 +1,235 @@
+{
+  "name": "v2-cnn-vs-xgb-selftrain",
+  "time": "2026-10-12 21:52",
+  "summary": "1D-CNN on raw per-frame channels (eye_h, eye_v, gaze_x, gaze_y, jaw, mouth, blink, yaw, pitch, speaking), 8 s @ 12.5 Hz, 10 epochs; self-training 15% (weight 0.5), clean-speech weight 1.0; verdict stat speech_prob_mean. Same folds, leak-free pseudo-labels, thresholds and metrics as the XGBoost runs \u2014 XGBoost re-run on the identical window set for a head-to-head. Fair re-run of the CNN with the recipe that fixed XGBoost.",
+  "args": {
+    "exp": "v2-cnn-vs-xgb-selftrain",
+    "epochs": 10,
+    "folds": 5,
+    "seed": 42,
+    "reviewed_neg_weight": 0.5,
+    "pseudo_frac": 0.15,
+    "pseudo_weight": 0.5,
+    "clean_speech_weight": 1.0,
+    "clean_budget": 0.02,
+    "video_stat": "speech_prob_mean",
+    "compare_xgb": true,
+    "workers": 8,
+    "note": "Fair re-run of the CNN with the recipe that fixed XGBoost."
+  },
+  "contenders": {
+    "XGBoost": {
+      "per_second": [
+        {
+          "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+          "seconds": 1586,
+          "reading_s": 239,
+          "flagged_s": 382,
+          "auc": 0.9323197683990148,
+          "ap": 0.5859481044413667,
+          "precision": 0.5680628272251309,
+          "recall": 0.9079497907949791,
+          "iou": 0.5371287128712872,
+          "f1": 0.6988727858293076,
+          "spans_caught": "9/9",
+          "span_hit_rate": 1.0
+        },
+        {
+          "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+          "seconds": 1810,
+          "reading_s": 371,
+          "flagged_s": 821,
+          "auc": 0.8821452453691823,
+          "ap": 0.5525586913659243,
+          "precision": 0.440925700365408,
+          "recall": 0.9757412398921833,
+          "iou": 0.43614457831325304,
+          "f1": 0.6073825503355704,
+          "spans_caught": "28/29",
+          "span_hit_rate": 0.9655172413793104
+        },
+        {
+          "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+          "seconds": 1415,
+          "reading_s": 698,
+          "flagged_s": 457,
+          "auc": 0.963545975151159,
+          "ap": 0.9623864627258257,
+          "precision": 0.975929978118162,
+          "recall": 0.6389684813753582,
+          "iou": 0.6290550070521862,
+          "f1": 0.7722943722943723,
+          "spans_caught": "18/26",
+          "span_hit_rate": 0.6923076923076923
+        }
+      ],
+      "video": {
+        "n": 100,
+        "auc": 0.8474984930681132,
+        "tp": 9,
+        "fp": 1,
+        "fn": 12,
+        "tn": 78,
+        "precision": 0.9,
+        "recall": 0.42857142857142855,
+        "accuracy": 0.87,
+        "threshold": 0.20525629950732474,
+        "matched_auc": 0.8316326530612244,
+        "matched_fp": 1,
+        "matched_n_clean": 28,
+        "unreviewed_caught": "6/18"
+      },
+      "stat_auc": {
+        "reading_seconds": 0.8179626280892105,
+        "reading_share": 0.8209764918625678,
+        "reading_share_of_speech": 0.8251959011452683,
+        "top10_mean": 0.8438818565400843,
+        "p95": 0.8354430379746834,
+        "speech_prob_mean": 0.8474984930681132,
+        "speech_prob_p90": 0.8366485834840265
+      }
+    },
+    "CNN": {
+      "per_second": [
+        {
+          "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+          "seconds": 1586,
+          "reading_s": 239,
+          "flagged_s": 28,
+          "auc": 0.428106158734892,
+          "ap": 0.1277614749329273,
+          "precision": 0.0,
+          "recall": 0.0,
+          "iou": 0.0,
+          "f1": 0.0,
+          "spans_caught": "0/9",
+          "span_hit_rate": 0.0
+        },
+        {
+          "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+          "seconds": 1810,
+          "reading_s": 371,
+          "flagged_s": 35,
+          "auc": 0.7547001230638977,
+          "ap": 0.44769017016720164,
+          "precision": 0.6571428571428571,
+          "recall": 0.06199460916442048,
+          "iou": 0.06005221932114883,
+          "f1": 0.11330049261083744,
+          "spans_caught": "2/29",
+          "span_hit_rate": 0.06896551724137931
+        },
+        {
+          "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+          "seconds": 1415,
+          "reading_s": 698,
+          "flagged_s": 34,
+          "auc": 0.7834158564218148,
+          "ap": 0.7784848558468842,
+          "precision": 0.9117647058823529,
+          "recall": 0.044412607449856735,
+          "iou": 0.0442225392296719,
+          "f1": 0.08469945355191257,
+          "spans_caught": "1/26",
+          "span_hit_rate": 0.038461538461538464
+        }
+      ],
+      "video": {
+        "n": 100,
+        "auc": 0.805304400241109,
+        "tp": 8,
+        "fp": 4,
+        "fn": 13,
+        "tn": 75,
+        "precision": 0.6666666666666666,
+        "recall": 0.38095238095238093,
+        "accuracy": 0.83,
+        "threshold": 0.12899064272691083,
+        "matched_auc": 0.8401360544217686,
+        "matched_fp": 0,
+        "matched_n_clean": 28,
+        "unreviewed_caught": "8/18"
+      },
+      "stat_auc": {
+        "reading_seconds": 0.7284508740204944,
+        "reading_share": 0.7848101265822784,
+        "reading_share_of_speech": 0.7896323086196503,
+        "top10_mean": 0.7914406268836649,
+        "p95": 0.807715491259795,
+        "speech_prob_mean": 0.805304400241109,
+        "speech_prob_p90": 0.8167570825798675
+      }
+    },
+    "XGB+CNN average": {
+      "per_second": [
+        {
+          "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+          "seconds": 1586,
+          "reading_s": 239,
+          "flagged_s": 289,
+          "auc": 0.9190980732015668,
+          "ap": 0.5203295832223387,
+          "precision": 0.5640138408304498,
+          "recall": 0.6820083682008368,
+          "iou": 0.4465753424657534,
+          "f1": 0.6174242424242424,
+          "spans_caught": "7/9",
+          "span_hit_rate": 0.7777777777777778
+        },
+        {
+          "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+          "seconds": 1810,
+          "reading_s": 371,
+          "flagged_s": 681,
+          "auc": 0.8825957304132662,
+          "ap": 0.5827522974076235,
+          "precision": 0.4933920704845815,
+          "recall": 0.9056603773584906,
+          "iou": 0.4692737430167598,
+          "f1": 0.6387832699619771,
+          "spans_caught": "25/29",
+          "span_hit_rate": 0.8620689655172413
+        },
+        {
+          "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+          "seconds": 1415,
+          "reading_s": 698,
+          "flagged_s": 208,
+          "auc": 0.9590691475544791,
+          "ap": 0.9531999051387746,
+          "precision": 0.9807692307692307,
+          "recall": 0.2922636103151863,
+          "iou": 0.2905982905982906,
+          "f1": 0.4503311258278146,
+          "spans_caught": "7/26",
+          "span_hit_rate": 0.2692307692307692
+        }
+      ],
+      "video": {
+        "n": 100,
+        "auc": 0.8860759493670887,
+        "tp": 10,
+        "fp": 0,
+        "fn": 11,
+        "tn": 79,
+        "precision": 1.0,
+        "recall": 0.47619047619047616,
+        "accuracy": 0.89,
+        "threshold": 0.1450646706077584,
+        "matched_auc": 0.8996598639455782,
+        "matched_fp": 0,
+        "matched_n_clean": 28,
+        "unreviewed_caught": "7/18"
+      },
+      "stat_auc": {
+        "reading_seconds": 0.8369499698613623,
+        "reading_share": 0.8758288125376733,
+        "reading_share_of_speech": 0.8722121760096444,
+        "top10_mean": 0.8812537673297167,
+        "p95": 0.8764315852923448,
+        "speech_prob_mean": 0.8860759493670887,
+        "speech_prob_p90": 0.8758288125376733
+      }
+    }
+  }
+}

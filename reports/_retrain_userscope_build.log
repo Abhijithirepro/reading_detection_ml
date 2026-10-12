@@ -1,0 +1,12 @@
+
+=== Stage 2 summary ===
+videos: 106 (100 with audio turns)  windows: 17182  (cheating=3128, clean=14054)
+features/window: 63   sequence: (17182, 240, 6)
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/windows.parquet
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/sequences.npz
+videos/class: cheating=27, clean=79
+videos/source:
+    cheating interviews     21
+    cheating testing_team   6
+    clean    interviews     28
+    clean    interviews_new 51

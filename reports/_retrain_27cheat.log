@@ -1,0 +1,52 @@
+  skip (too short): clean__random2__39835156-35d7-4992-a02a-b74352ae580d_Interviewee_7572127_Bhasuru_Siva_Satya_Sahithi_2.parquet (81 < 300 samples)
+
+=== Stage 2 summary ===
+videos: 144 (100 with audio turns)  windows: 23056  (cheating=3128, clean=19928)
+features/window: 63   sequence: (23056, 240, 6)
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/windows.parquet
+-> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /data/windows/sequences.npz
+videos/class: cheating=27, clean=117
+videos/source:
+    cheating interviews     21
+    cheating testing_team   6
+    clean    interviews     28
+    clean    interviews_new 51
+    clean    random1        13
+    clean    random2        25
+BUILD_DONE
+windows=23056  videos: cheating=27 clean=117
+CV: StratifiedGroupKFold(n_splits=5)   feature sets: ['mediapipe', 'mediapipe_gaze_head']   seq: multirocket
+
+[A/xgboost] skipped (--skip-xgb)
+[C] multirocket CV: 5 folds (isolated sktime process)
+[C/multirocket mediapipe       ] video AUC=0.833 PR=0.629 | window AUC=0.722 | P=0.71 R=0.56
+
+🏆 winner: multirocket on mediapipe (video ROC-AUC=0.833, threshold=0.964)
+
+cross-source (leave-one-source-pair-out, video AUC):
+  interviews     vs interviews AUC=0.903  (21+28 videos)
+  interviews     vs interviews_new AUC=0.886  (21+79 videos)
+  interviews     vs random1    AUC=0.828  (21+41 videos)
+  interviews     vs random2    AUC=0.723  (21+53 videos)
+  testing_team   vs interviews_new AUC=0.833  (6+51 videos)
+  testing_team   vs random1    AUC=1.000  (6+13 videos)
+  testing_team   vs random2    AUC=0.967  (6+25 videos)
+  mean pair AUC = 0.877
+
+top features:
+  0.218  blink_rate
+  0.118  ear_std
+  0.113  speak_source_audio
+  0.085  prespeech_gaze_shift
+  0.053  burst_dur_mean
+  0.051  pause_rate
+  0.041  burst_dur_std
+  0.035  bursts_per_min
+  0.034  gap_dur_mean
+  0.033  gap_dur_cv
+  0.028  gaze_x_var
+  0.028  gaze_speed_std
+
+artifacts -> /Users/abhijittotager-hpt0462/Desktop/Laptop Data /Desktop/waste/gaze_detection_machine_learning /models
+next: python src/report.py --eval   (and per-video: python src/predict.py <video>)
+TRAIN_DONE

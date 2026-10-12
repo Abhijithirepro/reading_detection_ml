@@ -1,0 +1,604 @@
+{
+  "name": "v2-xgb-selftrain-hardneg-SHIPPED",
+  "time": "2026-10-12 20:55",
+  "summary": "XGBoost reading detector, 78 features, 5-fold CV (reviewed videos held out one per fold; unreviewed cheating never trained on). Second threshold 0.175 (max F1, clean budget 2%); video rule: speech_prob_mean >= 0.21. Dropped groups: none. Self-training: top 15% of each unreviewed cheating video's speaking windows as pseudo-reading (weight 0.5), A/B cross-scored. Clean speaking windows weighted as their own share (1.0). Chosen configuration, shipped to v2/models/. Explored first (unlogged): pseudo-frac 0.15/0.3 x clean-speech-weight 0/1, clean budget 1%/2%; 1% cost too much recall (Muthakani 11/26 spans).",
+  "args": {
+    "exp": "v2-xgb-selftrain-hardneg-SHIPPED",
+    "folds": 5,
+    "seed": 42,
+    "reviewed_neg_weight": 0.5,
+    "clean_budget": 0.02,
+    "video_stat": "speech_prob_mean",
+    "drop_group": [],
+    "pseudo_frac": 0.15,
+    "pseudo_weight": 0.5,
+    "clean_speech_weight": 1.0,
+    "no_ship": false,
+    "no_log": false,
+    "note": "Chosen configuration, shipped to v2/models/. Explored first (unlogged): pseudo-frac 0.15/0.3 x clean-speech-weight 0/1, clean budget 1%/2%; 1% cost too much recall (Muthakani 11/26 spans)."
+  },
+  "per_second": [
+    {
+      "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+      "seconds": 1586,
+      "reading_s": 239,
+      "flagged_s": 382,
+      "auc": 0.9323197683990148,
+      "ap": 0.5859481044413667,
+      "precision": 0.5680628272251309,
+      "recall": 0.9079497907949791,
+      "iou": 0.5371287128712872,
+      "f1": 0.6988727858293076,
+      "spans_caught": "9/9",
+      "span_hit_rate": 1.0
+    },
+    {
+      "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+      "seconds": 1810,
+      "reading_s": 371,
+      "flagged_s": 821,
+      "auc": 0.8821452453691823,
+      "ap": 0.5525586913659243,
+      "precision": 0.440925700365408,
+      "recall": 0.9757412398921833,
+      "iou": 0.43614457831325304,
+      "f1": 0.6073825503355704,
+      "spans_caught": "28/29",
+      "span_hit_rate": 0.9655172413793104
+    },
+    {
+      "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+      "seconds": 1415,
+      "reading_s": 698,
+      "flagged_s": 457,
+      "auc": 0.963545975151159,
+      "ap": 0.9623864627258257,
+      "precision": 0.975929978118162,
+      "recall": 0.6389684813753582,
+      "iou": 0.6290550070521862,
+      "f1": 0.7722943722943723,
+      "spans_caught": "18/26",
+      "span_hit_rate": 0.6923076923076923
+    }
+  ],
+  "video": {
+    "n": 100,
+    "auc": 0.8474984930681132,
+    "tp": 9,
+    "fp": 1,
+    "fn": 12,
+    "tn": 78,
+    "precision": 0.9,
+    "recall": 0.42857142857142855,
+    "accuracy": 0.87,
+    "threshold": 0.20525629950732474,
+    "matched_auc": 0.8316326530612244,
+    "matched_fp": 1,
+    "matched_n_clean": 28,
+    "unreviewed_caught": "6/18"
+  },
+  "stat_auc": {
+    "reading_seconds": 0.8179626280892105,
+    "reading_share": 0.8209764918625678,
+    "reading_share_of_speech": 0.8251959011452683,
+    "top10_mean": 0.8438818565400843,
+    "p95": 0.8354430379746834,
+    "speech_prob_mean": 0.8474984930681132,
+    "speech_prob_p90": 0.8366485834840265
+  },
+  "second_threshold": 0.175,
+  "sweep": [
+    {
+      "threshold": 0.005,
+      "precision": 0.4825408618127786,
+      "recall": 0.9931192660550459,
+      "f1": 0.6495,
+      "clean_flag_rate": 0.15323570031477185
+    },
+    {
+      "threshold": 0.0061,
+      "precision": 0.49034456645210145,
+      "recall": 0.9900611620795107,
+      "f1": 0.6558622436059761,
+      "clean_flag_rate": 0.14056771099878718
+    },
+    {
+      "threshold": 0.0075,
+      "precision": 0.5021342646488165,
+      "recall": 0.9892966360856269,
+      "f1": 0.6661518661518663,
+      "clean_flag_rate": 0.12840447831299118
+    },
+    {
+      "threshold": 0.0091,
+      "precision": 0.5109170305676856,
+      "recall": 0.9839449541284404,
+      "f1": 0.6725894956885288,
+      "clean_flag_rate": 0.11802892535911332
+    },
+    {
+      "threshold": 0.0111,
+      "precision": 0.5234215885947047,
+      "recall": 0.9824159021406728,
+      "f1": 0.68296571884135,
+      "clean_flag_rate": 0.10738697307263588
+    },
+    {
+      "threshold": 0.0136,
+      "precision": 0.5338063439065108,
+      "recall": 0.97782874617737,
+      "f1": 0.6906047516198704,
+      "clean_flag_rate": 0.09818217508044559
+    },
+    {
+      "threshold": 0.0166,
+      "precision": 0.54035683942226,
+      "recall": 0.9724770642201835,
+      "f1": 0.6947023484434736,
+      "clean_flag_rate": 0.08968543847226994
+    },
+    {
+      "threshold": 0.0202,
+      "precision": 0.5488917861799217,
+      "recall": 0.9655963302752294,
+      "f1": 0.6999168744804656,
+      "clean_flag_rate": 0.08155324831923053
+    },
+    {
+      "threshold": 0.0247,
+      "precision": 0.5531070956368445,
+      "recall": 0.959480122324159,
+      "f1": 0.7017053396701147,
+      "clean_flag_rate": 0.07378560462132737
+    },
+    {
+      "threshold": 0.0302,
+      "precision": 0.5594059405940595,
+      "recall": 0.9503058103975535,
+      "f1": 0.7042492917847026,
+      "clean_flag_rate": 0.06574455108207203
+    },
+    {
+      "threshold": 0.0368,
+      "precision": 0.5701713756368689,
+      "recall": 0.941131498470948,
+      "f1": 0.71012402653591,
+      "clean_flag_rate": 0.05925983048589836
+    },
+    {
+      "threshold": 0.045,
+      "precision": 0.5779685264663805,
+      "recall": 0.926605504587156,
+      "f1": 0.7118942731277532,
+      "clean_flag_rate": 0.05312563532735571
+    },
+    {
+      "threshold": 0.0549,
+      "precision": 0.5821550463188688,
+      "recall": 0.9128440366972477,
+      "f1": 0.7109258707948793,
+      "clean_flag_rate": 0.048183226656758484
+    },
+    {
+      "threshold": 0.0671,
+      "precision": 0.5866004962779157,
+      "recall": 0.9036697247706422,
+      "f1": 0.711405356605477,
+      "clean_flag_rate": 0.042834208478509286
+    },
+    {
+      "threshold": 0.0819,
+      "precision": 0.5950920245398773,
+      "recall": 0.8899082568807339,
+      "f1": 0.7132352941176471,
+      "clean_flag_rate": 0.03740106419522865
+    },
+    {
+      "threshold": 0.1,
+      "precision": 0.5991605456453305,
+      "recall": 0.8730886850152905,
+      "f1": 0.7106409458618543,
+      "clean_flag_rate": 0.032486697559641904
+    },
+    {
+      "threshold": 0.125,
+      "precision": 0.6025857223159078,
+      "recall": 0.8195718654434251,
+      "f1": 0.6945254292193067,
+      "clean_flag_rate": 0.02722180548642415
+    },
+    {
+      "threshold": 0.15,
+      "precision": 0.610051993067591,
+      "recall": 0.8073394495412844,
+      "f1": 0.6949654491609082,
+      "clean_flag_rate": 0.02288230056855226
+    },
+    {
+      "threshold": 0.175,
+      "precision": 0.6174698795180723,
+      "recall": 0.7836391437308868,
+      "f1": 0.6907008086253369,
+      "clean_flag_rate": 0.019552308911057675
+    },
+    {
+      "threshold": 0.2,
+      "precision": 0.6170610211706102,
+      "recall": 0.7576452599388379,
+      "f1": 0.6801647220315717,
+      "clean_flag_rate": 0.016755115918762224
+    },
+    {
+      "threshold": 0.225,
+      "precision": 0.6189241736876215,
+      "recall": 0.7301223241590215,
+      "f1": 0.6699403717993686,
+      "clean_flag_rate": 0.014126175136529659
+    },
+    {
+      "threshold": 0.25,
+      "precision": 0.6192384769539078,
+      "recall": 0.7087155963302753,
+      "f1": 0.6609625668449198,
+      "clean_flag_rate": 0.011910854370701681
+    },
+    {
+      "threshold": 0.275,
+      "precision": 0.6186206896551724,
+      "recall": 0.6857798165137615,
+      "f1": 0.6504713560551124,
+      "clean_flag_rate": 0.010585868216456469
+    },
+    {
+      "threshold": 0.3,
+      "precision": 0.6105491329479769,
+      "recall": 0.6460244648318043,
+      "f1": 0.6277860326894502,
+      "clean_flag_rate": 0.009141703413416712
+    },
+    {
+      "threshold": 0.325,
+      "precision": 0.6049107142857143,
+      "recall": 0.6215596330275229,
+      "f1": 0.6131221719457014,
+      "clean_flag_rate": 0.007781664715408397
+    },
+    {
+      "threshold": 0.35,
+      "precision": 0.6038461538461538,
+      "recall": 0.6001529051987767,
+      "f1": 0.6019938650306748,
+      "clean_flag_rate": 0.006716067385010131
+    },
+    {
+      "threshold": 0.375,
+      "precision": 0.6048895899053628,
+      "recall": 0.5863914373088684,
+      "f1": 0.5954968944099378,
+      "clean_flag_rate": 0.005706554124632825
+    },
+    {
+      "threshold": 0.4,
+      "precision": 0.5981772990886496,
+      "recall": 0.5519877675840978,
+      "f1": 0.574155069582505,
+      "clean_flag_rate": 0.00473209340801862
+    },
+    {
+      "threshold": 0.425,
+      "precision": 0.5979292493528904,
+      "recall": 0.5298165137614679,
+      "f1": 0.5618159708147548,
+      "clean_flag_rate": 0.003995989988993501
+    },
+    {
+      "threshold": 0.45,
+      "precision": 0.5915619389587073,
+      "recall": 0.503822629969419,
+      "f1": 0.5441783649876135,
+      "clean_flag_rate": 0.003442159797536507
+    },
+    {
+      "threshold": 0.475,
+      "precision": 0.5885608856088561,
+      "recall": 0.4877675840978593,
+      "f1": 0.5334448160535117,
+      "clean_flag_rate": 0.0029303926585952343
+    },
+    {
+      "threshold": 0.5,
+      "precision": 0.591915303176131,
+      "recall": 0.4701834862385321,
+      "f1": 0.5240732850447379,
+      "clean_flag_rate": 0.0024256360284065815
+    },
+    {
+      "threshold": 0.525,
+      "precision": 0.5943491422805247,
+      "recall": 0.4503058103975535,
+      "f1": 0.512396694214876,
+      "clean_flag_rate": 0.0021171736432912935
+    },
+    {
+      "threshold": 0.55,
+      "precision": 0.595137420718816,
+      "recall": 0.4304281345565749,
+      "f1": 0.4995563442768412,
+      "clean_flag_rate": 0.0017876797319181454
+    },
+    {
+      "threshold": 0.575,
+      "precision": 0.5853107344632769,
+      "recall": 0.39602446483180426,
+      "f1": 0.4724122207022344,
+      "clean_flag_rate": 0.0016054065043500207
+    },
+    {
+      "threshold": 0.6,
+      "precision": 0.5709177592371871,
+      "recall": 0.3662079510703364,
+      "f1": 0.4462040055891942,
+      "clean_flag_rate": 0.0014651963292976172
+    },
+    {
+      "threshold": 0.625,
+      "precision": 0.570528967254408,
+      "recall": 0.3463302752293578,
+      "f1": 0.43101807802093245,
+      "clean_flag_rate": 0.0013319966629978337
+    },
+    {
+      "threshold": 0.65,
+      "precision": 0.5748663101604278,
+      "recall": 0.3287461773700306,
+      "f1": 0.41828793774319073,
+      "clean_flag_rate": 0.0011567339441823294
+    },
+    {
+      "threshold": 0.675,
+      "precision": 0.5728429985855729,
+      "recall": 0.30963302752293576,
+      "f1": 0.40198511166253104,
+      "clean_flag_rate": 0.001030544786635166
+    },
+    {
+      "threshold": 0.7,
+      "precision": 0.5895865237366003,
+      "recall": 0.29434250764525993,
+      "f1": 0.39265680775114736,
+      "clean_flag_rate": 0.0009183766465932433
+    },
+    {
+      "threshold": 0.725,
+      "precision": 0.5886178861788618,
+      "recall": 0.27675840978593275,
+      "f1": 0.37649505980239206,
+      "clean_flag_rate": 0.0008412610503144213
+    },
+    {
+      "threshold": 0.75,
+      "precision": 0.5993091537132987,
+      "recall": 0.2652905198776758,
+      "f1": 0.3677795442501325,
+      "clean_flag_rate": 0.0007431139277777389
+    },
+    {
+      "threshold": 0.775,
+      "precision": 0.6037735849056604,
+      "recall": 0.24464831804281345,
+      "f1": 0.34820457018498363,
+      "clean_flag_rate": 0.0006589878227462967
+    },
+    {
+      "threshold": 0.8,
+      "precision": 0.6080808080808081,
+      "recall": 0.2301223241590214,
+      "f1": 0.33388796450360503,
+      "clean_flag_rate": 0.0005818722264674748
+    },
+    {
+      "threshold": 0.825,
+      "precision": 0.6169724770642202,
+      "recall": 0.20565749235474007,
+      "f1": 0.3084862385321101,
+      "clean_flag_rate": 0.0005468196827043739
+    },
+    {
+      "threshold": 0.85,
+      "precision": 0.5794871794871795,
+      "recall": 0.172782874617737,
+      "f1": 0.2661955241460542,
+      "clean_flag_rate": 0.0005047566301886528
+    },
+    {
+      "threshold": 0.875,
+      "precision": 0.5568181818181818,
+      "recall": 0.14984709480122324,
+      "f1": 0.236144578313253,
+      "clean_flag_rate": 0.00045568306892031154
+    },
+    {
+      "threshold": 0.9,
+      "precision": 0.5506329113924051,
+      "recall": 0.13302752293577982,
+      "f1": 0.2142857142857143,
+      "clean_flag_rate": 0.0004136200164045905
+    },
+    {
+      "threshold": 0.925,
+      "precision": 0.5617977528089888,
+      "recall": 0.11467889908256881,
+      "f1": 0.1904761904761905,
+      "clean_flag_rate": 0.0003785674726414896
+    },
+    {
+      "threshold": 0.95,
+      "precision": 0.5833333333333334,
+      "recall": 0.10703363914373089,
+      "f1": 0.18087855297157623,
+      "clean_flag_rate": 0.00022433628008384568
+    }
+  ],
+  "importances": [
+    [
+      "speak_frac",
+      0.2517548203468323
+    ],
+    [
+      "ctx_head_vs_listen",
+      0.09923002123832703
+    ],
+    [
+      "mouth_act_vrel",
+      0.0639021024107933
+    ],
+    [
+      "blink_rate",
+      0.05614178627729416
+    ],
+    [
+      "ctx_blink_speak",
+      0.04993617534637451
+    ],
+    [
+      "ctx_head_speed_speak",
+      0.04869465529918671
+    ],
+    [
+      "mouth_act",
+      0.02625080943107605
+    ],
+    [
+      "ctx_speak_frac",
+      0.0182946864515543
+    ],
+    [
+      "ctx_v_std_speak",
+      0.018262594938278198
+    ],
+    [
+      "disp",
+      0.016636885702610016
+    ],
+    [
+      "speak_act",
+      0.01608666218817234
+    ],
+    [
+      "jaw_mean",
+      0.015825096517801285
+    ],
+    [
+      "ctx_h_std_speak",
+      0.013461914844810963
+    ],
+    [
+      "jaw_act",
+      0.01305659580975771
+    ],
+    [
+      "squint_mean",
+      0.012783685699105263
+    ],
+    [
+      "head_speed",
+      0.012082056142389774
+    ],
+    [
+      "speak_ctx30",
+      0.011598944664001465
+    ],
+    [
+      "ctx_aversion_speak",
+      0.010709401220083237
+    ],
+    [
+      "smile_mean",
+      0.010205325670540333
+    ],
+    [
+      "h_range",
+      0.009279699064791203
+    ],
+    [
+      "ctx_sweeps_speak",
+      0.009070406667888165
+    ],
+    [
+      "ctx_v_mean_speak",
+      0.00862047541886568
+    ],
+    [
+      "v_std",
+      0.007906753569841385
+    ],
+    [
+      "head_speed_vrel",
+      0.007435949519276619
+    ],
+    [
+      "brow_down_mean_vrel",
+      0.007361989933997393
+    ],
+    [
+      "ctx_h_std_vs_listen",
+      0.0067976717837154865
+    ],
+    [
+      "ctx_aversion_vs_listen",
+      0.006633914075791836
+    ],
+    [
+      "ear_mean",
+      0.0066217295825481415
+    ],
+    [
+      "ctx_blink_vs_listen",
+      0.006481116637587547
+    ],
+    [
+      "speak_prev10",
+      0.005909866653382778
+    ],
+    [
+      "parked_frac",
+      0.005835201591253281
+    ],
+    [
+      "h_sweeps_max",
+      0.005672498140484095
+    ],
+    [
+      "brow_down_mean",
+      0.005654642358422279
+    ],
+    [
+      "ctx_artic_cv",
+      0.00545513816177845
+    ],
+    [
+      "pitch_std",
+      0.005370148457586765
+    ],
+    [
+      "squint_mean_vrel",
+      0.004933694843202829
+    ],
+    [
+      "face_scale_rel",
+      0.004864676855504513
+    ],
+    [
+      "gx_std",
+      0.004862112924456596
+    ],
+    [
+      "pitch_mean_listen",
+      0.004789519123733044
+    ],
+    [
+      "disp_vrel",
+      0.004730346146970987
+    ]
+  ]
+}

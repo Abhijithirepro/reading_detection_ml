@@ -1,0 +1,38 @@
+loading per-video arrays (100 videos)...
+  fold 0: plain, scored 24230
+  fold 1: plain, scored 37393
+  fold 2: plain, scored 27490
+  fold 3: plain, scored 31850
+  fold 4: plain, scored 25917
+CNN self-training pass...
+  fold 0: self-training, scored 24230
+  fold 1: self-training, scored 37393
+  fold 2: self-training, scored 27490
+  fold 3: self-training, scored 31850
+  fold 4: self-training, scored 25917
+XGBoost on the same windows (separate process)...
+  fold 0: train 122204 windows, test 24230
+  fold 1: train 109207 windows, test 37393
+  fold 2: train 119080 windows, test 27490
+  fold 3: train 114512 windows, test 31850
+  fold 4: train 120445 windows, test 25917
+  fold 0: train 122204 windows (+1989 pseudo-reading), test 24230
+  fold 1: train 109207 windows (+1989 pseudo-reading), test 37393
+  fold 2: train 119080 windows (+1989 pseudo-reading), test 27490
+  fold 3: train 114512 windows (+1989 pseudo-reading), test 31850
+  fold 4: train 120445 windows (+1989 pseudo-reading), test 25917
+
+model                                XGBoost                 CNN      XGB+CNN average
+spans_caught                           55/64                3/64                39/64
+sec_auc_mean                        0.926004            0.655407             0.920254
+sec_precision                        0.61747            0.556701             0.596774
+sec_recall                          0.783639            0.041284             0.537462
+iou_mean                            0.534109            0.034758             0.402149
+clean_flagged                          1.96%               1.80%                1.75%
+video_auc                           0.847498            0.805304             0.886076
+caught                                  9/21                8/21                10/21
+false_alarms                               1                   4                    0
+matched_auc                         0.831633            0.840136              0.89966
+Marthala auc/rec/spans     0.93 / 0.91 / 9/9   0.43 / 0.00 / 0/9    0.92 / 0.68 / 7/9
+Sai auc/rec/spans        0.88 / 0.98 / 28/29  0.75 / 0.06 / 2/29  0.88 / 0.91 / 25/29
+Muthakani auc/rec/spans  0.96 / 0.64 / 18/26  0.78 / 0.04 / 1/26   0.96 / 0.29 / 7/26

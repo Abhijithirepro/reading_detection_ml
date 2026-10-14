@@ -81,6 +81,7 @@
     "big_jump_rate_vrel",
     "h_prog_frac_vrel"
   ],
+  "target_fps": 15.0,
   "read_window_seconds": 8.0,
   "read_stride_seconds": 1.0,
   "second_threshold": 0.175,
@@ -88,22 +89,22 @@
   "min_segment_seconds": 4.0,
   "merge_gap_seconds": 3.0,
   "video_stat": "speech_prob_mean",
-  "video_threshold": 0.20525629950732474,
-  "threshold": 0.20525629950732474,
-  "experiment": "v2-xgb-selftrain-hardneg-SHIPPED",
+  "video_threshold": 0.16577494844473864,
+  "threshold": 0.16577494844473864,
+  "experiment": "v2-15fps-xgb-selftrain-hardneg-SHIPPED",
   "cv": {
     "per_second": [
       {
         "video": "combined_ir8244089_Marthala_Ashok_Reddy",
         "seconds": 1586,
         "reading_s": 239,
-        "flagged_s": 382,
-        "auc": 0.9323197683990148,
-        "ap": 0.5859481044413667,
-        "precision": 0.5680628272251309,
-        "recall": 0.9079497907949791,
-        "iou": 0.5371287128712872,
-        "f1": 0.6988727858293076,
+        "flagged_s": 342,
+        "auc": 0.9290721982524314,
+        "ap": 0.5559505478102413,
+        "precision": 0.5672514619883041,
+        "recall": 0.8117154811715481,
+        "iou": 0.5012919896640827,
+        "f1": 0.6678141135972462,
         "spans_caught": "9/9",
         "span_hit_rate": 1.0
       },
@@ -111,13 +112,13 @@
         "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
         "seconds": 1810,
         "reading_s": 371,
-        "flagged_s": 821,
-        "auc": 0.8821452453691823,
-        "ap": 0.5525586913659243,
-        "precision": 0.440925700365408,
-        "recall": 0.9757412398921833,
-        "iou": 0.43614457831325304,
-        "f1": 0.6073825503355704,
+        "flagged_s": 797,
+        "auc": 0.8833384219724315,
+        "ap": 0.5710169063748552,
+        "precision": 0.4454203262233375,
+        "recall": 0.9568733153638814,
+        "iou": 0.43665436654366546,
+        "f1": 0.607876712328767,
         "spans_caught": "28/29",
         "span_hit_rate": 0.9655172413793104
       },
@@ -125,41 +126,41 @@
         "video": "combined_ir8308053_Muthakani_Venkateswarlu",
         "seconds": 1415,
         "reading_s": 698,
-        "flagged_s": 457,
-        "auc": 0.963545975151159,
-        "ap": 0.9623864627258257,
-        "precision": 0.975929978118162,
-        "recall": 0.6389684813753582,
-        "iou": 0.6290550070521862,
-        "f1": 0.7722943722943723,
-        "spans_caught": "18/26",
-        "span_hit_rate": 0.6923076923076923
+        "flagged_s": 606,
+        "auc": 0.9527969932023355,
+        "ap": 0.9475325221704121,
+        "precision": 0.900990099009901,
+        "recall": 0.7822349570200573,
+        "iou": 0.7203166226912929,
+        "f1": 0.8374233128834356,
+        "spans_caught": "23/26",
+        "span_hit_rate": 0.8846153846153846
       }
     ],
     "video": {
       "n": 100,
-      "auc": 0.8474984930681132,
-      "tp": 9,
+      "auc": 0.8270042194092827,
+      "tp": 10,
       "fp": 1,
-      "fn": 12,
+      "fn": 11,
       "tn": 78,
-      "precision": 0.9,
-      "recall": 0.42857142857142855,
-      "accuracy": 0.87,
-      "threshold": 0.20525629950732474,
-      "matched_auc": 0.8316326530612244,
+      "precision": 0.9090909090909091,
+      "recall": 0.47619047619047616,
+      "accuracy": 0.88,
+      "threshold": 0.16577494844473864,
+      "matched_auc": 0.8248299319727892,
       "matched_fp": 1,
       "matched_n_clean": 28,
-      "unreviewed_caught": "6/18"
+      "unreviewed_caught": "7/18"
     },
     "stat_auc": {
-      "reading_seconds": 0.8179626280892105,
-      "reading_share": 0.8209764918625678,
-      "reading_share_of_speech": 0.8251959011452683,
-      "top10_mean": 0.8438818565400843,
-      "p95": 0.8354430379746834,
-      "speech_prob_mean": 0.8474984930681132,
-      "speech_prob_p90": 0.8366485834840265
+      "reading_seconds": 0.804098854731766,
+      "reading_share": 0.8233875828812538,
+      "reading_share_of_speech": 0.8191681735985533,
+      "top10_mean": 0.8233875828812538,
+      "p95": 0.8161543098251959,
+      "speech_prob_mean": 0.8270042194092827,
+      "speech_prob_p90": 0.8161543098251959
     }
   },
   "trained_on": {
@@ -173,134 +174,125 @@
   "top_features": [
     [
       "speak_frac",
-      0.2517548203468323
+      0.2304750233888626
     ],
     [
       "ctx_head_vs_listen",
-      0.09923002123832703
-    ],
-    [
-      "mouth_act_vrel",
-      0.0639021024107933
+      0.09100367873907089
     ],
     [
       "blink_rate",
-      0.05614178627729416
+      0.08703309297561646
+    ],
+    [
+      "mouth_act_vrel",
+      0.07237894833087921
     ],
     [
       "ctx_blink_speak",
-      0.04993617534637451
+      0.06986767053604126
     ],
     [
       "ctx_head_speed_speak",
-      0.04869465529918671
+      0.030553031712770462
     ],
     [
       "mouth_act",
-      0.02625080943107605
+      0.02621605060994625
     ],
     [
       "ctx_speak_frac",
-      0.0182946864515543
-    ],
-    [
-      "ctx_v_std_speak",
-      0.018262594938278198
-    ],
-    [
-      "disp",
-      0.016636885702610016
-    ],
-    [
-      "speak_act",
-      0.01608666218817234
+      0.02049650251865387
     ],
     [
       "jaw_mean",
-      0.015825096517801285
+      0.01985381357371807
+    ],
+    [
+      "ctx_v_std_speak",
+      0.018032023683190346
+    ],
+    [
+      "speak_act",
+      0.016223959624767303
+    ],
+    [
+      "speak_ctx30",
+      0.01427952665835619
     ],
     [
       "ctx_h_std_speak",
-      0.013461914844810963
-    ],
-    [
-      "jaw_act",
-      0.01305659580975771
+      0.01361811812967062
     ],
     [
       "squint_mean",
-      0.012783685699105263
+      0.012663163244724274
+    ],
+    [
+      "ctx_v_mean_speak",
+      0.012384764850139618
     ]
   ],
   "reason_reference": [
+    {
+      "feature": "head_speed",
+      "direction": -1,
+      "label": "head still",
+      "clean_median": 7.515678882598877,
+      "scale": 6.135230302810669,
+      "ref": 5.053848505020142,
+      "effect": 0.721
+    },
     {
       "feature": "blink_rate",
       "direction": -1,
       "label": "reduced blinking",
       "clean_median": 37.5,
-      "scale": 30.0,
-      "ref": 22.5,
-      "effect": 0.75
-    },
-    {
-      "feature": "head_speed",
-      "direction": -1,
-      "label": "head still",
-      "clean_median": 9.052342891693115,
-      "scale": 6.842281937599182,
-      "ref": 6.263696789741516,
-      "effect": 0.724
+      "scale": 37.5,
+      "ref": 15.0,
+      "effect": 0.6
     },
     {
       "feature": "brow_down_mean",
       "direction": 1,
       "label": "brow lowered (concentrating)",
-      "clean_median": 0.013332501985132694,
-      "scale": 0.05070764175616205,
-      "ref": 0.05292894039303064,
-      "effect": 0.543
+      "clean_median": 0.013238145038485527,
+      "scale": 0.05047231027856469,
+      "ref": 0.05267539620399475,
+      "effect": 0.546
     },
     {
       "feature": "v_mean_listen",
       "direction": 1,
       "label": "eyes raised vs. when listening",
-      "clean_median": -0.033893121406435966,
-      "scale": 0.13988590054214,
-      "ref": 0.03543638065457344,
-      "effect": 0.501
-    },
-    {
-      "feature": "h_sweeps_dom",
-      "direction": -1,
-      "label": "fewer side-to-side glances",
-      "clean_median": 22.5,
-      "scale": 15.0,
-      "ref": 15.0,
-      "effect": 0.5
-    },
-    {
-      "feature": "h_prog_frac",
-      "direction": 1,
-      "label": "line-by-line eye drift",
-      "clean_median": 0.41499999165534973,
-      "scale": 0.08000001311302185,
-      "ref": 0.45500001311302185,
-      "effect": 0.437
+      "clean_median": -0.03224487602710724,
+      "scale": 0.1381549946963787,
+      "ref": 0.03721348196268082,
+      "effect": 0.489
     },
     {
       "feature": "h_std",
       "direction": -1,
       "label": "eyes steady",
-      "clean_median": 0.1105068176984787,
-      "scale": 0.10193025879561901,
-      "ref": 0.07281491719186306,
-      "effect": 0.436
+      "clean_median": 0.10633184760808945,
+      "scale": 0.10191629827022552,
+      "ref": 0.0692974105477333,
+      "effect": 0.414
+    },
+    {
+      "feature": "h_prog_frac",
+      "direction": 1,
+      "label": "line-by-line eye drift",
+      "clean_median": 0.4333333373069763,
+      "scale": 0.08333331346511841,
+      "ref": 0.4749999940395355,
+      "effect": 0.4
     },
     {
       "feature": "big_jump_rate",
       "direction": -1,
       "label": "few big eye jumps",
-      "clean_median": 15.0,
+      "clean_median": 7.5,
       "scale": 22.5,
       "ref": 0.0,
       "effect": 0.333

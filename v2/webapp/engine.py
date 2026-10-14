@@ -34,6 +34,7 @@ import tempfile
 import threading
 import time
 import uuid
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -59,6 +60,7 @@ report.REPORTS_DIR = RUNS_DIR
 
 VIDEO_EXTS = {".mp4", ".webm", ".mkv", ".mov", ".avi", ".m4v"}
 BIN_SECONDS = 5          # chart / table granularity (the strip stays per second)
+TRACE_HZ = 5             # live signal chart sampling (frames are averaged down to this)
 
 # matplotlib's pyplot (used by report.py) is not thread-safe.
 _REPORT_LOCK = threading.Lock()
@@ -154,6 +156,30 @@ def compare_with_review(result, review) -> dict:
     return dict(
         source=review.path.name, ir=review.ir, spans=spans, extra_segments=extra,
         metrics={k: (round(v, 4) if isinstance(v, float) else v) for k, v in m.items()})
+
+
+def traces(clean, hz=TRACE_HZ) -> dict:
+    """The eye, head and mouth channels averaged down to ~`hz` samples a second for
+    the page's live signal chart. Sample i sits at video time t0 + i / hz."""
+    dt = float(clean["dt"])
+    k = max(1, int(round(1.0 / (hz * dt))))
+
+    def down(x, how="mean"):
+        x = np.asarray(x, dtype=float)
+        n = len(x) // k * k
+        if n == 0:
+            return []
+        blocks = x[:n].reshape(-1, k)
+        with np.errstate(all="ignore"), warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)
+            v = np.nanmax(blocks, axis=1) if how == "max" else np.nanmean(blocks, axis=1)
+        return [None if not np.isfinite(a) else round(float(a), 3) for a in v]
+
+    return dict(
+        hz=round(1.0 / (k * dt), 4), t0=round(float(clean["t0"]), 3),
+        eye_h=down(clean.get("eye_h", clean["gaze_x"])), eye_v=down(clean.get("eye_v", clean["gaze_y"])),
+        yaw=down(clean["yaw"]), mouth=down(clean["mouth"]),
+        speaking=down(clean["speaking"]), blink=down(clean["blink"], "max"))
 
 
 def segments_csv(result) -> str:
@@ -280,6 +306,12 @@ class Engine:
         path = RUNS_DIR / f"{job_id}__report.html"
         return path if path.exists() else None
 
+    def traces_path(self, job_id: str):
+        if not re.fullmatch(r"[0-9a-f]{16}", job_id or ""):
+            return None
+        path = RUNS_DIR / f"{job_id}__traces.json"
+        return path if path.exists() else None
+
     def cancel(self, job_id: str) -> bool:
         with self._lock:
             job = self._jobs.get(job_id)
@@ -385,6 +417,7 @@ class Engine:
         self._update(job_id, stage="report")
         review = lab.review_for(job["source"])
         predict.save_timeline(video, result, win_df, clean)
+        (RUNS_DIR / f"{job_id}__traces.json").write_text(json.dumps(traces(clean)))
         with _REPORT_LOCK:
             report.build_video_report(video, review=review)
 
@@ -403,6 +436,7 @@ class Engine:
             runtime=dict(mediapipe="cpu", cnn="cpu (xgboost)", mediapipe_threads=self.threads_per_job),
             report_url=f"/api/jobs/{job_id}/report",
             segments_csv_url=f"/api/jobs/{job_id}/segments.csv",
+            traces_url=f"/api/jobs/{job_id}/traces",
             video_url=f"/api/jobs/{job_id}/video" if self.keep_uploads else None,
             created=job["created"],
         )

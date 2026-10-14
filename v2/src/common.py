@@ -4,9 +4,12 @@ common.py (v2) — shared config, signal processing, and gaze-extraction backend
 v2 changes vs the original src/common.py:
   * paths: v2 reads the ORIGINAL raw videos (data/raw/) and manual reviews
     (manual_review_for_candidate/) read-only, and writes only under v2/.
-  * extraction keeps every frame up to 25 fps (grid-anchored, so 25 fps sources
-    are no longer aliased down to 12.5), downscales frames wider than 640 px
-    (removes the 720p-clean vs 360p-cheating resolution confound), and records
+  * extraction samples a fixed 15 fps everywhere (training, CLI, web app; the
+    production browser build runs at 15 fps too). A token-bucket sampler
+    (extract_features.FrameSampler) gives exactly 15 from 25/30/60 fps sources
+    (v1's keep rule aliased 25 down to 12.5); slower sources keep every frame.
+    Downscales frames wider than 640 px (removes the 720p-clean vs
+    360p-cheating resolution confound), and records
     MediaPipe blendshapes (eyeLook*/eyeBlink*/jawOpen/...) + face scale.
   * the reading-sweep detector is polarity-agnostic: the slow line-following
     drift and the fast "carriage return" are searched in BOTH directions. The
@@ -89,8 +92,10 @@ class Config:
     """All tunable constants. Saved as JSON next to model artifacts."""
 
     # --- sampling / extraction ---
-    target_fps: float = 25.0            # v2: keep every frame of a 25 fps source (grid-anchored
-                                        # sampling; v1's 15 aliased 25 fps sources down to 12.5)
+    target_fps: float = 15.0            # v2: production rate (the browser build samples 15 fps);
+                                        # FrameSampler: 25/30/60 fps sources give exactly 15
+                                        # (v1's keep rule aliased 25 fps sources down to 12.5).
+                                        # The 25 fps model is kept in v2/archive/25fps/.
     max_frame_width: int = 640          # v2: downscale wider frames before face tracking, so
                                         # 720p clean videos and 360p cheating videos give the
                                         # same landmark noise (removes a resolution confound)

@@ -1,0 +1,138 @@
+section,item,value,notes
+1. data,videos in new_not_cheating,51,
+1. data,videos in not_cheating_folder,28,
+1. data,videos in cheating_folder,21,
+1. data,total videos,100,21 cheating / 79 clean
+1. data,hours of video,47.5,
+1. data,manual review ir8308053,"26 spans, 11.6 min reading",label for Reading detection  - ir8308053_Muthakani_Venkateswarl.csv
+1. data,manual review ir8244089,"9 spans, 4.0 min reading",label for Reading detection  - marthala_ashok_ir8244089.csv
+1. data,manual review ir8266049,"29 spans, 6.2 min reading",label for Reading detection  - sai_koti_reddy_ir8266049.csv
+1. data,windows total,170159,
+1. data,windows: reading (reviewed),1238,
+1. data,windows: not reading (reviewed + all clean),145124,
+1. data,windows: unknown (unreviewed cheating: test only),23279,
+1. data,windows: ignored (span boundary),518,
+1. data,labels,per-second (strong) from manual reviews,"window = reading if >= 60% inside a span, not reading if <= 10%"
+2. extraction,face tracker,MediaPipe FaceLandmarker (478 landmarks + iris + blendshapes),Apache-2.0
+2. extraction,target_fps,25.0,every frame of a 25 fps source (grid-anchored)
+2. extraction,max_frame_width,640,frames downscaled to <= 640 px wide
+2. extraction,blendshapes,True,
+2. extraction,min_face_ratio,0.7,
+2. extraction,blendshape channels,19,"eyeLookInLeft, eyeLookInRight, eyeLookOutLeft, eyeLookOutRight, eyeLookUpLeft, eyeLookUpRight, eyeLookDownLeft, eyeLookDownRight, eyeBlinkLeft, eyeBlinkRight, eyeSquintLeft, eyeSquintRight, jawOpen, mouthClose, mouthSmileLeft, mouthSmileRight, browInnerUp, browDownLeft, browDownRight"
+2. extraction,other per-frame channels,"gaze_x, gaze_y, yaw, pitch, roll, ear, mouth, face_scale",
+3. cleaning + speaking,max_gap_seconds,0.5,
+3. cleaning + speaking,median_filter_k,3,
+3. cleaning + speaking,calibrate_gaze,True,
+3. cleaning + speaking,blink rule,eyeBlink blendshape > 0.40,
+3. cleaning + speaking,speaking detector,"lip gap (MAR) + jawOpen motion, fused",no audio is ever read
+3. cleaning + speaking,vad_act_window_s,1.0,
+3. cleaning + speaking,vad_on_frac,0.3,
+3. cleaning + speaking,vad_off_frac,0.15,
+3. cleaning + speaking,vad_floor_pctile,10.0,
+3. cleaning + speaking,vad_min_dynamic,2.0,
+3. cleaning + speaking,vad_min_burst_s,0.6,
+3. cleaning + speaking,vad_merge_gap_s,0.5,
+4. windows + features,read_window_seconds,8.0,
+4. windows + features,read_stride_seconds,1.0,-> one probability per second
+4. windows + features,label_pos_frac,0.6,
+4. windows + features,label_neg_frac,0.1,
+4. windows + features,features used by the model,78,"speak_frac, mouth_act, speak_act, jaw_act, jaw_mean, smile_mean, speak_ctx30, speak_prev10, h_std, h_range, gx_std, h_skew_dom, h_skew_abs, h_prog_frac, h_sweeps_dom, h_sweeps_max, gx_sweeps_dom, h_ac_peak, v_mean_listen, gy_mean_listen, pitch_mean_listen, v_std, disp, aversion_frac, parked_frac, big_jump_rate, yaw_std, pitch_std, roll_std, head_speed, corr_h_yaw, blink_rate, ear_mean, squint_mean, brow_down_mean, face_scale_rel, ctx_speak_frac, ctx_h_std_speak, ctx_v_std_speak, ctx_v_mean_speak, ctx_aversion_speak, ctx_blink_speak, ctx_head_speed_speak, ctx_jump_speak, ctx_h_std_vs_listen, ctx_v_std_vs_listen, ctx_aversion_vs_listen, ctx_blink_vs_listen, ctx_head_vs_listen, ctx_sweeps_speak, ctx_pause_rate, ctx_artic_cv, h_std_vrel, h_range_vrel, h_sweeps_dom_vrel, h_sweeps_max_vrel, h_ac_peak_vrel, h_skew_dom_vrel, gx_std_vrel, v_mean_listen_vrel, gy_mean_listen_vrel, v_std_vrel, disp_vrel, aversion_frac_vrel, parked_frac_vrel, yaw_std_vrel, pitch_std_vrel, head_speed_vrel, blink_rate_vrel, jaw_act_vrel, mouth_act_vrel, squint_mean_vrel, brow_down_mean_vrel, face_scale_rel_vrel, pitch_mean_listen_vrel, ear_mean_vrel, big_jump_rate_vrel, h_prog_frac_vrel"
+4. windows + features,answer-context span,30 s (speaking samples only),ctx_* features
+5. model,kind,reading_xgb,XGBoost gradient-boosted trees (Apache-2.0)
+5. model,xgboost n_estimators,400,
+5. model,xgboost max_depth,4,
+5. model,xgboost learning_rate,0.05,
+5. model,xgboost subsample,0.8,
+5. model,xgboost colsample_bytree,0.7,
+5. model,xgboost min_child_weight,5,
+5. model,xgboost reg_lambda,1.0,
+5. model,xgboost tree_method,hist,
+5. model,xgboost eval_metric,logloss,
+5. model,browser,yes: ONNX TreeEnsembleClassifier via onnxruntime-web,checked in Chrome with onnxruntime-web 1.19.2: max diff 3e-7 vs Python
+6. training,folds,5,reviewed videos held out one per fold
+6. training,seed,42,
+6. training,reviewed_neg_weight,0.5,weight share of reviewed not-reading windows
+6. training,pseudo_frac,0.15,self-training: top share of each unreviewed cheater's speaking windows
+6. training,pseudo_weight,0.5,weight share of pseudo-labelled reading windows
+6. training,clean_speech_weight,1.0,extra weight share for clean candidates' speaking windows
+6. training,clean_budget,0.02,max share of clean seconds the per-second threshold may flag
+6. training,pseudo-label leakage guard,fold-specific selection + A/B cross-scoring,
+6. training,trained on,3 reviewed + 79 clean videos + pseudo-labels,
+7. thresholds + verdict,per-second threshold,0.175,best F1 within the clean budget
+7. thresholds + verdict,per-second smoothing,3 s rolling median; windows centred within 2 s,
+7. thresholds + verdict,min_segment_seconds,4.0,
+7. thresholds + verdict,merge_gap_seconds,3.0,
+7. thresholds + verdict,verdict statistic,speech_prob_mean,average reading probability while speaking
+7. thresholds + verdict,verdict threshold,0.2053,tuned for F0.5 (favours precision)
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8244089_Marthala_Ashok_Reddy: reading seconds (reviewer),239,model never saw this video
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8244089_Marthala_Ashok_Reddy: flagged seconds (model),382,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8244089_Marthala_Ashok_Reddy: per-second AUC,0.932,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8244089_Marthala_Ashok_Reddy: precision,0.568,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8244089_Marthala_Ashok_Reddy: recall,0.908,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8244089_Marthala_Ashok_Reddy: IoU,0.537,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8244089_Marthala_Ashok_Reddy: reviewer spans caught,9/9,>= 50% of span flagged
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): reading seconds (reviewer),371,model never saw this video
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): flagged seconds (model),821,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): per-second AUC,0.882,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): precision,0.441,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): recall,0.976,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): IoU,0.436,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): reviewer spans caught,28/29,>= 50% of span flagged
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8308053_Muthakani_Venkateswarlu: reading seconds (reviewer),698,model never saw this video
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8308053_Muthakani_Venkateswarlu: flagged seconds (model),457,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8308053_Muthakani_Venkateswarlu: per-second AUC,0.964,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8308053_Muthakani_Venkateswarlu: precision,0.976,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8308053_Muthakani_Venkateswarlu: recall,0.639,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8308053_Muthakani_Venkateswarlu: IoU,0.629,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ir8308053_Muthakani_Venkateswarlu: reviewer spans caught,18/26,>= 50% of span flagged
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ALL reviewed: spans caught,55/64,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ALL reviewed: mean per-second AUC,0.926,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ALL reviewed: pooled precision,0.617,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ALL reviewed: pooled recall,0.784,
+"8. results: vs manual reviews, per second (OUT-OF-FOLD)",ALL reviewed: mean IoU,0.534,
+9. results: 100 videos (OUT-OF-FOLD),videos scored,100,
+9. results: 100 videos (OUT-OF-FOLD),video ROC-AUC,0.847,
+9. results: 100 videos (OUT-OF-FOLD),cheating caught (TP / all cheating),9/21,
+9. results: 100 videos (OUT-OF-FOLD),clean cleared (TN / all clean),78/79,
+9. results: 100 videos (OUT-OF-FOLD),false alarms (FP),1,
+9. results: 100 videos (OUT-OF-FOLD),precision,0.900,
+9. results: 100 videos (OUT-OF-FOLD),recall,0.429,
+9. results: 100 videos (OUT-OF-FOLD),accuracy,0.870,
+9. results: 100 videos (OUT-OF-FOLD),same-platform AUC (cheating vs not_cheating_folder),0.832,honest comparison: same recording platform
+9. results: 100 videos (OUT-OF-FOLD),same-platform false alarms,1/28,
+10. results: verdict-statistic AUCs,reading_seconds,0.818,
+10. results: verdict-statistic AUCs,reading_share,0.821,
+10. results: verdict-statistic AUCs,reading_share_of_speech,0.825,
+10. results: verdict-statistic AUCs,top10_mean,0.844,
+10. results: verdict-statistic AUCs,p95,0.835,
+10. results: verdict-statistic AUCs,speech_prob_mean,0.847,chosen
+10. results: verdict-statistic AUCs,speech_prob_p90,0.837,
+11. what the model uses,feature importance: speak_frac,0.252,
+11. what the model uses,feature importance: ctx_head_vs_listen,0.099,
+11. what the model uses,feature importance: mouth_act_vrel,0.064,
+11. what the model uses,feature importance: blink_rate,0.056,
+11. what the model uses,feature importance: ctx_blink_speak,0.050,
+11. what the model uses,feature importance: ctx_head_speed_speak,0.049,
+11. what the model uses,feature importance: mouth_act,0.026,
+11. what the model uses,feature importance: ctx_speak_frac,0.018,
+11. what the model uses,feature importance: ctx_v_std_speak,0.018,
+11. what the model uses,feature importance: disp,0.017,
+11. what the model uses,feature importance: speak_act,0.016,
+11. what the model uses,feature importance: jaw_mean,0.016,
+11. what the model uses,reason tag: reduced blinking,effect 0.75,feature blink_rate
+11. what the model uses,reason tag: head still,effect 0.724,feature head_speed
+11. what the model uses,reason tag: brow lowered (concentrating),effect 0.543,feature brow_down_mean
+11. what the model uses,reason tag: eyes raised vs. when listening,effect 0.501,feature v_mean_listen
+11. what the model uses,reason tag: fewer side-to-side glances,effect 0.5,feature h_sweeps_dom
+11. what the model uses,reason tag: line-by-line eye drift,effect 0.437,feature h_prog_frac
+11. what the model uses,reason tag: eyes steady,effect 0.436,feature h_std
+11. what the model uses,reason tag: few big eye jumps,effect 0.333,feature big_jump_rate
+12. all experiments (RESULTS_LOG.md),v1-baseline,"spans 28/64, recall 0.48, video AUC 0.843, FP 1",2026-10-12 19:31 · IN-SAMPLE per-second
+12. all experiments (RESULTS_LOG.md),v2-xgb-base,"spans 3/64, recall 0.10, video AUC 0.857, FP 13",2026-10-12 20:50
+12. all experiments (RESULTS_LOG.md),v2-xgb-context,"spans 16/64, recall 0.20, video AUC 0.816, FP 8",2026-10-12 20:50
+12. all experiments (RESULTS_LOG.md),v2-xgb-context-selftrain,"spans 57/64, recall 0.81, video AUC 0.789, FP 4",2026-10-12 20:51
+12. all experiments (RESULTS_LOG.md),v2-xgb-selftrain-hardneg-SHIPPED,"spans 55/64, recall 0.78, video AUC 0.847, FP 1",2026-10-12 20:55
+12. all experiments (RESULTS_LOG.md),v2-cnn-strong-labels,"spans 5/64, recall 0.04, video AUC 0.722, FP 6",2026-10-12 20:56
+12. all experiments (RESULTS_LOG.md),v2-cnn-vs-xgb-selftrain [XGBoost],"spans 55/64, recall 0.78, video AUC 0.847, FP 1",2026-10-12 21:52
+12. all experiments (RESULTS_LOG.md),v2-cnn-vs-xgb-selftrain [CNN],"spans 3/64, recall 0.04, video AUC 0.805, FP 4",2026-10-12 21:52
+12. all experiments (RESULTS_LOG.md),v2-cnn-vs-xgb-selftrain [XGB+CNN average],"spans 39/64, recall 0.54, video AUC 0.886, FP 0",2026-10-12 21:52

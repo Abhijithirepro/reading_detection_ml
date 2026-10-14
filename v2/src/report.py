@@ -219,7 +219,7 @@ def build_eval_report():
     vs_path = RESULTS_DIR / f"oof_video_scores__{exp}.csv"
     vrows = ""
     if vs_path.exists():
-        vs = pd.read_csv(vs_path).sort_values("score", ascending=False)
+        vs = pd.read_csv(vs_path, float_precision="round_trip").sort_values("score", ascending=False)
         thr = art["video_threshold"]
         for _, r in vs.iterrows():
             pred = r["score"] >= thr

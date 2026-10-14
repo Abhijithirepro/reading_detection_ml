@@ -33,9 +33,46 @@
 
 <main class="stage">
 
+  <!-- ── pre-scored candidates ──────────────────────────────────────── -->
+  <section class="panel panel--library" id="panel-library" aria-labelledby="library-h">
+    <div class="lib-head">
+      <h2 class="panel__label" id="library-h">01 &mdash; Candidates &middot; pre-scored</h2>
+      <p class="lib-summary" id="lib-summary" aria-live="polite">loading the library…</p>
+    </div>
+
+    <div class="lib-tools">
+      <div class="lib-tabs" id="lib-tabs" role="group" aria-label="Folder"></div>
+      <div class="lib-filters">
+        <label class="lib-check"><input type="checkbox" id="lib-mismatch"> disagrees with folder</label>
+        <label class="lib-search">
+          <span class="visually-hidden">Search by name or IR number</span>
+          <input type="search" id="lib-search" placeholder="name or IR" autocomplete="off" spellcheck="false">
+        </label>
+      </div>
+    </div>
+
+    <div class="lib-scroll">
+      <table class="lib-table" id="lib-table">
+        <thead><tr>
+          <th scope="col"><button type="button" data-sort="name">Candidate</button></th>
+          <th scope="col"><button type="button" data-sort="folder">Folder</button></th>
+          <th scope="col"><button type="button" data-sort="verdict">Model</button></th>
+          <th scope="col" class="num"><button type="button" data-sort="score">Score</button></th>
+          <th scope="col" class="num"><button type="button" data-sort="reading_seconds">Reading</button></th>
+          <th scope="col" class="num"><button type="button" data-sort="segments">Segs</button></th>
+          <th scope="col" class="num"><button type="button" data-sort="duration">Length</button></th>
+          <th scope="col"><button type="button" data-sort="correct">Agrees</button></th>
+        </tr></thead>
+        <tbody id="lib-rows"></tbody>
+      </table>
+    </div>
+    <p class="lib-empty" id="lib-empty" hidden></p>
+    <p class="lib-note" id="lib-note"></p>
+  </section>
+
   <!-- ── intake ─────────────────────────────────────────────────────── -->
   <section class="panel panel--intake" id="panel-intake" aria-labelledby="intake-h">
-    <h2 class="panel__label" id="intake-h">01 &mdash; Specimen</h2>
+    <h2 class="panel__label" id="intake-h">02 &mdash; Analyse a new recording</h2>
 
     <div class="drop" id="drop" tabindex="0" role="button" aria-describedby="drop-hint">
       <svg class="drop__icon" viewBox="0 0 48 48" aria-hidden="true">
@@ -66,6 +103,27 @@
   <!-- ── analysis (progress + result) ───────────────────────────────── -->
   <section class="panel panel--live" id="panel-live" hidden aria-labelledby="live-h">
     <h2 class="panel__label" id="live-h">02 &mdash; Analysis</h2>
+
+    <!-- library candidate header (hidden for uploaded jobs) -->
+    <div class="cand" id="cand" hidden>
+      <nav class="cand__nav" aria-label="Candidates">
+        <button type="button" class="btn btn--ghost btn--small" id="cand-back">&larr; All candidates</button>
+        <a class="btn btn--ghost btn--small" id="cand-json" download>JSON</a>
+        <a class="btn btn--ghost btn--small" id="cand-csv" download>Segments CSV</a>
+        <a class="btn btn--ghost btn--small" id="cand-report" target="_blank" rel="noopener">Report &#8599;</a>
+        <span class="cand__pos" id="cand-pos"></span>
+        <button type="button" class="btn btn--ghost btn--small" id="cand-prev">&lsaquo; Prev</button>
+        <button type="button" class="btn btn--ghost btn--small" id="cand-next">Next &rsaquo;</button>
+      </nav>
+      <h3 class="cand__name"><span id="cand-name">—</span> <span class="cand__ir" id="cand-ir"></span></h3>
+      <dl class="cand__facts">
+        <div><dt>Folder</dt><dd id="cand-folder">—</dd></div>
+        <div><dt>Model vs folder</dt><dd id="cand-correct">—</dd></div>
+        <div><dt>Scored by</dt><dd id="cand-scoring">—</dd></div>
+        <div><dt>Shipped model (in-sample)</dt><dd id="cand-shipped">—</dd></div>
+      </dl>
+      <p class="live-warn" id="cand-coverage" hidden></p>
+    </div>
 
     <ol class="ladder" id="ladder" aria-label="Pipeline progress">
       <li class="ladder__step" data-step="upload"><span>Upload</span></li>
@@ -139,6 +197,10 @@
             <div class="strip__tip" id="strip-tip" hidden></div>
           </div>
           <div class="strip__axis"><span>00:00</span><span class="strip__legend"><i class="lane-key lane-key--read"></i>reading (brighter = more likely, red = detected) <i class="lane-key lane-key--speak"></i>speaking <i class="lane-key lane-key--review"></i>reviewer</span><span id="strip-end">—</span></div>
+          <div class="why" id="why">
+            <p class="why__state" id="why-state">—</p>
+            <ul class="why__reasons" id="why-reasons"></ul>
+          </div>
           <p class="review__note" id="review-note" hidden></p>
         </div>
 
@@ -148,6 +210,7 @@
             <div><dt>Reading prob.</dt><dd id="now-score">—</dd></div>
             <div class="now__wide"><dt>Speaking</dt><dd id="now-speak">—</dd></div>
             <div class="now__wide"><dt>Signals</dt><dd id="now-reasons">—</dd></div>
+            <div class="now__wide"><dt>Next reading</dt><dd><button type="button" class="now__next" id="now-next" disabled>—</button></dd></div>
           </dl>
           <h3 class="segments__h">Reading segments &middot; click to jump</h3>
           <ol class="segments__list segments__list--jump" id="segments"></ol>
@@ -212,6 +275,40 @@
         </div>
       </details>
 
+      <!-- ── detailed report: live signals that follow the video, then the full report ── -->
+      <section class="detail" id="detail" aria-labelledby="detail-h">
+        <h3 class="detail__h" id="detail-h">Detailed report</h3>
+
+        <figure class="chart traces" id="traces-fig" hidden>
+          <figcaption class="chart__cap">
+            <span class="chart__title">Signals around the playhead</span>
+            <span class="traces__zoom" role="group" aria-label="Time span shown">
+              <button type="button" class="chip" data-span="30">30 s</button>
+              <button type="button" class="chip is-on" data-span="120">2 min</button>
+              <button type="button" class="chip" data-span="300">5 min</button>
+            </span>
+          </figcaption>
+          <div class="traces__plot">
+            <canvas id="traces-canvas" class="traces__canvas" role="img"
+                    aria-label="Eye, head and mouth traces with the reading probability around the current playback position"></canvas>
+          </div>
+          <p class="chart__hint">
+            <i class="lane-key lane-key--read"></i>detected reading
+            <i class="lane-key lane-key--review"></i>reviewer span
+            <i class="lane-key lane-key--speak"></i>speaking
+            <i class="lane-key lane-key--blink"></i>blink &middot; white line = now &middot; click to jump there
+          </p>
+        </figure>
+
+        <div class="detail__report" id="detail-report" hidden>
+          <div class="detail__bar">
+            <span>Full report &middot; every reading segment, review agreement, eye / mouth traces in 5-minute rows</span>
+            <a class="btn btn--ghost btn--small" id="detail-open" target="_blank" rel="noopener">Open in new tab &#8599;</a>
+          </div>
+          <iframe class="detail__frame" id="report-frame" title="Detailed report"></iframe>
+        </div>
+      </section>
+
       <p class="caveat">
         A reading segment is evidence to review, never a conclusion. Open the segments in the
         recording &mdash; or the detailed report's eye and mouth traces &mdash; before acting on them.
@@ -239,6 +336,8 @@
 <script src="src/components/chart.js"></script>
 <script src="src/components/review.js"></script>
 <script src="src/components/compare.js"></script>
+<script src="src/components/traces.js"></script>
+<script src="src/components/library.js"></script>
 <script src="src/components/result.js"></script>
 <script src="src/main.js"></script>
 </body>

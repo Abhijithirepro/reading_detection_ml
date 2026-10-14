@@ -8,7 +8,7 @@ schema documented in common.py.
 Usage:
     python src/extract_features.py                       # extract everything (skip done)
     python src/extract_features.py --backend mediapipe+l2cs
-    python src/extract_features.py --fps 15 --force
+    python src/extract_features.py --force                # re-extract at the config rate (15 fps)
     python src/extract_features.py --video path/to/one.mp4 --label cheating
     python src/extract_features.py --selftest            # signal-only self test (no video)
 
@@ -66,6 +66,44 @@ def output_path(video: Path, label: str, source: str = "default",
     return (out_dir or FEATURES_DIR) / f"{label}__{src}__{safe}.parquet"
 
 
+class FrameSampler:
+    """Keeps at most `fps` frames per second of video time (token bucket).
+
+    Credit accrues at `fps` per second of timestamp and each kept frame spends one;
+    a frame is kept once the credit reaches 1 (less 10 % for millisecond timestamp
+    rounding). 25/30/60 fps sources come out at exactly 15 fps, and sources at or
+    below the rate keep every frame even when their timestamps jitter (variable-rate
+    WebM) — the earlier grid rule dropped up to 16 % of such a recording. Credit is
+    capped at 2, so a stall never turns into a catch-up burst. The browser build
+    applies the same rule to camera frames."""
+
+    def __init__(self, fps: float, cap: float = 2.0, early: float = 0.1):
+        self.rate, self.cap, self.early = fps, cap, early
+        self.credit, self.prev = 1.0, None
+
+    def keep(self, t: float) -> bool:
+        if self.prev is not None:
+            self.credit = min(self.cap, self.credit + max(0.0, t - self.prev) * self.rate)
+        self.prev = t
+        if self.credit >= 1.0 - self.early:
+            self.credit -= 1.0
+            return True
+        return False
+
+
+def sampler_selftest(fps: float = 15.0) -> bool:
+    """Kept rate for common source rates (timestamps rounded to ms, like WebM)."""
+    ok = True
+    for src, want in ((11, 11), (15, 15), (24, 15), (25, 15), (29.97, 15), (30, 15), (60, 15)):
+        s = FrameSampler(fps)
+        ts = np.round(np.arange(0, 600, 1 / src), 3)
+        got = sum(s.keep(t) for t in ts) / 600
+        passed = abs(got - want) < 0.05
+        ok &= passed
+        print(f"  [{'PASS' if passed else 'FAIL'}] {src:>5} fps source -> {got:.2f} fps kept (want {want})")
+    return ok
+
+
 def extract_one(video: Path, label: str, cfg: Config, backend: str,
                 args_max_seconds: float = None, out_dir: Path = None,
                 source: str = "default", progress=None, workers: int = 1) -> dict:
@@ -89,12 +127,11 @@ def extract_one(video: Path, label: str, cfg: Config, backend: str,
     src_fps = cap.get(cv2.CAP_PROP_FPS)
     fps_sane = bool(src_fps and 1.0 < src_fps <= 120.0 and not np.isnan(src_fps))
     fallback_fps = src_fps if fps_sane else 30.0
-    target_dt = 1.0 / cfg.target_fps
+    sampler = FrameSampler(cfg.target_fps)
 
     rows = []
     frame_idx = 0
     kept = 0
-    next_t = 0.0
     last_msec = -1.0
     used_timestamps = False
     t0 = time.time()
@@ -111,10 +148,10 @@ def extract_one(video: Path, label: str, cfg: Config, backend: str,
             t = frame_idx / fallback_fps
         if args_max_seconds is not None and t > args_max_seconds:
             break
-        # v2: grid-anchored keep rule with a quarter-frame tolerance. v1's
-        # `t >= next_t, next_t = t + dt` dropped every other frame of a 25 fps source
-        # whenever a timestamp landed a hair before the grid (12.5 fps effective).
-        if t + 0.25 * target_dt >= next_t:
+        # v2: token-bucket keep rule (FrameSampler). v1's `t >= next_t, next_t = t + dt`
+        # dropped every other frame of a 25 fps source whenever a timestamp landed a
+        # hair before the grid (12.5 fps effective).
+        if sampler.keep(t):
             ok, frame = cap.retrieve()
             if not ok:
                 break
@@ -129,7 +166,6 @@ def extract_one(video: Path, label: str, cfg: Config, backend: str,
                     rec.update({c: np.nan for c in app_backend.channels})
             rows.append(rec)
             kept += 1
-            next_t = max(next_t + target_dt, t + 0.75 * target_dt)
             if progress is not None and kept % 15 == 0:
                 progress("frames", t)
         frame_idx += 1
@@ -144,7 +180,7 @@ def extract_one(video: Path, label: str, cfg: Config, backend: str,
     cols = ["t", "frame_idx", "face_found"] + channels_for_backend(backend, cfg) + ["blink"]
     cols = [c for c in cols if c in df.columns]
     df = df[cols]
-    # float32 keeps the 25 fps + blendshape parquets small; `t` stays float64
+    # float32 keeps the blendshape parquets small; `t` stays float64
     f32 = [c for c in cols if c not in ("t", "frame_idx", "face_found", "blink")]
     df[f32] = df[f32].astype(np.float32)
 
@@ -192,7 +228,7 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     if args.selftest:
-        return 0 if run_selftest() else 1
+        return 0 if (run_selftest() & sampler_selftest()) else 1
 
     cfg = DEFAULT_CONFIG
     if args.fps:

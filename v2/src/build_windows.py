@@ -303,7 +303,7 @@ def window_features(c: dict, cfg: Config):
     for k, (s, e) in enumerate(zip(starts, ends)):
         parked[k] = np.mean(np.hypot(hz[s:e] - mh[k], vz[s:e] - mv[k]) < 1.5)
     f["parked_frac"] = parked
-    # big gaze jumps: displacement over 0.2 s (a saccade spans several 25 fps samples)
+    # big gaze jumps: displacement over 0.2 s (3 samples at 15 fps), not frame to frame
     lag = max(1, int(round(0.2 / dt)))
     dh, dv = np.zeros(n), np.zeros(n)
     dh[lag:], dv[lag:] = hz[lag:] - hz[:-lag], vz[lag:] - vz[:-lag]

@@ -23,7 +23,7 @@
   var state = {
     payload: null, windows: [], segments: [], seconds: [], speaking: [], review: null,
     analysedEnd: 0, duration: 0, flagThr: 1,
-    objectUrl: null, cursor: 0, hasVideo: false, raf: 0, currentSeg: -2
+    objectUrl: null, cursor: 0, hasVideo: false, raf: 0, currentSeg: -2, whyKey: null
   };
 
   /**
@@ -183,6 +183,10 @@
     }
     el.nowReasons.textContent = si >= 0 && state.segments[si].reasons.length
       ? state.segments[si].reasons.join(', ') : '—';
+    if (app.traces) {
+      app.traces.update(t, state.duration);
+    }
+    renderWhy(t, sec, si);
 
     if (si === state.currentSeg) {
       return;
@@ -191,12 +195,81 @@
     el.screen.classList.toggle('is-suspicious', si >= 0);
     el.flag.hidden = si < 0;
     if (si >= 0) {
-      el.flag.textContent = 'Reading · ' + state.segments[si].reason;
+      el.flag.textContent = 'Reading detected · ' + f.mmss(state.segments[si].start_s) + '–' +
+        f.mmss(state.segments[si].end_s);
     }
     buttons = el.segments.querySelectorAll('.seg--jump');
     for (i = 0; i < buttons.length; i++) {
       buttons[i].classList.toggle('is-current', i === si);
     }
+  }
+
+  /**
+   * The first reading segment starting after `t`, or -1.
+   * @param {number} t
+   * @returns {number}
+   */
+  function nextSegment(t) {
+    var i;
+    for (i = 0; i < state.segments.length; i++) {
+      if (state.segments[i].start_s > t + 0.5) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * The caption under the strip: why this moment is (or isn't) flagged, in words,
+   * plus the "next reading" jump. Only rewritten when the second or segment changes.
+   * @param {number} t
+   * @param {number} sec
+   * @param {number} si  segment index at t, or -1
+   */
+  function renderWhy(t, sec, si) {
+    var f = app.format;
+    var key = si + '|' + sec;
+    var p = state.seconds[sec];
+    var sp = state.speaking[sec];
+    var ni, seg, reasons, i, li, text;
+    if (key === state.whyKey) {
+      return;
+    }
+    state.whyKey = key;
+    ni = nextSegment(t);
+    el.next.disabled = ni < 0;
+    el.next.setAttribute('data-seg', String(ni));
+    el.next.textContent = ni < 0 ? 'none after this point'
+      : '▶ ' + f.mmss(state.segments[ni].start_s) + '–' + f.mmss(state.segments[ni].end_s) +
+        ' · in ' + f.clock(state.segments[ni].start_s - t);
+
+    el.whyReasons.textContent = '';
+    el.why.className = 'why';
+    if (si >= 0) {
+      seg = state.segments[si];
+      el.why.className = 'why is-flagged';
+      el.whyState.textContent = 'Reading detected ' + f.mmss(seg.start_s) + '–' + f.mmss(seg.end_s) +
+        ' (' + Math.round(seg.end_s - seg.start_s) + ' s, peak ' + seg.peak_prob.toFixed(2) + ') · ' +
+        (seg.speaking_frac >= 0.5 ? 'while answering' : 'while not speaking') + ' · why:';
+      reasons = seg.reasons.length ? seg.reasons : ['high reading probability (no single signal stands out)'];
+      for (i = 0; i < reasons.length; i++) {
+        li = document.createElement('li');
+        li.textContent = reasons[i];
+        el.whyReasons.appendChild(li);
+      }
+      return;
+    }
+    if (p === null || p === undefined) {
+      el.whyState.textContent = t >= state.analysedEnd
+        ? 'Not analysed — the face tracker stopped at ' + f.mmss(state.analysedEnd) + '.'
+        : 'No usable face signal at ' + f.mmss(t) + '.';
+      return;
+    }
+    text = p >= 0.5 * state.flagThr
+      ? 'Elevated reading probability ' + p.toFixed(2) + ', below the ' + state.flagThr.toFixed(2) +
+        ' needed to flag'
+      : 'No reading detected (probability ' + p.toFixed(2) + ')';
+    el.whyState.textContent = text + (sp >= 0.5 ? ' · candidate speaking' : ' · candidate not speaking') + '.';
   }
 
   /** Keeps the playhead smooth while the video plays (timeupdate is only ~4 Hz). */
@@ -365,6 +438,13 @@
       }
     });
 
+    el.next.addEventListener('click', function () {
+      var s = state.segments[parseInt(el.next.getAttribute('data-seg'), 10)];
+      if (s) {
+        seekTo(s.start_s, true, false);
+      }
+    });
+
     el.pick.addEventListener('click', function () { el.file.click(); });
     el.file.addEventListener('change', function () {
       if (el.file.files[0]) {
@@ -426,6 +506,7 @@
     state.hasVideo = false;
     state.cursor = 0;
     state.currentSeg = -2;
+    state.whyKey = null;
     el.note.hidden = true;
     el.flag.hidden = true;
     el.screen.classList.remove('is-suspicious');
@@ -439,7 +520,8 @@
       empty: 'review-empty', emptyMsg: 'review-empty-msg', pick: 'review-pick', file: 'review-file',
       strip: 'strip', cells: 'strip-cells', head: 'strip-head', tip: 'strip-tip', stripEnd: 'strip-end',
       note: 'review-note', nowTime: 'now-time', nowScore: 'now-score', nowSpeak: 'now-speak',
-      nowReasons: 'now-reasons', segments: 'segments', segmentsEmpty: 'segments-empty'
+      nowReasons: 'now-reasons', segments: 'segments', segmentsEmpty: 'segments-empty',
+      why: 'why', whyState: 'why-state', whyReasons: 'why-reasons', next: 'now-next'
     };
     var key;
     for (key in ids) {

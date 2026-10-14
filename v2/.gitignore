@@ -1,7 +1,16 @@
 # v2 generated data (large; rebuild with the commands in README.md)
 data/features/
 data/windows/
+data/features_25fps/
+data/windows_25fps/
 reports/_predict_cache/
 reports/*__timeline.npz
 webapp/runs/
+# pre-scored candidate library + seekable video copies (rebuild: webapp/library.py)
+webapp/library/
 __pycache__/
+
+# MLflow experiment tracking store (local; see src/tracking.py)
+mlflow.db
+mlartifacts/
+mlruns/

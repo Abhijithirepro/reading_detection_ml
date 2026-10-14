@@ -2,7 +2,7 @@
 predict.py (v2) — Stage 4: score any video -> per-second reading probability,
 reading segments (with reasons), and a verdict based on total reading time.
 
-Pipeline: extract (25 fps + blendshapes) -> clean -> 8 s windows every 1 s ->
+Pipeline: extract (15 fps + blendshapes) -> clean -> 8 s windows every 1 s ->
 XGBoost reading probability per window -> per-second score (reading.per_second)
 -> segments above the tuned second threshold (short gaps merged, blips dropped)
 -> verdict: total reading seconds >= the tuned video threshold => CHEATING.
@@ -52,6 +52,13 @@ def load_winner(device="cpu"):
     art = json.loads(mpath.read_text())
     if art.get("kind") != "reading_xgb":
         print(f"{mpath} holds a '{art.get('kind')}' model; v2 needs 'reading_xgb'. Re-run train.py.")
+        sys.exit(1)
+    # the model only fits features sampled at the rate it was trained on (15 fps)
+    cfg_path = MODELS_DIR / "config.json"
+    cfg_fps = json.loads(cfg_path.read_text()).get("target_fps") if cfg_path.exists() else None
+    if art.get("target_fps") and cfg_fps and abs(art["target_fps"] - cfg_fps) > 1e-6:
+        print(f"{mpath} was trained on {art['target_fps']:g} fps features but {cfg_path.name} "
+              f"samples {cfg_fps:g} fps. Re-run train.py, or restore the matching config.json.")
         sys.exit(1)
     from xgboost import XGBClassifier
     model = XGBClassifier()
@@ -161,6 +168,19 @@ def score_video(video: Path, cfg: Config, artifact, scorer, flag_threshold=None,
     n_sec = int(np.ceil(win_df["win_end_s"].max()))
     score = reading.per_second(win_df["win_start_s"], win_df["win_end_s"], win_df["prob"],
                                n_sec, art.get("smooth_s", 3))
+    result = result_from_scores(video, score, win_df, clean, art, sec_thr)
+    return result, win_df, clean, feat_path
+
+
+def result_from_scores(video: Path, score: np.ndarray, win_df: pd.DataFrame, clean: dict,
+                       art: dict, sec_thr: float, stat_speaking=None) -> dict:
+    """Per-second reading score -> segments with reasons, speaking, verdict.
+    Shared by score_video and the web app's pre-scored library (which passes
+    out-of-fold scores), so both build their results one way only.
+    `stat_speaking` (per second, 0..1) replaces the frame-based speaking in the
+    video statistic; the library passes train.py's window-based speaking so its
+    out-of-fold verdicts match the cross-validation tables exactly."""
+    n_sec = len(score)
     segs = reading.segments(score, sec_thr, art["min_segment_seconds"], art["merge_gap_seconds"])
 
     # speaking per second on the video clock
@@ -174,7 +194,8 @@ def score_video(video: Path, cfg: Config, artifact, scorer, flag_threshold=None,
     speaking_s = float(np.sum(sp) * dt)
 
     stats = reading.video_stats(score, speaking_s, sec_thr, art["min_segment_seconds"],
-                                art["merge_gap_seconds"], speak_sec)
+                                art["merge_gap_seconds"],
+                                speak_sec if stat_speaking is None else stat_speaking)
     vthr = float(art["video_threshold"])
     vstat = art.get("video_stat", "reading_seconds")
     value = stats[vstat]
@@ -212,7 +233,7 @@ def score_video(video: Path, cfg: Config, artifact, scorer, flag_threshold=None,
         seconds=[None if not np.isfinite(x) else round(float(x), 3) for x in score],
         speaking=[round(float(x), 2) for x in speak_sec],
     )
-    return result, win_df, clean, feat_path
+    return result
 
 
 def save_timeline(video: Path, result, win_df, clean):

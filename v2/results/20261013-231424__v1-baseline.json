@@ -1,0 +1,64 @@
+{
+  "name": "v1-baseline",
+  "time": "2026-10-13 23:14",
+  "summary": "Original model (`models/`, 1D-CNN, threshold 0.959) scored on the three reviewed videos. **In-sample**: v1 was trained on these very videos, so this is its best case. Per-second score = max probability of the 20 s windows covering that second. Video-level row uses v1's own out-of-fold CV scores.",
+  "per_second": [
+    {
+      "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+      "seconds": 1410,
+      "reading_s": 698,
+      "flagged_s": 560,
+      "auc": 0.7102214191429767,
+      "ap": 0.7002405643232705,
+      "precision": 0.6696428571428571,
+      "recall": 0.5372492836676218,
+      "iou": 0.4246885617214043,
+      "f1": 0.5961844197138315,
+      "spans_caught": "14/26",
+      "span_hit_rate": 0.5384615384615384
+    },
+    {
+      "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+      "seconds": 1580,
+      "reading_s": 239,
+      "flagged_s": 980,
+      "auc": 0.5669112852146185,
+      "ap": 0.18749778242611506,
+      "precision": 0.1673469387755102,
+      "recall": 0.6861924686192469,
+      "iou": 0.15545023696682464,
+      "f1": 0.2690730106644791,
+      "spans_caught": "6/9",
+      "span_hit_rate": 0.6666666666666666
+    },
+    {
+      "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+      "seconds": 1810,
+      "reading_s": 371,
+      "flagged_s": 600,
+      "auc": 0.48141866263072025,
+      "ap": 0.18610416462981194,
+      "precision": 0.15333333333333332,
+      "recall": 0.24797843665768193,
+      "iou": 0.10466439135381114,
+      "f1": 0.18949536560247168,
+      "spans_caught": "8/29",
+      "span_hit_rate": 0.27586206896551724
+    }
+  ],
+  "video": {
+    "n": 100,
+    "auc": 0.8432790837854128,
+    "tp": 10,
+    "fp": 1,
+    "fn": 11,
+    "tn": 78,
+    "precision": 0.9090909090909091,
+    "recall": 0.47619047619047616,
+    "accuracy": 0.88,
+    "threshold": 0.9590356985076529,
+    "matched_auc": 0.8605442176870748,
+    "matched_fp": 0,
+    "matched_n_clean": 28
+  }
+}

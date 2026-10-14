@@ -44,6 +44,7 @@ from common import Config, DEFAULT_CONFIG, WINDOWS_DIR, MODELS_DIR, RESULTS_DIR
 import labels as lab
 import reading
 import results_log
+import tracking
 from evaluate import per_second_metrics, video_metrics
 
 warnings.filterwarnings("ignore")
@@ -391,7 +392,7 @@ def ship(model, windows, feats, cfg, ev, args, importances):
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
     model.save_model(str(MODELS_DIR / "reading_xgb.json"))
     art = dict(
-        kind="reading_xgb", version=2, features=feats,
+        kind="reading_xgb", version=2, features=feats, target_fps=cfg.target_fps,
         read_window_seconds=cfg.read_window_seconds, read_stride_seconds=cfg.read_stride_seconds,
         second_threshold=ev["second_threshold"], smooth_s=3,
         min_segment_seconds=cfg.min_segment_seconds, merge_gap_seconds=cfg.merge_gap_seconds,
@@ -490,7 +491,7 @@ def main(argv=None):
                   iou=float(ps.iou.mean()),
                   spans_caught=f"{sum(int(s.split('/')[0]) for s in ps.spans_caught)}/"
                                f"{sum(int(s.split('/')[1]) for s in ps.spans_caught)}")
-    summary = (f"XGBoost reading detector, {len(feats)} features, {args.folds}-fold CV "
+    summary = (f"XGBoost reading detector, {cfg.target_fps:g} fps, {len(feats)} features, {args.folds}-fold CV "
                f"(reviewed videos held out one per fold; unreviewed cheating never trained on). "
                f"Second threshold {ev['second_threshold']} (max F1, clean budget {args.clean_budget:.0%}); "
                f"video rule: {args.video_stat} >= {ev['video_threshold']:.2f}. "
@@ -503,7 +504,11 @@ def main(argv=None):
     clean_line = (f"Clean videos: {cf.flagged_s.sum():.0f} s flagged of {cf.seconds.sum()} s "
                   f"({cf.flagged_s.sum() / max(cf.seconds.sum(), 1):.2%}); "
                   f"{(cf.flagged_s > 0).sum()}/{len(cf)} clean videos have any flagged span.")
-    if not args.no_log:
+    if not args.no_log:                                 # oof files first, so MLflow attaches them
+        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(RESULTS_DIR / f"oof_seconds__{args.exp}.npz",
+                            **{v.split("__")[-1]: d["score"] for v, d in ev["tables"].items()})
+        ev["video_scores"].to_csv(RESULTS_DIR / f"oof_video_scores__{args.exp}.csv", index=False)
         results_log.append(
             args.exp, summary,
             {"Per-second vs manual reviews (out-of-fold; pooled AUC = mean over videos)":
@@ -511,18 +516,14 @@ def main(argv=None):
              "Video level (out-of-fold)": results_log.table([vrow]),
              "Video-statistic AUCs": results_log.table([ev["stat_auc"]]),
              "Top features": ", ".join(f"{f} ({i:.3f})" for f, i in imp[:12])},
-            dict(args=vars(args), per_second=ev["per_second"], video=vm, stat_auc=ev["stat_auc"],
+            dict(args=vars(args), target_fps=cfg.target_fps, per_second=ev["per_second"], video=vm,
+                 stat_auc=ev["stat_auc"],
                  second_threshold=ev["second_threshold"], sweep=ev["sweep"].to_dict(orient="records"),
                  importances=imp[:40]))
 
-    if not args.no_log:
-        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-        np.savez_compressed(RESULTS_DIR / f"oof_seconds__{args.exp}.npz",
-                            **{v.split("__")[-1]: d["score"] for v, d in ev["tables"].items()})
-        ev["video_scores"].to_csv(RESULTS_DIR / f"oof_video_scores__{args.exp}.csv", index=False)
-
     if not args.no_ship:
         ship(full, windows, feats, cfg, ev, args, imp)
+        tracking.attach(MODELS_DIR / "reading_xgb.json", MODELS_DIR / "model.json")
     return 0
 
 

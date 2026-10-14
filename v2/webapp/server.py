@@ -22,6 +22,15 @@ API:
     GET    /api/jobs/{id}/video          the uploaded video (only with --keep-uploads)
     POST   /api/jobs/{id}/review         v2: multipart review CSV -> agreement with the manual review
     GET    /api/jobs/{id}/segments.csv   v2: detected reading segments, reviewers' sheet format
+    GET    /api/jobs/{id}/traces         eye / head / mouth traces for the live signal chart
+
+    Pre-scored library (every recording in the three folders; build it with library.py):
+    GET    /api/library                  candidate list + summary
+    GET    /api/library/{cid}            result payload (same shape as a job's)
+    GET    /api/library/{cid}/video      the recording (seekable; HTTP Range)
+    GET    /api/library/{cid}/report     detailed HTML report
+    GET    /api/library/{cid}/traces     eye / head / mouth traces
+    GET    /api/library/{cid}/segments.csv, /result.json   downloads
 """
 
 from __future__ import annotations
@@ -37,10 +46,12 @@ from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 
 import engine as eng
+import library as lib
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
 ENGINE: eng.Engine | None = None
+LIBRARY = lib.Library()
 
 
 @asynccontextmanager
@@ -154,6 +165,74 @@ def job_result(job_id: str):
     if payload is None:
         raise HTTPException(404, "No result for this job")
     stem = Path(payload["source"]).stem or job_id
+    return JSONResponse(payload, headers={
+        "Content-Disposition": f'attachment; filename="{stem}__prediction.json"'})
+
+
+@app.get("/api/jobs/{job_id}/traces")
+def job_traces(job_id: str):
+    path = _engine().traces_path(job_id)
+    if path is None:
+        raise HTTPException(404, "No traces for this job")
+    return FileResponse(path, media_type="application/json")
+
+
+# --------------------------------------------------------------------------- #
+# Pre-scored library: every recording in the three folders, built by library.py
+# --------------------------------------------------------------------------- #
+@app.get("/api/library")
+def library_index():
+    return LIBRARY.index()
+
+
+def _library_payload(cid: str) -> dict:
+    payload = LIBRARY.payload(cid)
+    if payload is None:
+        raise HTTPException(404, "No such candidate in the library")
+    return payload
+
+
+@app.get("/api/library/{cid}")
+def library_item(cid: str):
+    return _library_payload(cid)
+
+
+@app.get("/api/library/{cid}/video")
+def library_video(cid: str):
+    path = LIBRARY.video_path(cid)
+    if path is None:
+        raise HTTPException(404, "Recording not found on disk")
+    return FileResponse(path, media_type=mimetypes.guess_type(path.name)[0] or "video/mp4")
+
+
+@app.get("/api/library/{cid}/report")
+def library_report(cid: str):
+    path = LIBRARY.report_path(cid)
+    if path is None:
+        raise HTTPException(404, "No report for this candidate")
+    return FileResponse(path, media_type="text/html")
+
+
+@app.get("/api/library/{cid}/traces")
+def library_traces(cid: str):
+    path = LIBRARY.traces_path(cid)
+    if path is None:
+        raise HTTPException(404, "No traces for this candidate")
+    return FileResponse(path, media_type="application/json")
+
+
+@app.get("/api/library/{cid}/segments.csv")
+def library_segments_csv(cid: str):
+    payload = _library_payload(cid)
+    stem = Path(payload["source"]).stem
+    return PlainTextResponse(eng.segments_csv(payload["result"]), media_type="text/csv", headers={
+        "Content-Disposition": f'attachment; filename="{stem}__reading_segments.csv"'})
+
+
+@app.get("/api/library/{cid}/result.json")
+def library_result(cid: str):
+    payload = _library_payload(cid)
+    stem = Path(payload["source"]).stem
     return JSONResponse(payload, headers={
         "Content-Disposition": f'attachment; filename="{stem}__prediction.json"'})
 

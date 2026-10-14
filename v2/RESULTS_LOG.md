@@ -228,3 +228,211 @@ _json: `results/20261012-205613__v2-cnn-strong-labels.json`_
 | combined_ir8308053_Muthakani_Venkateswarlu | 698 | 34 | 0.783 | 0.912 | 0.044 | 0.044 | 1/26 |
 
 _json: `results/20261012-215211__v2-cnn-vs-xgb-selftrain.json`_
+
+---
+
+## 2026-10-13 23:13 — v2-15fps-xgb-base
+
+XGBoost reading detector, 15 fps, 62 features, 5-fold CV (reviewed videos held out one per fold; unreviewed cheating never trained on). Second threshold 0.0111 (max F1, clean budget 2%); video rule: reading_seconds >= 27.00. Dropped groups: ['ctx']. Strong labels from 3 reviews; 8 s/1 s windows; eye+mouth+head features without answer-context.
+
+**Per-second vs manual reviews (out-of-fold; pooled AUC = mean over videos)**
+
+| video | reading_s | flagged_s | auc | precision | recall | iou | spans_caught |
+|---|---|---|---|---|---|---|---|
+| combined_ir8244089_Marthala_Ashok_Reddy | 239 | 32 | 0.846 | 0.188 | 0.025 | 0.023 | 0/9 |
+| combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1) | 371 | 103 | 0.726 | 0.330 | 0.092 | 0.077 | 0/29 |
+| combined_ir8308053_Muthakani_Venkateswarlu | 698 | 34 | 0.940 | 1.000 | 0.049 | 0.049 | 0/26 |
+| ALL reviewed (pooled) | 1308 | 169 | 0.837 | 0.438 | 0.057 | 0.050 | 0/64 |
+
+Clean videos: 2675 s flagged of 142644 s (1.88%); 29/79 clean videos have any flagged span.
+
+**Video level (out-of-fold)**
+
+| stat | auc | precision | recall | tp | fp | fn | tn | matched_auc | matched_fp | unreviewed_caught | threshold |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| reading_seconds | 0.844 | 0.529 | 0.857 | 18 | 16 | 3 | 63 | 0.876 | 4/28 | 15/18 | 27.000 |
+
+**Video-statistic AUCs**
+
+| reading_seconds | reading_share | reading_share_of_speech | top10_mean | p95 | speech_prob_mean | speech_prob_p90 |
+|---|---|---|---|---|---|---|
+| 0.844 | 0.869 | 0.872 | 0.837 | 0.853 | 0.844 | 0.860 |
+
+**Top features**
+
+speak_frac (0.177), head_speed (0.117), mouth_act_vrel (0.080), blink_rate (0.080), yaw_std (0.034), smile_mean (0.033), mouth_act (0.032), jaw_act (0.032), roll_std (0.027), yaw_std_vrel (0.026), jaw_act_vrel (0.025), speak_ctx30 (0.021)
+
+_json: `results/20261013-231313__v2-15fps-xgb-base.json`_
+
+---
+
+## 2026-10-13 23:13 — v2-15fps-xgb-context
+
+XGBoost reading detector, 15 fps, 78 features, 5-fold CV (reviewed videos held out one per fold; unreviewed cheating never trained on). Second threshold 0.005 (max F1, clean budget 2%); video rule: reading_seconds >= 81.00. Dropped groups: none. Adds the answer-context group.
+
+**Per-second vs manual reviews (out-of-fold; pooled AUC = mean over videos)**
+
+| video | reading_s | flagged_s | auc | precision | recall | iou | spans_caught |
+|---|---|---|---|---|---|---|---|
+| combined_ir8244089_Marthala_Ashok_Reddy | 239 | 116 | 0.908 | 0.431 | 0.209 | 0.164 | 2/9 |
+| combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1) | 371 | 381 | 0.805 | 0.433 | 0.445 | 0.281 | 13/29 |
+| combined_ir8308053_Muthakani_Venkateswarlu | 698 | 13 | 0.919 | 1.000 | 0.019 | 0.019 | 0/26 |
+| ALL reviewed (pooled) | 1308 | 510 | 0.877 | 0.447 | 0.174 | 0.155 | 15/64 |
+
+Clean videos: 2454 s flagged of 142644 s (1.72%); 32/79 clean videos have any flagged span.
+
+**Video level (out-of-fold)**
+
+| stat | auc | precision | recall | tp | fp | fn | tn | matched_auc | matched_fp | unreviewed_caught | threshold |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| reading_seconds | 0.829 | 0.591 | 0.619 | 13 | 9 | 8 | 70 | 0.866 | 1/28 | 11/18 | 81.000 |
+
+**Video-statistic AUCs**
+
+| reading_seconds | reading_share | reading_share_of_speech | top10_mean | p95 | speech_prob_mean | speech_prob_p90 |
+|---|---|---|---|---|---|---|
+| 0.829 | 0.851 | 0.854 | 0.855 | 0.851 | 0.863 | 0.851 |
+
+**Top features**
+
+ctx_head_speed_speak (0.143), speak_frac (0.140), ctx_head_vs_listen (0.103), head_speed (0.058), mouth_act (0.052), ctx_blink_speak (0.048), mouth_act_vrel (0.039), blink_rate (0.037), speak_act (0.022), ctx_aversion_vs_listen (0.021), ctx_speak_frac (0.021), ctx_v_std_speak (0.018)
+
+_json: `results/20261013-231325__v2-15fps-xgb-context.json`_
+
+---
+
+## 2026-10-13 23:13 — v2-15fps-xgb-context-selftrain
+
+XGBoost reading detector, 15 fps, 78 features, 5-fold CV (reviewed videos held out one per fold; unreviewed cheating never trained on). Second threshold 0.3 (max F1, clean budget 2%); video rule: reading_seconds >= 191.00. Dropped groups: none. Self-training: top 30% of each unreviewed cheating video's speaking windows as pseudo-reading (weight 0.5), A/B cross-scored. Self-training on the 18 unreviewed cheaters (fold-specific, A/B cross-scored).
+
+**Per-second vs manual reviews (out-of-fold; pooled AUC = mean over videos)**
+
+| video | reading_s | flagged_s | auc | precision | recall | iou | spans_caught |
+|---|---|---|---|---|---|---|---|
+| combined_ir8244089_Marthala_Ashok_Reddy | 239 | 347 | 0.925 | 0.539 | 0.782 | 0.469 | 8/9 |
+| combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1) | 371 | 849 | 0.883 | 0.425 | 0.973 | 0.420 | 28/29 |
+| combined_ir8308053_Muthakani_Venkateswarlu | 698 | 771 | 0.945 | 0.840 | 0.928 | 0.789 | 26/26 |
+| ALL reviewed (pooled) | 1308 | 1967 | 0.917 | 0.608 | 0.914 | 0.559 | 62/64 |
+
+Clean videos: 2561 s flagged of 142644 s (1.80%); 33/79 clean videos have any flagged span.
+
+**Video level (out-of-fold)**
+
+| stat | auc | precision | recall | tp | fp | fn | tn | matched_auc | matched_fp | unreviewed_caught | threshold |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| reading_seconds | 0.771 | 0.769 | 0.476 | 10 | 3 | 11 | 76 | 0.767 | 1/28 | 7/18 | 191.000 |
+
+**Video-statistic AUCs**
+
+| reading_seconds | reading_share | reading_share_of_speech | top10_mean | p95 | speech_prob_mean | speech_prob_p90 |
+|---|---|---|---|---|---|---|
+| 0.771 | 0.786 | 0.784 | 0.804 | 0.805 | 0.805 | 0.805 |
+
+**Top features**
+
+speak_frac (0.216), ctx_head_vs_listen (0.076), mouth_act_vrel (0.067), ctx_blink_speak (0.063), mouth_act (0.046), blink_rate (0.041), ctx_head_speed_speak (0.033), ctx_speak_frac (0.021), jaw_mean (0.019), ctx_v_std_speak (0.019), speak_ctx30 (0.016), ctx_v_mean_speak (0.016)
+
+_json: `results/20261013-231352__v2-15fps-xgb-context-selftrain.json`_
+
+---
+
+## 2026-10-13 23:14 — v2-15fps-xgb-selftrain-hardneg-SHIPPED
+
+XGBoost reading detector, 15 fps, 78 features, 5-fold CV (reviewed videos held out one per fold; unreviewed cheating never trained on). Second threshold 0.175 (max F1, clean budget 2%); video rule: speech_prob_mean >= 0.17. Dropped groups: none. Self-training: top 15% of each unreviewed cheating video's speaking windows as pseudo-reading (weight 0.5), A/B cross-scored. Clean speaking windows weighted as their own share (1.0). Shipped recipe, re-run on 15 fps features (production rate).
+
+**Per-second vs manual reviews (out-of-fold; pooled AUC = mean over videos)**
+
+| video | reading_s | flagged_s | auc | precision | recall | iou | spans_caught |
+|---|---|---|---|---|---|---|---|
+| combined_ir8244089_Marthala_Ashok_Reddy | 239 | 342 | 0.929 | 0.567 | 0.812 | 0.501 | 9/9 |
+| combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1) | 371 | 797 | 0.883 | 0.445 | 0.957 | 0.437 | 28/29 |
+| combined_ir8308053_Muthakani_Venkateswarlu | 698 | 606 | 0.953 | 0.901 | 0.782 | 0.720 | 23/26 |
+| ALL reviewed (pooled) | 1308 | 1745 | 0.922 | 0.628 | 0.837 | 0.553 | 60/64 |
+
+Clean videos: 2593 s flagged of 142644 s (1.82%); 37/79 clean videos have any flagged span.
+
+**Video level (out-of-fold)**
+
+| stat | auc | precision | recall | tp | fp | fn | tn | matched_auc | matched_fp | unreviewed_caught | threshold |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| speech_prob_mean | 0.827 | 0.909 | 0.476 | 10 | 1 | 11 | 78 | 0.825 | 1/28 | 7/18 | 0.166 |
+
+**Video-statistic AUCs**
+
+| reading_seconds | reading_share | reading_share_of_speech | top10_mean | p95 | speech_prob_mean | speech_prob_p90 |
+|---|---|---|---|---|---|---|
+| 0.804 | 0.823 | 0.819 | 0.823 | 0.816 | 0.827 | 0.816 |
+
+**Top features**
+
+speak_frac (0.230), ctx_head_vs_listen (0.091), blink_rate (0.087), mouth_act_vrel (0.072), ctx_blink_speak (0.070), ctx_head_speed_speak (0.031), mouth_act (0.026), ctx_speak_frac (0.020), jaw_mean (0.020), ctx_v_std_speak (0.018), speak_act (0.016), speak_ctx30 (0.014)
+
+_json: `results/20261013-231419__v2-15fps-xgb-selftrain-hardneg-SHIPPED.json`_
+
+---
+
+## 2026-10-13 23:14 — v1-baseline
+
+Original model (`models/`, 1D-CNN, threshold 0.959) scored on the three reviewed videos. **In-sample**: v1 was trained on these very videos, so this is its best case. Per-second score = max probability of the 20 s windows covering that second. Video-level row uses v1's own out-of-fold CV scores.
+
+**Per-second vs manual reviews**
+
+| video | reading_s | flagged_s | auc | precision | recall | iou | spans_caught |
+|---|---|---|---|---|---|---|---|
+| combined_ir8308053_Muthakani_Venkateswarlu | 698 | 560 | 0.710 | 0.670 | 0.537 | 0.425 | 14/26 |
+| combined_ir8244089_Marthala_Ashok_Reddy | 239 | 980 | 0.567 | 0.167 | 0.686 | 0.155 | 6/9 |
+| combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1) | 371 | 600 | 0.481 | 0.153 | 0.248 | 0.105 | 8/29 |
+
+**Video level (v1 out-of-fold)**
+
+| scope | auc | precision | recall | tp | fp | fn | tn | matched_auc | matched_fp |
+|---|---|---|---|---|---|---|---|---|---|
+| all 100 | 0.843 | 0.909 | 0.476 | 10 | 1 | 11 | 78 | 0.861 | 0/28 |
+
+_json: `results/20261013-231424__v1-baseline.json`_
+
+---
+
+## 2026-10-13 23:17 — v2-15fps-cnn-strong-labels
+
+1D-CNN on raw per-frame channels (eye_h, eye_v, gaze_x, gaze_y, jaw, mouth, blink, yaw, pitch, speaking), 8 s @ 15 Hz, 10 epochs; no self-training; verdict stat speech_prob_mean. Same folds, leak-free pseudo-labels, thresholds and metrics as the XGBoost runs. Same strong labels and folds as the XGBoost runs, no self-training.
+
+**Head-to-head (out-of-fold)**
+
+| model | spans_caught | sec_auc_mean | sec_precision | sec_recall | iou_mean | clean_flagged | video_auc | caught | false_alarms | matched_auc | Marthala auc/rec/spans | Sai auc/rec/spans | Muthakani auc/rec/spans |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| CNN | 6/64 | 0.701 | 0.725 | 0.067 | 0.064 | 1.94% | 0.742 | 10/21 | 9 | 0.787 | 0.59 / 0.00 / 0/9 | 0.77 / 0.17 / 4/29 | 0.74 / 0.03 / 2/26 |
+
+**CNN per-second vs manual reviews**
+
+| video | reading_s | flagged_s | auc | precision | recall | iou | spans_caught |
+|---|---|---|---|---|---|---|---|
+| combined_ir8244089_Marthala_Ashok_Reddy | 239 | 0 | 0.593 | 0.000 | 0.000 | 0.000 | 0/9 |
+| combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1) | 371 | 92 | 0.772 | 0.696 | 0.173 | 0.160 | 4/29 |
+| combined_ir8308053_Muthakani_Venkateswarlu | 698 | 28 | 0.739 | 0.821 | 0.033 | 0.033 | 2/26 |
+
+_json: `results/20261013-231741__v2-15fps-cnn-strong-labels.json`_
+
+---
+
+## 2026-10-13 23:22 — v2-15fps-cnn-vs-xgb-selftrain
+
+1D-CNN on raw per-frame channels (eye_h, eye_v, gaze_x, gaze_y, jaw, mouth, blink, yaw, pitch, speaking), 8 s @ 15 Hz, 10 epochs; self-training 15% (weight 0.5), clean-speech weight 1.0; verdict stat speech_prob_mean. Same folds, leak-free pseudo-labels, thresholds and metrics as the XGBoost runs — XGBoost re-run on the identical window set for a head-to-head. CNN with the recipe that fixed XGBoost, head-to-head on identical windows.
+
+**Head-to-head (out-of-fold)**
+
+| model | spans_caught | sec_auc_mean | sec_precision | sec_recall | iou_mean | clean_flagged | video_auc | caught | false_alarms | matched_auc | Marthala auc/rec/spans | Sai auc/rec/spans | Muthakani auc/rec/spans |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| XGBoost | 60/64 | 0.922 | 0.628 | 0.837 | 0.553 | 1.82% | 0.827 | 10/21 | 1 | 0.825 | 0.93 / 0.81 / 9/9 | 0.88 / 0.96 / 28/29 | 0.95 / 0.78 / 23/26 |
+| CNN | 4/64 | 0.696 | 0.613 | 0.075 | 0.066 | 1.81% | 0.791 | 17/21 | 15 | 0.821 | 0.53 / 0.04 / 0/9 | 0.74 / 0.09 / 3/29 | 0.82 / 0.08 / 1/26 |
+| XGB+CNN average | 40/64 | 0.911 | 0.656 | 0.573 | 0.418 | 1.73% | 0.858 | 9/21 | 0 | 0.866 | 0.90 / 0.43 / 4/9 | 0.88 / 0.88 / 25/29 | 0.95 / 0.46 / 11/26 |
+
+**CNN per-second vs manual reviews**
+
+| video | reading_s | flagged_s | auc | precision | recall | iou | spans_caught |
+|---|---|---|---|---|---|---|---|
+| combined_ir8244089_Marthala_Ashok_Reddy | 239 | 42 | 0.527 | 0.214 | 0.038 | 0.033 | 0/9 |
+| combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1) | 371 | 61 | 0.740 | 0.574 | 0.094 | 0.088 | 3/29 |
+| combined_ir8308053_Muthakani_Venkateswarlu | 698 | 57 | 0.823 | 0.947 | 0.077 | 0.077 | 1/26 |
+
+_json: `results/20261013-232229__v2-15fps-cnn-vs-xgb-selftrain.json`_

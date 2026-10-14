@@ -81,8 +81,15 @@
    * @param {Object} payload
    */
   function render(payload) {
-    state.jobId = payload.job_id;
+    var library = !!payload.candidate;     // pre-scored: reviews attach by IR number at build time
+    state.jobId = library ? null : payload.job_id;
+    el.pick.hidden = library;
+    el.hint.hidden = library;
     show(payload.review || null);
+    if (library && !payload.review) {
+      el.src.textContent = 'No manual review for this candidate (manual_review_for_candidate/ has none ' +
+        'with this IR number).';
+    }
   }
 
   /** Uploads the chosen review CSV and re-renders with the server's comparison. */
@@ -122,6 +129,7 @@
     if (!el.pick) {
       return;
     }
+    el.hint = el.pick.parentNode.querySelector('.compare__hint');
     el.pick.addEventListener('click', function () { el.file.click(); });
     el.file.addEventListener('change', function () {
       if (el.file.files[0]) {

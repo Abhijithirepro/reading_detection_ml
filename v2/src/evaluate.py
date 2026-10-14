@@ -142,7 +142,7 @@ def v1_baseline():
         rows.append(dict(video=v["name"].split("__")[-1], **m))
 
     # video level: v1's own out-of-fold scores, restricted to the 100 on-disk recordings
-    vs = pd.read_csv(V1_ROOT / "models" / "cv_video_scores.csv")
+    vs = pd.read_csv(V1_ROOT / "models" / "cv_video_scores.csv", float_precision="round_trip")
     vs = vs[vs.group.str.contains("__interviews")].copy()
     vs["matched"] = vs.group.str.startswith("clean__interviews__")
     vm = video_metrics(vs, thr)

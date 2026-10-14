@@ -73,6 +73,13 @@
       ' + ' + payload.runtime.cnn;
     el.hw.title = 'face tracking on ' + (payload.runtime.mediapipe_threads || 1) +
       ' CPU threads, reading model on ' + payload.runtime.cnn;
+    if (payload.candidate) {
+      // pre-scored by library.py from the cached features: nothing ran for this view
+      el.time.textContent = 'pre-scored';
+      el.speed.textContent = '—';
+      el.hw.textContent = 'cached features';
+      el.hw.title = 'scored offline by webapp/library.py from v2/data/features';
+    }
 
     el.faceWarn.hidden = !(s.face_ratio < LOW_FACE_RATIO);
     if (!el.faceWarn.hidden) {
@@ -136,12 +143,44 @@
     app.chart.draw(el.chart, el.chartTip, payload.windows, r.flag_threshold, app.review.seekWindow);
     renderTable(payload.windows, r.flag_threshold, payload.stats.t0 || 0);
     app.compare.render(payload);
+    app.traces.load(payload);
+    renderReport(payload.report_url);
+  }
+
+  /**
+   * Embeds the full HTML report (same origin) and grows the frame to its content.
+   * @param {string|null} url
+   */
+  function renderReport(url) {
+    el.reportBox.hidden = !url;
+    el.frame.style.height = '';
+    if (!url) {
+      el.frame.removeAttribute('src');
+      return;
+    }
+    el.reportOpen.href = url;
+    el.frame.src = url;
+  }
+
+  /** Sizes the report frame to its document so the page scrolls, not the frame. */
+  function fitReport() {
+    var doc;
+    try {
+      doc = el.frame.contentDocument;
+    } catch (e) {
+      return;
+    }
+    if (doc && doc.documentElement && el.frame.getAttribute('src')) {
+      el.frame.style.height = doc.documentElement.scrollHeight + 'px';
+    }
   }
 
   /** Hides the result block and releases the video for a new run. */
   function hide() {
     el.block.hidden = true;
     app.review.reset();
+    app.traces.reset();
+    renderReport(null);
   }
 
   /** Caches element references. */
@@ -153,7 +192,8 @@
       windows: 'rs-windows', flagged: 'rs-flagged', share: 'rs-share', segs: 'rs-segs',
       span: 'rs-span', face: 'rs-face',
       time: 'rs-time', speed: 'rs-speed', frames: 'rs-frames', hw: 'rs-hw',
-      chart: 'chart', chartTip: 'chart-tip', table: 'wtable'
+      chart: 'chart', chartTip: 'chart-tip', table: 'wtable',
+      reportBox: 'detail-report', reportOpen: 'detail-open', frame: 'report-frame'
     };
     var key;
     for (key in ids) {
@@ -164,6 +204,10 @@
     if (el.table) {
       el.table.addEventListener('click', onTableActivate);
       el.table.addEventListener('keydown', onTableActivate);
+    }
+    if (el.frame) {
+      el.frame.addEventListener('load', fitReport);
+      window.addEventListener('resize', fitReport);
     }
   }
 

@@ -1,0 +1,605 @@
+{
+  "name": "v2-15fps-xgb-context",
+  "time": "2026-10-13 23:13",
+  "summary": "XGBoost reading detector, 15 fps, 78 features, 5-fold CV (reviewed videos held out one per fold; unreviewed cheating never trained on). Second threshold 0.005 (max F1, clean budget 2%); video rule: reading_seconds >= 81.00. Dropped groups: none. Adds the answer-context group.",
+  "args": {
+    "exp": "v2-15fps-xgb-context",
+    "folds": 5,
+    "seed": 42,
+    "reviewed_neg_weight": 0.5,
+    "clean_budget": 0.02,
+    "video_stat": "reading_seconds",
+    "drop_group": [],
+    "pseudo_frac": 0.0,
+    "pseudo_weight": 0.5,
+    "clean_speech_weight": 0.0,
+    "no_ship": true,
+    "no_log": false,
+    "note": "Adds the answer-context group."
+  },
+  "target_fps": 15.0,
+  "per_second": [
+    {
+      "video": "combined_ir8244089_Marthala_Ashok_Reddy",
+      "seconds": 1586,
+      "reading_s": 239,
+      "flagged_s": 116,
+      "auc": 0.9078752411215998,
+      "ap": 0.5153901223506259,
+      "precision": 0.43103448275862066,
+      "recall": 0.20920502092050208,
+      "iou": 0.16393442622950818,
+      "f1": 0.2816901408450704,
+      "spans_caught": "2/9",
+      "span_hit_rate": 0.2222222222222222
+    },
+    {
+      "video": "combined_ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1)",
+      "seconds": 1810,
+      "reading_s": 371,
+      "flagged_s": 381,
+      "auc": 0.80527151791919,
+      "ap": 0.405518884321273,
+      "precision": 0.4330708661417323,
+      "recall": 0.444743935309973,
+      "iou": 0.28109028960817717,
+      "f1": 0.43882978723404253,
+      "spans_caught": "13/29",
+      "span_hit_rate": 0.4482758620689655
+    },
+    {
+      "video": "combined_ir8308053_Muthakani_Venkateswarlu",
+      "seconds": 1415,
+      "reading_s": 698,
+      "flagged_s": 13,
+      "auc": 0.9186038612013603,
+      "ap": 0.8980023618253223,
+      "precision": 1.0,
+      "recall": 0.01862464183381089,
+      "iou": 0.01862464183381089,
+      "f1": 0.03656821378340366,
+      "spans_caught": "0/26",
+      "span_hit_rate": 0.0
+    }
+  ],
+  "video": {
+    "n": 100,
+    "auc": 0.8291139240506329,
+    "tp": 13,
+    "fp": 9,
+    "fn": 8,
+    "tn": 70,
+    "precision": 0.5909090909090909,
+    "recall": 0.6190476190476191,
+    "accuracy": 0.83,
+    "threshold": 81.0,
+    "matched_auc": 0.8664965986394557,
+    "matched_fp": 1,
+    "matched_n_clean": 28,
+    "unreviewed_caught": "11/18"
+  },
+  "stat_auc": {
+    "reading_seconds": 0.8291139240506329,
+    "reading_share": 0.8511151295961423,
+    "reading_share_of_speech": 0.8541289933694998,
+    "top10_mean": 0.8547317661241712,
+    "p95": 0.8511151295961422,
+    "speech_prob_mean": 0.863170584689572,
+    "speech_prob_p90": 0.8511151295961421
+  },
+  "second_threshold": 0.005,
+  "sweep": [
+    {
+      "threshold": 0.005,
+      "precision": 0.4470588235294118,
+      "recall": 0.1743119266055046,
+      "f1": 0.25082508250825086,
+      "clean_flag_rate": 0.01720366787246572
+    },
+    {
+      "threshold": 0.0061,
+      "precision": 0.44871794871794873,
+      "recall": 0.16055045871559634,
+      "f1": 0.2364864864864865,
+      "clean_flag_rate": 0.015619304001570343
+    },
+    {
+      "threshold": 0.0075,
+      "precision": 0.4558139534883721,
+      "recall": 0.14984709480122324,
+      "f1": 0.22554660529344076,
+      "clean_flag_rate": 0.014161128403578138
+    },
+    {
+      "threshold": 0.0091,
+      "precision": 0.4682926829268293,
+      "recall": 0.14678899082568808,
+      "f1": 0.22351571594877767,
+      "clean_flag_rate": 0.012983371189815204
+    },
+    {
+      "threshold": 0.0111,
+      "precision": 0.46981627296587924,
+      "recall": 0.13685015290519878,
+      "f1": 0.211959739490823,
+      "clean_flag_rate": 0.011735509379994952
+    },
+    {
+      "threshold": 0.0136,
+      "precision": 0.46875,
+      "recall": 0.12614678899082568,
+      "f1": 0.19879518072289157,
+      "clean_flag_rate": 0.01084518101006702
+    },
+    {
+      "threshold": 0.0166,
+      "precision": 0.45394736842105265,
+      "recall": 0.10550458715596331,
+      "f1": 0.17121588089330025,
+      "clean_flag_rate": 0.010165166428311041
+    },
+    {
+      "threshold": 0.0202,
+      "precision": 0.46886446886446886,
+      "recall": 0.09785932721712538,
+      "f1": 0.16192283364958884,
+      "clean_flag_rate": 0.009358963573651888
+    },
+    {
+      "threshold": 0.0247,
+      "precision": 0.4763779527559055,
+      "recall": 0.09250764525993883,
+      "f1": 0.15492957746478872,
+      "clean_flag_rate": 0.008735032668741764
+    },
+    {
+      "threshold": 0.0302,
+      "precision": 0.45374449339207046,
+      "recall": 0.07874617737003058,
+      "f1": 0.13420195439739413,
+      "clean_flag_rate": 0.008258321415552003
+    },
+    {
+      "threshold": 0.0368,
+      "precision": 0.5079365079365079,
+      "recall": 0.07339449541284404,
+      "f1": 0.1282565130260521,
+      "clean_flag_rate": 0.007634390510641877
+    },
+    {
+      "threshold": 0.045,
+      "precision": 0.5031446540880503,
+      "recall": 0.06116207951070336,
+      "f1": 0.10906612133605999,
+      "clean_flag_rate": 0.007220773393903705
+    },
+    {
+      "threshold": 0.0549,
+      "precision": 0.45528455284552843,
+      "recall": 0.04281345565749235,
+      "f1": 0.07826694619147449,
+      "clean_flag_rate": 0.0066038529485993105
+    },
+    {
+      "threshold": 0.0671,
+      "precision": 0.4318181818181818,
+      "recall": 0.0290519877675841,
+      "f1": 0.054441260744985676,
+      "clean_flag_rate": 0.006155183533832478
+    },
+    {
+      "threshold": 0.0819,
+      "precision": 0.3880597014925373,
+      "recall": 0.019877675840978593,
+      "f1": 0.03781818181818182,
+      "clean_flag_rate": 0.0056995036594599145
+    },
+    {
+      "threshold": 0.1,
+      "precision": 0.30612244897959184,
+      "recall": 0.011467889908256881,
+      "f1": 0.022107590272660283,
+      "clean_flag_rate": 0.005341970219567595
+    },
+    {
+      "threshold": 0.125,
+      "precision": 0.23809523809523808,
+      "recall": 0.00764525993883792,
+      "f1": 0.014814814814814815,
+      "clean_flag_rate": 0.00484422758756064
+    },
+    {
+      "threshold": 0.15,
+      "precision": 0.16666666666666666,
+      "recall": 0.00382262996941896,
+      "f1": 0.007473841554559043,
+      "clean_flag_rate": 0.004465662768851126
+    },
+    {
+      "threshold": 0.175,
+      "precision": 0.15384615384615385,
+      "recall": 0.0030581039755351682,
+      "f1": 0.005997001499250375,
+      "clean_flag_rate": 0.004213286223044782
+    },
+    {
+      "threshold": 0.2,
+      "precision": 0.13043478260869565,
+      "recall": 0.0022935779816513763,
+      "f1": 0.0045078888054094655,
+      "clean_flag_rate": 0.003974930596449903
+    },
+    {
+      "threshold": 0.225,
+      "precision": 0.125,
+      "recall": 0.0015290519877675841,
+      "f1": 0.0030211480362537764,
+      "clean_flag_rate": 0.00356131347971173
+    },
+    {
+      "threshold": 0.25,
+      "precision": 0.13333333333333333,
+      "recall": 0.0015290519877675841,
+      "f1": 0.0030234315948601664,
+      "clean_flag_rate": 0.0032668741762709964
+    },
+    {
+      "threshold": 0.275,
+      "precision": 0.14285714285714285,
+      "recall": 0.0015290519877675841,
+      "f1": 0.0030257186081694403,
+      "clean_flag_rate": 0.002965424413224531
+    },
+    {
+      "threshold": 0.3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0026920164886009928
+    },
+    {
+      "threshold": 0.325,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0023625248871316003
+    },
+    {
+      "threshold": 0.35,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.002110148341325257
+    },
+    {
+      "threshold": 0.375,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0019348868511819635
+    },
+    {
+      "threshold": 0.4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0016474580073469617
+    },
+    {
+      "threshold": 0.425,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0015773534112896441
+    },
+    {
+      "threshold": 0.45,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0014091023807520822
+    },
+    {
+      "threshold": 0.475,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0012548722694259837
+    },
+    {
+      "threshold": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0011637362945514707
+    },
+    {
+      "threshold": 0.525,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0009464120467737864
+    },
+    {
+      "threshold": 0.55,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0008552760718992737
+    },
+    {
+      "threshold": 0.575,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0008062028546591515
+    },
+    {
+      "threshold": 0.6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.000736098258601834
+    },
+    {
+      "threshold": 0.625,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0005818681472757354
+    },
+    {
+      "threshold": 0.65,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0004907321724012227
+    },
+    {
+      "threshold": 0.675,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.00035753343989231934
+    },
+    {
+      "threshold": 0.7,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0002663974650178066
+    },
+    {
+      "threshold": 0.725,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.00022433470738341605
+    },
+    {
+      "threshold": 0.75,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0001892824093547573
+    },
+    {
+      "threshold": 0.775,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.00018227194974902554
+    },
+    {
+      "threshold": 0.8,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0001331987325089033
+    },
+    {
+      "threshold": 0.825,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 7.711505566304927e-05
+    },
+    {
+      "threshold": 0.85,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 3.505229802865876e-05
+    },
+    {
+      "threshold": 0.875,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0
+    },
+    {
+      "threshold": 0.9,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0
+    },
+    {
+      "threshold": 0.925,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0
+    },
+    {
+      "threshold": 0.95,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "clean_flag_rate": 0.0
+    }
+  ],
+  "importances": [
+    [
+      "ctx_head_speed_speak",
+      0.14272604882717133
+    ],
+    [
+      "speak_frac",
+      0.13987818360328674
+    ],
+    [
+      "ctx_head_vs_listen",
+      0.10263706743717194
+    ],
+    [
+      "head_speed",
+      0.05771012231707573
+    ],
+    [
+      "mouth_act",
+      0.05169885978102684
+    ],
+    [
+      "ctx_blink_speak",
+      0.04839059337973595
+    ],
+    [
+      "mouth_act_vrel",
+      0.03916704282164574
+    ],
+    [
+      "blink_rate",
+      0.03663711994886398
+    ],
+    [
+      "speak_act",
+      0.0217293631285429
+    ],
+    [
+      "ctx_aversion_vs_listen",
+      0.02136404439806938
+    ],
+    [
+      "ctx_speak_frac",
+      0.02113460749387741
+    ],
+    [
+      "ctx_v_std_speak",
+      0.017812583595514297
+    ],
+    [
+      "yaw_std_vrel",
+      0.01713581755757332
+    ],
+    [
+      "speak_ctx30",
+      0.01696418598294258
+    ],
+    [
+      "head_speed_vrel",
+      0.01503441296517849
+    ],
+    [
+      "ctx_aversion_speak",
+      0.01471591368317604
+    ],
+    [
+      "ctx_h_std_speak",
+      0.014477740973234177
+    ],
+    [
+      "ctx_v_mean_speak",
+      0.012783154845237732
+    ],
+    [
+      "jaw_mean",
+      0.012627977877855301
+    ],
+    [
+      "jaw_act",
+      0.012376205995678902
+    ],
+    [
+      "smile_mean",
+      0.012026886455714703
+    ],
+    [
+      "jaw_act_vrel",
+      0.010292451828718185
+    ],
+    [
+      "speak_prev10",
+      0.008165166713297367
+    ],
+    [
+      "ctx_blink_vs_listen",
+      0.0080112861469388
+    ],
+    [
+      "pitch_mean_listen_vrel",
+      0.006643213331699371
+    ],
+    [
+      "ctx_artic_cv",
+      0.00649335328489542
+    ],
+    [
+      "v_mean_listen",
+      0.006238749250769615
+    ],
+    [
+      "ear_mean",
+      0.005425976123660803
+    ],
+    [
+      "ear_mean_vrel",
+      0.004989109933376312
+    ],
+    [
+      "h_skew_dom_vrel",
+      0.004964966326951981
+    ],
+    [
+      "parked_frac_vrel",
+      0.004899179562926292
+    ],
+    [
+      "pitch_std",
+      0.004437083378434181
+    ],
+    [
+      "h_ac_peak",
+      0.003948581870645285
+    ],
+    [
+      "pitch_mean_listen",
+      0.003899101633578539
+    ],
+    [
+      "ctx_sweeps_speak",
+      0.0038737584836781025
+    ],
+    [
+      "brow_down_mean",
+      0.0036920947022736073
+    ],
+    [
+      "ctx_pause_rate",
+      0.0036845270078629255
+    ],
+    [
+      "brow_down_mean_vrel",
+      0.003615414956584573
+    ],
+    [
+      "h_std",
+      0.0035299782175570726
+    ],
+    [
+      "squint_mean",
+      0.003395028878003359
+    ]
+  ]
+}

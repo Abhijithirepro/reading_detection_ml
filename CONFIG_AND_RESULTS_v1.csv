@@ -1,0 +1,85 @@
+section,item,value,notes
+1. data,"cheating videos, source 'interviews'",21,used in v1 training/CV
+1. data,"cheating videos, source 'testing_team'",6,used in v1 training/CV
+1. data,"clean videos, source 'interviews'",28,used in v1 training/CV
+1. data,"clean videos, source 'interviews_new'",51,used in v1 training/CV
+1. data,total videos,106,27 cheating / 79 clean
+1. data,labels,video-level (weak),every window of a cheating video labelled cheating; no timestamps
+2. extraction,face tracker,MediaPipe FaceLandmarker (478 landmarks + iris),Apache-2.0
+2. extraction,backend,mediapipe,
+2. extraction,target_fps,15.0,keep-rule gave 12.5 fps effective on 25 fps sources
+2. extraction,frame resolution,native,no downscaling (720p clean vs <=640 px cheating)
+2. extraction,per-frame channels,"gaze_x, gaze_y, yaw, pitch, roll, ear, mouth, blink",
+2. extraction,blendshapes,no,
+2. extraction,min_face_ratio,0.7,
+2. extraction,max_gap_seconds,0.5,
+2. extraction,median_filter_k,3,
+2. extraction,calibrate_gaze,True,
+2. extraction,ear_blink_threshold,0.18,
+3. windows,window_seconds,20.0,
+3. windows,stride_seconds,10.0,
+3. windows,min_valid_ratio,0.5,
+3. windows,CNN input channels,"gaze_x, gaze_y, yaw, pitch, ear, mouth",
+3. windows,sequence length,240,window resampled to 12 Hz
+4. model,kind,cnn,1D-CNN
+4. model,architecture,"Conv1d(6->32,k5)+ReLU, Conv1d(32->32,k5)+ReLU, AvgPool, Dropout 0.3, Linear(32->1)",src/train.py _build_seq_net
+4. model,parameters,6177,counted from models/model_cnn.pt
+4. model,input normalisation,per-channel z-score (models/seq_scaler.npz),
+4. model,browser,yes: ONNX via onnxruntime-web (frontend/),
+5. training,optimizer,Adam,src/train.py
+5. training,learning rate,1e-3,src/train.py
+5. training,weight decay,1e-4,src/train.py
+5. training,batch size,32,src/train.py
+5. training,max epochs,40,src/train.py
+5. training,early stopping patience,6 (train loss),src/train.py
+5. training,loss,"BCEWithLogits, pos_weight = negatives/positives",src/train.py
+5. training,cross-validation,StratifiedGroupKFold(5) grouped by video,src/train.py
+5. training,random_state,42,src/train.py
+6. verdict,video score,"mean of top-k window probabilities (topk_fraction 0.3, topk_min 3)",
+6. verdict,threshold,0.9590,tuned for F0.5 (favours precision)
+6. verdict,flagged segments,"consecutive windows >= threshold, merged",
+7. results: v1 own CV (106 videos),video ROC-AUC,0.871,models/metrics.json
+7. results: v1 own CV (106 videos),video PR-AUC,0.808,models/metrics.json
+7. results: v1 own CV (106 videos),window ROC-AUC,0.778,models/metrics.json
+7. results: v1 own CV (106 videos),precision,0.938,models/metrics.json
+7. results: v1 own CV (106 videos),recall,0.556,models/metrics.json
+7. results: v1 own CV (106 videos),cheating caught (TP / all cheating),15/27,
+7. results: v1 own CV (106 videos),false alarms (FP / all clean),1/79,
+7. results: v1 own CV (106 videos),cross-source AUC: interviews vs interviews,0.833,21+28 videos
+7. results: v1 own CV (106 videos),cross-source AUC: testing_team vs interviews_new,0.866,6+51 videos
+8. results: 100 on-disk videos (v1 out-of-fold),videos scored,100,same 100 recordings v2 is evaluated on
+8. results: 100 on-disk videos (v1 out-of-fold),video ROC-AUC,0.843,
+8. results: 100 on-disk videos (v1 out-of-fold),cheating caught (TP / all cheating),10/21,
+8. results: 100 on-disk videos (v1 out-of-fold),clean cleared (TN / all clean),78/79,
+8. results: 100 on-disk videos (v1 out-of-fold),false alarms (FP),1,
+8. results: 100 on-disk videos (v1 out-of-fold),precision,0.909,
+8. results: 100 on-disk videos (v1 out-of-fold),recall,0.476,
+8. results: 100 on-disk videos (v1 out-of-fold),accuracy,0.880,
+8. results: 100 on-disk videos (v1 out-of-fold),same-platform AUC (cheating vs not_cheating_folder),0.861,honest comparison: same recording platform
+8. results: 100 on-disk videos (v1 out-of-fold),same-platform false alarms,0/28,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8308053_Muthakani_Venkateswarlu: reading seconds (reviewer),698,v1 trained on these videos: its best case
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8308053_Muthakani_Venkateswarlu: flagged seconds (model),560,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8308053_Muthakani_Venkateswarlu: per-second AUC,0.710,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8308053_Muthakani_Venkateswarlu: precision,0.670,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8308053_Muthakani_Venkateswarlu: recall,0.537,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8308053_Muthakani_Venkateswarlu: IoU,0.425,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8308053_Muthakani_Venkateswarlu: reviewer spans caught,14/26,>= 50% of span flagged
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8244089_Marthala_Ashok_Reddy: reading seconds (reviewer),239,v1 trained on these videos: its best case
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8244089_Marthala_Ashok_Reddy: flagged seconds (model),980,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8244089_Marthala_Ashok_Reddy: per-second AUC,0.567,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8244089_Marthala_Ashok_Reddy: precision,0.167,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8244089_Marthala_Ashok_Reddy: recall,0.686,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8244089_Marthala_Ashok_Reddy: IoU,0.155,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8244089_Marthala_Ashok_Reddy: reviewer spans caught,6/9,>= 50% of span flagged
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): reading seconds (reviewer),371,v1 trained on these videos: its best case
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): flagged seconds (model),600,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): per-second AUC,0.481,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): precision,0.153,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): recall,0.248,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): IoU,0.105,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ir8266049_Sai_Koti_Reddy_Sai_Bhavanam (1): reviewer spans caught,8/29,>= 50% of span flagged
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ALL reviewed: spans caught,28/64,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ALL reviewed: mean per-second AUC,0.586,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ALL reviewed: pooled precision,0.295,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ALL reviewed: pooled recall,0.482,
+"9. results: vs manual reviews, per second (IN-SAMPLE)",ALL reviewed: mean IoU,0.228,

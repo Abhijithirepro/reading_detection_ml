@@ -3,7 +3,8 @@ train_seq.py (v2, experiment) — a 1D-CNN on the raw per-frame channels, traine
 on the same strong labels and scored with the same folds / metrics as train.py,
 so RESULTS_LOG.md compares the two model families like for like.
 
-Input per window: 8 s of 10 channels at 12.5 Hz (100 steps) — eye_h, eye_v,
+Input per window: 8 s of 10 channels at the 15 fps sampling rate (120 steps; the
+logged runs predate the switch and used 25 fps decimated to 12.5 Hz) — eye_h, eye_v,
 gaze_x, gaze_y, jaw, mouth, blink, yaw, pitch, speaking — each robust-normalised
 per video (median / MAD), so a person's baseline is removed before the network
 sees it. Windows are sliced on the fly from per-video arrays (no huge tensor).
@@ -41,7 +42,8 @@ import results_log
 import train as tr
 
 CHANNELS = ["eye_h", "eye_v", "gaze_x", "gaze_y", "jaw", "mouth", "blink", "yaw", "pitch", "speaking"]
-DECIM = 2            # 25 Hz -> 12.5 Hz
+DECIM = max(1, int(round(DEFAULT_CONFIG.target_fps / 12.5)))   # 15 fps -> every sample; 25 -> every 2nd
+SEQ_HZ = DEFAULT_CONFIG.target_fps / DECIM
 
 
 def _video_arrays(job):
@@ -281,7 +283,7 @@ def main(argv=None):
               else "no self-training")
     results_log.append(
         args.exp,
-        f"1D-CNN on raw per-frame channels ({', '.join(CHANNELS)}), 8 s @ 12.5 Hz, {args.epochs} epochs; "
+        f"1D-CNN on raw per-frame channels ({', '.join(CHANNELS)}), 8 s @ {SEQ_HZ:g} Hz, {args.epochs} epochs; "
         f"{recipe}; verdict stat {args.video_stat}. Same folds, leak-free pseudo-labels, thresholds "
         f"and metrics as the XGBoost runs"
         + (" — XGBoost re-run on the identical window set for a head-to-head." if args.compare_xgb else ".")
@@ -290,8 +292,9 @@ def main(argv=None):
          "CNN per-second vs manual reviews": results_log.table(
              ev["per_second"], ["video", "reading_s", "flagged_s", "auc", "precision", "recall", "iou",
                                 "spans_caught"])},
-        dict(args=vars(args), contenders={n: dict(per_second=e["per_second"], video=e["video"],
-                                                  stat_auc=e["stat_auc"]) for n, e in contenders}))
+        dict(args=vars(args), target_fps=cfg.target_fps,
+             contenders={n: dict(per_second=e["per_second"], video=e["video"], stat_auc=e["stat_auc"],
+                                 second_threshold=e["second_threshold"]) for n, e in contenders}))
     return 0
 
 

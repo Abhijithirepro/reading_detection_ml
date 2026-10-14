@@ -1,9 +1,10 @@
 """
 results_log.py (v2, new) — append-only record of every evaluation run.
 
-Each run is written twice:
+Each run is written three times:
   * results/<timestamp>__<name>.json   full machine-readable metrics
   * RESULTS_LOG.md                     one human-readable section appended at the end
+  * MLflow (tracking.py)               params, metrics and files, best-effort
 
 Nothing is ever overwritten, so the log is the history of what was tried and
 how it scored against the manual reading reviews.
@@ -16,6 +17,7 @@ import time
 from pathlib import Path
 
 from common import PROJECT_ROOT, RESULTS_DIR
+import tracking
 
 LOG_PATH = PROJECT_ROOT / "RESULTS_LOG.md"
 
@@ -67,4 +69,5 @@ def append(name: str, summary: str, sections: dict, payload: dict) -> Path:
     md += f"_json: `results/{fname}`_\n"
     with LOG_PATH.open("a") as fh:
         fh.write(md)
+    tracking.log_run(name, summary, payload, RESULTS_DIR / fname, md.strip("\n-") + "\n")
     return RESULTS_DIR / fname
